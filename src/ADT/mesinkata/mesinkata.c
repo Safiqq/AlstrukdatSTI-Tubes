@@ -2,7 +2,6 @@
 #include "../mesinkarakter/mesinkarakter.h"
 #include "mesinkata.h"
 
-char currentChar;
 boolean EndWord;
 Word currentWord;
 
@@ -14,9 +13,9 @@ void IgnoreBlanks()
     }
 }
 
-void STARTWORD()
+void STARTWORD(boolean isConfig)
 {
-    START();
+    START(isConfig);
     IgnoreBlanks();
     if (GetCC() == MARK)
         EndWord = true;
@@ -55,4 +54,5 @@ void CopyWord()
 
 void CopyLine()
 {
+
 }

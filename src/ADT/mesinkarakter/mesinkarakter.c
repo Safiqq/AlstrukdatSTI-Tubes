@@ -6,9 +6,9 @@ boolean EOP;
 
 static FILE *pita;
 
-void START()
+void START(boolean isConfig)
 {
-    pita = stdin;
+    pita = isConfig ? fopen("../data/config.txt", "r") : stdin;
     ADV();
 }
 
