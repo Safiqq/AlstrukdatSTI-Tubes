@@ -1,2 +1,2 @@
-bnmo: main.c nama_file1 nama_file2
-     gcc -o bnmo main.c nama_file1.c nama_file2.c -I.
+bnmo: ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c
+	gcc -o bnmo ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c -I.
