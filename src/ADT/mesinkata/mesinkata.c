@@ -1,20 +1,10 @@
 #include <stdio.h>
+#include "../mesinkarakter/mesinkarakter.h"
 #include "mesinkata.h"
 
 char currentChar;
-
 boolean EndWord;
 Word currentWord;
-
-char GetCC()
-{
-    return currentChar;
-}
-
-boolean IsEOP()
-{
-    return currentChar == MARK;
-}
 
 void IgnoreBlanks()
 {
@@ -61,4 +51,8 @@ void CopyWord()
         currentWord.Length = i;
     else
         currentWord.Length = NMax;
+}
+
+void CopyLine()
+{
 }
