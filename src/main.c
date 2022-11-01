@@ -63,6 +63,7 @@ int main()
     // Command lain
     else
     {
+        printf("Command tidak dikenali, silahkan masukkan command yang valid.");
     }
     return 0;
 }
