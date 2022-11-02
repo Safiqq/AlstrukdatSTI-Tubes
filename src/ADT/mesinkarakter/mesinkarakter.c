@@ -1,23 +1,30 @@
 #include <stdio.h>
 #include "mesinkarakter.h"
 
+int countMark;
+int limitMark;
+int retval;
 char currentChar;
-boolean EOP;
+boolean isFile;
 
-static FILE *pita;
+FILE *pita;
+FILE *pitaFile;
 
-void START(boolean isConfig)
+void START()
 {
-    pita = isConfig ? fopen("../data/config.txt", "r") : stdin;
+    countMark = 0;
+    if (isFile)
+        pitaFile = fopen("../data/config.txt", "r");
+    else
+        pita = stdin;
     ADV();
 }
 
 void ADV()
 {
-    fscanf(pita, "%c", &currentChar);
-    EOP = IsEOP();
-    if (EOP)
-        fclose(pita);
+    retval = fscanf(isFile ? pitaFile : pita, "%c", &currentChar);
+    if (retval < 0)
+        fclose(isFile ? pitaFile : pita);
 }
 
 char GetCC()
@@ -27,5 +34,7 @@ char GetCC()
 
 boolean IsEOP()
 {
-    return currentChar == MARK;
+    if (currentChar == MARK)
+        countMark++;
+    return retval == EOF;
 }
