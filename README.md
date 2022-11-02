@@ -12,5 +12,7 @@
 - 18221164 Damian Marvel
 
 ## How to Use
-1. Type `make` or `mingw32-make` in the `bin` directory
-2. ...
+1. `cd bin`
+1. `make` or `mingw32-make` (in the **bin** directory)
+2. `./bnmo`
+3. Type `HELP` to show all the available commands
