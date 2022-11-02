@@ -1,29 +1,21 @@
 #include <stdio.h>
 #include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/queue/queue.h"
 #include "boolean.h"
 
 #define MAX_LENGTH 100
 
-boolean isEqual(Word str1, char *str2)
-{
-    int i = 0;
-    boolean isDiffer = false;
-    while (str1.TabWord[i] != '\0' && str2[i] != '\0' && !isDiffer)
-    {
-        if (str1.TabWord[i] != str2[i])
-            isDiffer = true;
-        i++;
-    }
-    return !isDiffer;
-}
-
 int main()
 {
     printf("ENTER COMMAND: ");
-    STARTWORD(false);
+
+    isFile = false;
+    STARTWORD();
+
     if (isEqual(currentWord, "START"))
     {
-        // START()
+        Queue Q;
+        BNMO_START(&Q);
         printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
     }
     else if (isEqual(currentWord, "LOAD"))
@@ -62,8 +54,6 @@ int main()
     }
     // Command lain
     else
-    {
-        printf("Command tidak dikenali, silahkan masukkan command yang valid.");
-    }
+        printf("Command tidak dikenali, silakan masukkan command yang valid.");
     return 0;
 }

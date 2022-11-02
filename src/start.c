@@ -1,25 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "boolean.h"
+#include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/queue/queue.h"
 
 #define MAX_LENGTH 100
 
-FILE *file;
-
-void START()
+void BNMO_START(Queue *Q)
 {
-    file = fopen("../data/config.txt", "r");
-    if (file == NULL)
-        printf("File config.txt tidak bisa dibuka.\n");
-    else
+    int i, j, len;
+    CreateQueue(Q);
+    isFile = true;
+    STARTWORD();
+    len = atoi(currentWord.TabWord);
+    for (i = 0; i < len; i++)
     {
-        int gameCount, historyCount;
-        char buf[MAX_LENGTH];
-        fgets(buf, MAX_LENGTH, file);
-        gameCount = atoi(buf);
-        // looping sebanyak gameCount, pake queue
-        fgets(buf, MAX_LENGTH, file);
-        historyCount = atoi(buf);
-        // looping sebanyak historyCount, pake queue
-        printf("%d", gameCount);
+        ADVLINE();
+        printf("%s\n", currentWord.TabWord);
+
+        // ElType = char* = string
+        enqueue(Q, currentWord.TabWord);
     }
 }
