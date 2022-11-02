@@ -1,2 +1,2 @@
-bnmo: ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c
-	gcc -o bnmo ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c -I.
+bnmo: ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c ../src/start.c
+	gcc -o bnmo ../src/main.c ../src/ADT/array/array.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c ../src/start.c -I.
