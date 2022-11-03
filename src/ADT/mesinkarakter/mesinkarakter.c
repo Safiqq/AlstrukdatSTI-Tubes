@@ -10,11 +10,11 @@ boolean isFile;
 FILE *pita;
 FILE *pitaFile;
 
-void START()
+void START(char *path, char *type)
 {
     countMark = 0;
     if (isFile)
-        pitaFile = fopen("../data/config.txt", "r");
+        pitaFile = fopen(path, type);
     else
         pita = stdin;
     ADV();
