@@ -39,9 +39,9 @@ void IgnoreLines()
     }
 }
 
-void STARTWORD()
+void STARTWORD(char *path, char *type)
 {
-    START();
+    START(path, type);
     IgnoreBlanks();
     if (GetCC() == MARK)
         EndWord = true;

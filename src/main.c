@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/queue.h"
 #include "boolean.h"
@@ -10,11 +11,11 @@ int main()
     printf("ENTER COMMAND: ");
 
     isFile = false;
-    STARTWORD();
+    STARTWORD("", "");
     if (isEqual(currentWord, "START"))
     {
-        Queue Q;
-        BNMO_START(&Q);
+        TabStr T;
+        BNMO_START(&T);
         printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
     }
     else if (isEqual(currentWord, "LOAD"))
@@ -27,11 +28,7 @@ int main()
     {
         printf("Masukkan nama game yang akan ditambahkan: ");
         ADVWORD();
-        // Perlu checker??
-        if (isEqual(currentWord, "RNG") || isEqual(currentWord, "Diner Dash"))
-            printf("Game sudah ada");
-        else
-            printf("Game berhasil ditambahkan");
+        // Cek apakah game sdh ada
     }
     else if (isEqual(currentWord, "LISTGAME"))
     {
