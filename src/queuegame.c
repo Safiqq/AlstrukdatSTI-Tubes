@@ -4,22 +4,36 @@
 
 //TabInt ElType= Char
 void QueueGame( TabStr *listgame, Queue *antriangameidx){
-    for(int i=0;i<length(*antriangameidx);i++){
-        printf("%d. %c",i,listgame->TI[antriangameidx->buffer[i]]);
+    int i;
+    printf("Berikut adalah daftar antrian game-mu\n");
+    for(i=1;i<=length(*antriangameidx);i++){
+        printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
     }
-    for(int i=0;i<NbElmt(*listgame);i++){
-        printf("%d. %c",i,listgame->TI[i]);
+    printf("\n");
+    printf("Berikut adalah daftar game yang tersedia\n");
+    for(i=1;i<=NbElmt(*listgame);i++){
+        printf("%d. %s\n",i,listgame->TI[i-1]);
     }
     int n;
-    Queue q;
-    CreateQueue(&q);
-    scanf("Nomor Game yang mau ditambahkan ke antrian: %d", &n);
-    if (n > length(*antriangameidx)){
+    printf("\nNomor Game yang mau ditambahkan ke antrian: ");
+    scanf("%d", &n);
+    if (n > listgame->Neff){
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
     }
     else{
-        enqueue(&(*antriangameidx),n-1);
-        printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
+        int found = 0;
+        i=0;
+        while(i<length(*antriangameidx)&&found==0){
+            if(antriangameidx->buffer[i]==n-1){
+                found =1;
+            }
+            i++;
+        }
+        if(found==0){
+            enqueue(&(*antriangameidx),n-1);
+        }
+        printf("\nGame berhasil ditambahkan kedalam daftar antrian.\n");
     }
 }
+
 
