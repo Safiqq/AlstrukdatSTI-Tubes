@@ -11,7 +11,6 @@ int main()
 
     isFile = false;
     STARTWORD();
-
     if (isEqual(currentWord, "START"))
     {
         Queue Q;
