@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "queue.h"
 
+// halo
 void QueueGame(Queue *antriangame, Queue *listgame){
     for(int i =0;i<length(*antriangame);i++){
         printf("%d. %c",i,antriangame->buffer[i]);
