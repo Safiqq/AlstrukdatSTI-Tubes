@@ -3,7 +3,7 @@
 #include "./ADT/queue/queue.h"
 
 //TabInt ElType= Char
-void QueueGame( TabInt *listgame, Queue *antriangameidx){
+void QueueGame( TabStr *listgame, Queue *antriangameidx){
     for(int i=0;i<length(*antriangameidx);i++){
         printf("%d. %c",i,listgame->TI[antriangameidx->buffer[i]]);
     }
