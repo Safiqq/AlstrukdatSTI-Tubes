@@ -13,7 +13,7 @@ void deletegame(Queue *listgame, Queue antriangame){
         printf("Game gagal dihapus.\n");
     }
     else{
-        ElType game;
+        QueElType game;
         game=(*listgame).buffer[hapus-1];
         boolean isInAntrian= false;
         int i=0;
@@ -32,8 +32,7 @@ void deletegame(Queue *listgame, Queue antriangame){
                     (*listgame).buffer[i]=(*listgame).buffer[i+1];
                 }
                 else{
-                    ElType val;
-                    dequeue(listgame,&val);
+                    (*listgame).idxTail-=1;         //menghapus elemen terakhir menjadi sampah
                 }
             }
             printf("Game berhasil dihapus.\n");
