@@ -3,13 +3,13 @@
 #include "./ADT/mesinkata/mesinkata.h"
 
 void playgame(Queue *antriangame){
-    ElType play;
+    QueElType play;
     printf("Berikut adalah daftar game milikmu: \n");
     for(int i =0;i<length(*antriangame);i++){
         printf("%d. %c",i,antriangame->buffer[i]);
     }
     if (!isEmpty(*antriangame)){
-        ElType val;
+        QueElType val;
         dequeue(antriangame, &val);
         play=val;
     }
