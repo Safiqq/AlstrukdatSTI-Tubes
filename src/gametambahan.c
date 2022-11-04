@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-int gametambahan(){
+int main(){
     int poin;
 	srand(time(NULL));
 	poin = rand() % 100;
     printf("GAME OVER\n");
-    printf("Anda mendapatkan %d poin",poin);
+    printf("Anda mendapatkan %d poin\n",poin);
 }
