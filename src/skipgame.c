@@ -3,9 +3,18 @@
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
+int WordToInt(Word CWord)
+{
+    int result = 0;
+    for(int i = 0; i < CWord.Length;i++)
+    {
+        result = result*10 + (CWord.TabWord[i] - '0');
+    }  
+    return result;
+}
 void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx){
     ADVWORD();
-    int num=currentWord.TabWord[currentWord.Length]-'0';        //cara ngubah word ke int belum fix
+    int num = WordToInt(currentWord);        //cara ngubah word ke int belum fix
     printf("Berikut adalah daftar game milikmu: \n");
     for(int i=1;i<=length(*antriangameidx);i++){
         printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
