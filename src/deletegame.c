@@ -1,24 +1,22 @@
 #include <stdio.h>
 #include "./ADT/queue/queue.h"
-#include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/array/array.h"
 #include "boolean.h"
 
-void deletegame(Queue *listgame, Queue antriangame){
+void deletegame(TabStr *listgame, Queue antriangameidx){
     printf("Berikut adalah daftar game yang tersedia\n");
-    for(int i = 0; i < length(*listgame); i++){
-        printf("\t%d.%s\n", i, (*listgame).buffer[i]);
+    for(int i=1;i<=NbElmt(*listgame);i++){
+        printf("%d. %s\n",i,listgame->TI[i-1]);
     }
-    int hapus;
+    QueElType hapus;
     if (hapus<=5 && hapus>=1){
         printf("Game gagal dihapus.\n");
     }
     else{
-        QueElType game;
-        game=(*listgame).buffer[hapus-1];
         boolean isInAntrian= false;
         int i=0;
-        while ((i<length(antriangame)) && !isInAntrian) {
-            if (game==antriangame.buffer[i]){
+        while ((i<length(antriangameidx)) && !isInAntrian) {
+            if (hapus==antriangameidx.buffer[i]){
                 isInAntrian=true;
             }
             i++;
@@ -27,12 +25,12 @@ void deletegame(Queue *listgame, Queue antriangame){
             printf("Game gagal dihapus.\n");
         }
         else{
-            for (int i=hapus-1; i<length(*listgame);i++){
-                if (i!=length(*listgame)-1){
-                    (*listgame).buffer[i]=(*listgame).buffer[i+1];
+            for (int i=hapus-1; i<NbElmt(*listgame);i++){
+                if (i!=NbElmt(*listgame)-1){
+                    (*listgame).TI[i]=(*listgame).TI[i+1];
                 }
                 else{
-                    (*listgame).idxTail-=1;         //menghapus elemen terakhir menjadi sampah
+                    (*listgame).Neff-=1;         //menghapus elemen terakhir menjadi sampah
                 }
             }
             printf("Game berhasil dihapus.\n");
