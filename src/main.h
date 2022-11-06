@@ -30,4 +30,6 @@ void quit();
 
 void help();
 
+void commandlain();
+
 #endif
