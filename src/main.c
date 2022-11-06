@@ -22,6 +22,7 @@ int main()
         }
         else if (isEqual(currentWord, "LOAD"))
         {
+            load(&T);
         }
         else if (isEqual(currentWord, "SAVE"))
         {
@@ -60,7 +61,7 @@ int main()
         }
         // Command lain
         else
-            printf("Command tidak dikenali, silakan masukkan command yang valid.");
+            commandlain();
     }
     return 0;
 }

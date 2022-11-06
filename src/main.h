@@ -12,6 +12,8 @@
 
 void BNMO_START(TabStr *T);
 
+void load(TabStr *T);
+
 void save(char* namafile, TabStr listgame);
 
 void createGame(char *name, TabStr *T);
