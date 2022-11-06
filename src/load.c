@@ -4,13 +4,13 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
 
-void load(Word namafile, TabStr *T) 
+void load(char * namafile, TabStr *T) 
 {
     int i, j, len;
     char *temp;
     MakeEmpty(T);
     isFile = true;
-    STARTWORD("../data/config.txt", "r");
+    STARTWORD("../data/", namafile);
     len = atoi(currentWord.TabWord);
     for (i = 0; i < len; i++)
     {
