@@ -167,7 +167,7 @@ void dinerdash(){
     // Program Utama
     printf("\nSelamat Datang di Diner Dash!\n\n");
 
-    while(length(Q) <= 7 &&  totalSaji < 15){
+    while(lengthDS(Q) <= 7 &&  totalSaji < 15){
         // Menampilkan ke layar
         tampilSaldo(saldo);
         tampilPesanan(Q, count);

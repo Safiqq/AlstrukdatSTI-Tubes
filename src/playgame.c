@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include "./ADT/queue/queue.h"
-#include "./ADT/array/array.h"
+#include "playgame.h"
 
 void playgame(TabStr *listgame, Queue *antriangameidx){
     int i;

@@ -19,7 +19,7 @@ boolean isFullDS(QueueDS q){
 
 int lengthDS(QueueDS q)
 {
-    if (isEmpty(q)) 
+    if (isEmptyDS(q)) 
         return 0;
     else if (IDX_TAIL(q) >= IDX_HEAD(q))
         return (IDX_TAIL(q) - IDX_HEAD(q) + 1);
@@ -29,7 +29,7 @@ int lengthDS(QueueDS q)
 
 void enqueueDS(QueueDS *q, ElType val)
 {
-    if (isEmpty(*q)){
+    if (isEmptyDS(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     }
@@ -52,15 +52,15 @@ void dequeueDS(QueueDS *q, ElType *val)
 }
 
 void displayQueueDS(QueueDS q){
-    if(length(q) == 0){
+    if(lengthDS(q) == 0){
         printf("[]\n");
     }
     else{
         int i = 0;
         printf("[");
-        for(i; i<= length(q) - 1; i++){
+        for(i; i<= lengthDS(q) - 1; i++){
             printf("%d", q.buffer[(i+IDX_HEAD(q))%CAPACITY]);
-            if (i <= length(q)- 2){
+            if (i <= lengthDS(q)- 2){
                 printf(",");
             }
         }

@@ -33,7 +33,7 @@ valuetype Value(Map M, keytype k)
 
 void Insert(Map *M, keytype k, valuetype v)
 {
-    if (!IsFull(*M))
+    if (!IsFullDS(*M))
     {
         {
             M->Count++;
