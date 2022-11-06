@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include "queue.h"
 
-void CreateQueue(Queue *q){
+void CreateQueueDS(QueueDS *q){
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 };
 
-boolean isEmpty(Queue q){
+boolean isEmptyDS(QueueDS q){
     return (IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF);
 };
 
-boolean isFull(Queue q){
+boolean isFullDS(QueueDS q){
     if (IDX_TAIL(q) >= IDX_HEAD(q))
         return (IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1);
     else
         return (IDX_HEAD(q) - IDX_TAIL(q) == 1);
 };
 
-int length(Queue q)
+int lengthDS(QueueDS q)
 {
     if (isEmpty(q)) 
         return 0;
@@ -27,7 +27,7 @@ int length(Queue q)
         return (IDX_TAIL(q) - IDX_HEAD(q) + CAPACITY + 1);
 }
 
-void enqueue(Queue *q, ElType val)
+void enqueueDS(QueueDS *q, ElType val)
 {
     if (isEmpty(*q)){
         IDX_HEAD(*q) = 0;
@@ -39,7 +39,7 @@ void enqueue(Queue *q, ElType val)
     TAIL(*q) = val;
 }
 
-void dequeue(Queue *q, ElType *val)
+void dequeueDS(QueueDS *q, ElType *val)
 {
     *val = HEAD(*q);
     if (IDX_HEAD(*q) == IDX_TAIL(*q)){
@@ -51,7 +51,7 @@ void dequeue(Queue *q, ElType *val)
     }
 }
 
-void displayQueue(Queue q){
+void displayQueueDS(QueueDS q){
     if(length(q) == 0){
         printf("[]\n");
     }

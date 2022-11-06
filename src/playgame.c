@@ -3,9 +3,10 @@
 #include "./ADT/array/array.h"
 
 void playgame(TabStr *listgame, Queue *antriangameidx){
+    int i;
     QueElType play;
     printf("Berikut adalah daftar game milikmu: \n");
-    for(int i=1;i<=length(*antriangameidx);i++){
+    for(i=1;i<=length(*antriangameidx);i++){
         printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
     }
     if (!isEmpty(*antriangameidx)){
@@ -14,10 +15,10 @@ void playgame(TabStr *listgame, Queue *antriangameidx){
         play=val;
     }
     if (play==1){
-        //dinnerdash();
+        dinerdash();
     }
     else if (play==2){
-        //rng();
+        RNG_GAME();
     }
     else{
         printf("Game %s masih dalam maintenance, belum dapat dimainkan. SIlakan pilih game lain.",play);

@@ -8,13 +8,18 @@
 
 int main()
 {
+    TabStr T;
+    Queue Q, Qds;
+    MakeEmpty(&T);
+    CreateQueue(&Q), CreateQueue(&Qds);
+
     printf("ENTER COMMAND: ");
 
     isFile = false;
     STARTWORD("", "");
+
     if (isEqual(currentWord, "START"))
     {
-        TabStr T;
         BNMO_START(&T);
         printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
     }
@@ -23,30 +28,38 @@ int main()
     }
     else if (isEqual(currentWord, "SAVE"))
     {
+        ADVWORD();
+        save(currentWord.TabWord, T);
     }
     else if (isEqual(currentWord, "CREATEGAME"))
     {
         printf("Masukkan nama game yang akan ditambahkan: ");
         ADVWORD();
-        // Cek apakah game sdh ada
+        createGame(currentWord.TabWord, &T);
     }
     else if (isEqual(currentWord, "LISTGAME"))
     {
+        listgame(Q);
     }
     else if (isEqual(currentWord, "DELETEGAME"))
     {
+        deletegame(&T, Q);
     }
     else if (isEqual(currentWord, "QUEUEGAME"))
     {
+        QueueGame(&T, &Q);
     }
     else if (isEqual(currentWord, "PLAYGAME"))
     {
+        playgame(&T, &Q);
     }
     else if (isEqual(currentWord, "QUIT"))
     {
+        quit();
     }
     else if (isEqual(currentWord, "HELP"))
     {
+        help();
     }
     // Command lain
     else

@@ -15,7 +15,7 @@ void save(char * namafile, TabStr listgame){
 
     fprintf(txt,"%c\n",(char)(listgame.Neff+48));
 
-    for(int i=0;i<NbElmt(listgame)-1;i++){
+    for(i=0;i<NbElmt(listgame)-1;i++){
         fprintf(txt,"%s\n",listgame.TI[i]);
     }
     fprintf(txt,"%s",listgame.TI[NbElmt(listgame)-1]);

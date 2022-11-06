@@ -7,7 +7,8 @@
 
 // Menghasilkan angka random range min-max dengan kuantitas count
 int getRandom(int min, int max, int count){
-    for (int i = 0; i < count; i++) {
+    int i;
+    for (i = 0; i < count; i++) {
         int num = (rand()%(max - min + 1)) + min;
         return num;
     }
@@ -19,11 +20,12 @@ void tampilSaldo(int saldo){
 }
 
 // Menampilkan order ke layar
-void tampilPesanan(Queue Q, int count){
+void tampilPesanan(QueueDS Q, int count){
+    int i;
     printf("Daftar Pesanan\n");
     printf("Makanan\t| Durasi memasak |  Ketahanan\t|  Harga\n");
     printf("--------------------------------------------------\n");
-    for(int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
+    for(i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
         printf("M%d\t|\t%d\t |\t%d\t|  %d\n", i, Q.buffer[i].timeC, Q.buffer[i].timeK, Q.buffer[i].price);
     }
     printf("\n");
@@ -38,7 +40,8 @@ void tampilMasak(Map M, address count){
         printf("\t|");
     }
     else{
-        for(int i = 0; i < count; i++){
+        int i;
+        for(i = 0; i < count; i++){
             printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -54,7 +57,8 @@ void tampilSaji(Map M, address count){
         printf("\t|");
     }
     else{
-        for(int i = 0; i < count; i++){
+        int i;
+        for(i = 0; i < count; i++){
         printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -62,12 +66,12 @@ void tampilSaji(Map M, address count){
 }
 
 // Menghasilkan order random
-void enqOrder(Queue*q){
+void enqOrder(QueueDS*q){
     ElType order;
     order.timeC = getRandom(1,5,1);
     order.timeK = getRandom(1,5,1);
     order.price = getRandom(10000,15000,1);
-    enqueue(q,order);
+    enqueueDS(q,order);
 }
 
 // Check kedua string apakah sama
@@ -97,7 +101,8 @@ int strToInt(char*str){
 
 // Mengurangkan value dari Map Masak dan Saji tiap putaran
 void tickValue(Map*M){
-    for(int i =0; i<(*M).Count; i++){
+    int i;
+    for(i =0; i<(*M).Count; i++){
         if((*M).Elements[i].Value >0){
             (*M).Elements[i].Value--;
         }
@@ -105,7 +110,7 @@ void tickValue(Map*M){
 }
 
 // Delete makanan dari Map Masak lalu Insert ke Map Saji
-void cookToServe(Map*Masak, keytype k, Map*Saji, Queue Q){
+void cookToServe(Map*Masak, keytype k, Map*Saji, QueueDS Q){
     Insert(Saji, k, Q.buffer[k].timeK);
     Delete(Masak, k);
     printf("\nMakanan M%d telah selesai dimasak\n", k);
@@ -114,9 +119,9 @@ void cookToServe(Map*Masak, keytype k, Map*Saji, Queue Q){
 // Menghasilkan Map terurut berdasarkan valuenya menaik
 void sortedMap(Map *M){
     // Bubble sort
-    int count = (*M).Count;
-    for(int i =1; i < count; i++){
-        for(int j = 0; j < count - 1; j++){
+    int count = (*M).Count, i, j;
+    for(i =1; i < count; i++){
+        for(j = 0; j < count - 1; j++){
             if((*M).Elements[j].Value > (*M).Elements[j+1].Value){
                 int tempK = (*M).Elements[j].Key;
                 int tempV = (*M).Elements[j].Value;
@@ -134,9 +139,10 @@ void dinerdash(){
     int saldo = 0;
     int count = 3;
     int totalSaji = 0;
+    int i;
 
     // Deklarasi ADT
-    Queue Q;
+    QueueDS Q;
     Map Masak;
     Map Saji;
 
@@ -149,12 +155,12 @@ void dinerdash(){
     boolean flag = false;
 
     // Membuat Queue order kosong, Map Masak kosong, Map Saji kosong
-    CreateQueue(&Q);
-    CreateEmpty(&Masak);
-    CreateEmpty(&Saji);
+    CreateQueueDS(&Q);
+    CreateEmptyDS(&Masak);
+    CreateEmptyDS(&Saji);
 
     // Membuat 3 order pertama sesuai pada deskripsi yang diberikan
-    for(int i = 0; i < 3; i++){
+    for(i = 0; i < 3; i++){
         enqOrder(&Q);
     }
 
@@ -217,13 +223,14 @@ void dinerdash(){
         if(checkSame(cmd, "SERVE",5)){
             // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
             if (strToInt(icmd) == IDX_HEAD(Q)){
-                for (int z = 0; z < Saji.Count; z++){
+                int z;
+                for (z = 0; z < Saji.Count; z++){
                     if(strToInt(icmd) == Saji.Elements[z].Key){  // Jika ada maka sajikan makanannya
                         Delete(&Saji, Saji.Elements[z].Key);
                         ElType val;
                         saldo += Q.buffer[IDX_HEAD(Q)].price;
                         totalSaji+=1;
-                        dequeue(&Q,&val);
+                        dequeueDS(&Q,&val);
                     }
                 }
                 printf("\nBerhasil mengantar M%d\n", strToInt(icmd));

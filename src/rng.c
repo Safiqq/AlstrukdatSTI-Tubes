@@ -16,8 +16,7 @@ int RNG(int min, int max)
     return ((r1 + r2 + r3) % (max - min + 1)) + min;
 }
 
-// driver
-int main()
+int RNG_GAME()
 {
     // Jumlah percobaan maks 10
     // Angka random dari 1-100 inklusif

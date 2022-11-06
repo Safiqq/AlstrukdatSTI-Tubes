@@ -2,17 +2,17 @@
 #include "map.h"
 
 
-void CreateEmpty(Map *M)
+void CreateEmptyDS(Map *M)
 {
     M->Count = Nil;
 }
 
-boolean IsEmpty(Map M)
+boolean IsEmptyDS(Map M)
 {
     return M.Count == Nil;
 }
 
-boolean IsFull(Map M)
+boolean IsFullDS(Map M)
 {
     return M.Count == MaxEl;
 }

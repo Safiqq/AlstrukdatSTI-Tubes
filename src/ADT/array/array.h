@@ -93,6 +93,8 @@ extern boolean IsEmpty(TabStr T);
 extern boolean IsFull(TabStr T);
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
+extern void CopyStr(char *str1, char *str2);
+
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 extern void TulisIsi(TabStr T);
 /* Proses : Menuliskan isi tabel dengan traversal */

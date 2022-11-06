@@ -4,8 +4,9 @@
 #include "boolean.h"
 
 void deletegame(TabStr *listgame, Queue antriangameidx){
+    int i;
     printf("Berikut adalah daftar game yang tersedia\n");
-    for(int i=1;i<=NbElmt(*listgame);i++){
+    for(i=1;i<=NbElmt(*listgame);i++){
         printf("%d. %s\n",i,listgame->TI[i-1]);
     }
     QueElType hapus;
@@ -14,7 +15,7 @@ void deletegame(TabStr *listgame, Queue antriangameidx){
     }
     else{
         boolean isInAntrian= false;
-        int i=0;
+        i=0;
         while ((i<length(antriangameidx)) && !isInAntrian) {
             if (hapus==antriangameidx.buffer[i]){
                 isInAntrian=true;
@@ -25,7 +26,7 @@ void deletegame(TabStr *listgame, Queue antriangameidx){
             printf("Game gagal dihapus.\n");
         }
         else{
-            for (int i=hapus-1; i<NbElmt(*listgame);i++){
+            for (i=hapus-1; i<NbElmt(*listgame);i++){
                 if (i!=NbElmt(*listgame)-1){
                     (*listgame).TI[i]=(*listgame).TI[i+1];
                 }
