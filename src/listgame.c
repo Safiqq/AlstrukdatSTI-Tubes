@@ -8,6 +8,6 @@ void listgame(TabStr T)
     printf("Berikut adalah daftar game yang tersedia\n");
     for (i = 0; i < T.Neff; i++)
     {
-        printf("\t%d.%s\n", i, T.TI[i]);
+        printf(" %d.%s\n", i, T.TI[i]);
     }
 }

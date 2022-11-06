@@ -16,7 +16,7 @@ void save(char* namafile, TabStr listgame);
 
 void createGame(char *name, TabStr *T);
 
-void listgame(Queue Q);
+void listgame(TabStr T);
 
 void deletegame(TabStr *listgame, Queue antriangameidx);
 
