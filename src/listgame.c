@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include "./ADT/queue/queue.h"
+#include "./ADT/array/array.h"
+#include "./ADT/mesinkata/mesinkata.h"
 
-void listgame(Queue Q)
+void listgame(TabStr T)
 {
     int i;
     printf("Berikut adalah daftar game yang tersedia\n");
-    for (i = 0; i < length(Q); i++)
+    for (i = 0; i < T.Neff; i++)
     {
-        printf("\t%d.%s\n", i, Q.buffer[i]);
+        printf(" %d.%s\n", i, T.TI[i]);
     }
 }

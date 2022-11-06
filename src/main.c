@@ -37,7 +37,7 @@ int main()
         }
         else if (isEqual(currentWord, "LISTGAME"))
         {
-            listgame(Q);
+            listgame(T);
         }
         else if (isEqual(currentWord, "DELETEGAME"))
         {

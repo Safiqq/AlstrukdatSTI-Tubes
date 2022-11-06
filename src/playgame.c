@@ -3,7 +3,7 @@
 void playgame(TabStr *listgame, Queue *antriangameidx){
     int i;
     QueElType play;
-    printf("Berikut adalah daftar game milikmu: \n");
+    printf("Berikut adalah daftar game-mu: \n");
     for(i=1;i<=length(*antriangameidx);i++){
         printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
     }
@@ -13,12 +13,14 @@ void playgame(TabStr *listgame, Queue *antriangameidx){
         play=val;
     }
     if (play==1){
+        printf("Loading DINNER DASH ...");
         dinerdash();
     }
-    else if (play==2){
+    else if (play==0){
+        printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
         RNG_GAME();
     }
     else{
-        printf("Game %s masih dalam maintenance, belum dapat dimainkan. SIlakan pilih game lain.",play);
+        printf("Game %s masih dalam maintenance, belum dapat dimainkan. SIlakan pilih game lain.",listgame->TI[play]);
     }
 }
