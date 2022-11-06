@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include "./ADT/queue/queue.h"
-#include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/array/array.h"
 
-void playgame(Queue *antriangame){
+void playgame(TabStr *listgame, Queue *antriangameidx){
     QueElType play;
     printf("Berikut adalah daftar game milikmu: \n");
-    for(int i =0;i<length(*antriangame);i++){
-        printf("%d. %c",i,antriangame->buffer[i]);
+    for(int i=1;i<=length(*antriangameidx);i++){
+        printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
     }
-    if (!isEmpty(*antriangame)){
+    if (!isEmpty(*antriangameidx)){
         QueElType val;
-        dequeue(antriangame, &val);
+        dequeue(antriangameidx, &val);
         play=val;
     }
     if (play==1){
