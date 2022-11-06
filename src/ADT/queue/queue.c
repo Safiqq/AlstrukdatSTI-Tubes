@@ -55,8 +55,10 @@ void dequeue(Queue *q, QueElType *val)
     }
     else
     {
-        IDX_HEAD(*q)++;
-        IDX_HEAD(*q) %= CAPACITY;
+        for (int i=0; i<IDX_TAIL(*q);i++){
+            (*q).buffer[i] = (*q).buffer[i+1];
+        }	
+		IDX_TAIL(*q)=IDX_TAIL(*q)-1;	
     }
 }
 
