@@ -28,4 +28,6 @@ void BNMO_START(TabStr *T)
         temp[j] = '\0';
         SetEl(T, i, temp);
     }
+    isFile = false;
+    printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }

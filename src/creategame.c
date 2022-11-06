@@ -2,7 +2,7 @@
 #include "./ADT/array/array.h"
 #include "boolean.h"
 
-isEqualStr(char *str1, char *str2)
+boolean isEqualStr(char *str1, char *str2)
 {
     int i = 0;
     boolean isDiffer = false;
@@ -23,12 +23,14 @@ void createGame(char *name, TabStr *T)
     {
         if (isEqualStr(T->TI[i], name))
             isAvail = false;
+        i++;
     }
     if (isAvail)
     {
         T->TI[T->Neff] = name;
         T->Neff++;
+        printf("Game berhasil ditambahkan.\n");
     }
     else
-        printf("Sudah ada game dengan nama %s.", name);
+        printf("Sudah ada game dengan nama %s.\n", name);
 }
