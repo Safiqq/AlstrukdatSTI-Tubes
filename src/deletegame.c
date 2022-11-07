@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "./ADT/queue/queue.h"
 #include "./ADT/array/array.h"
+#include "./ADT/mesinkata/mesinkata.h"
 #include "boolean.h"
+#include <stdlib.h>
 
 void deletegame(TabStr *listgame, Queue antriangameidx)
 {
@@ -13,7 +15,8 @@ void deletegame(TabStr *listgame, Queue antriangameidx)
     }
     QueElType hapus;
     printf("Masukkan nomor game yang akan dihapus:");
-    scanf("%d", &hapus);
+    STARTWORD("","");
+    hapus=atoi(currentWord.TabWord);
     if (hapus <= 5 && hapus >= 1)
     {
         printf("Game gagal dihapus.\n");
