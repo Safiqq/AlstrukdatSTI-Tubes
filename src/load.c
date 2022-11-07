@@ -10,7 +10,8 @@ void load(char * namafile, TabStr *T)
     char *temp;
     MakeEmpty(T);
     isFile = true;
-    STARTWORD("../data/", namafile);
+    scanf("%s", &namafile);
+    STARTWORD(namafile, "r");
     len = atoi(currentWord.TabWord);
     for (i = 0; i < len; i++)
     {
