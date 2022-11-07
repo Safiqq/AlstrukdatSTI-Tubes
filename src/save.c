@@ -13,7 +13,7 @@ void save(char * namafile, TabStr listgame){
     }
     txt=fopen(path,"w");
 
-    fprintf(txt,"%c\n",(char)(listgame.Neff+48));
+    fprintf(txt,"%c\n",(char)(NbElmt(listgame)+48));
 
     for(i=0;i<NbElmt(listgame)-1;i++){
         fprintf(txt,"%s\n",listgame.TI[i]);
