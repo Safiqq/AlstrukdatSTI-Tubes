@@ -20,7 +20,7 @@ void playgame(TabStr *listgame, Queue *antriangameidx){
             RNG_GAME();
         }
         else{
-            printf("Game %s masih dalam maintenance, belum dapat dimainkan. SIlakan pilih game lain.",listgame->TI[play]);
+            printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.\n",listgame->TI[play]);
         }
     }
     else{
