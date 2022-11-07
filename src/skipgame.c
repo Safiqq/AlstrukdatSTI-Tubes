@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include "./ADT/queue/queue.h"
-#include "./ADT/array/array.h"
-#include "./ADT/mesinkata/mesinkata.h"
+#include "skipgame.h"
 
 int WordToInt(Word CWord)
 {
@@ -16,7 +14,7 @@ int WordToInt(Word CWord)
 void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx){
     ADVWORD();
     int i, num = WordToInt(currentWord);        //cara ngubah word ke int belum fix
-    printf("Berikut adalah daftar game milikmu: \n");
+    printf("Berikut adalah daftar game di antrian milikmu: \n");
     for(i=1;i<=length(*antriangameidx);i++){
         printf("%d. %s\n",i,listgame->TI[antriangameidx->buffer[i-1]]);
     }

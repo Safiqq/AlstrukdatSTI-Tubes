@@ -18,6 +18,7 @@ void listgame(TabStr T);
 void deletegame(TabStr *listgame, Queue antriangameidx);
 void QueueGame( TabStr *listgame, Queue *antriangameidx);
 void playgame(TabStr *listgame, Queue *antriangameidx);
+void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx);
 void quit();
 void help();
 void commandlain();

@@ -53,7 +53,7 @@ int main()
         }
         else if (isEqual(currentWord, "SKIPGAME"))
         {
-            skipgame(currentWord.TabWord, &T, &Q);
+            skipgame(currentWord, &T, &Q);
         }
         else if (isEqual(currentWord, "QUIT"))
         {
