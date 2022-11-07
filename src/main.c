@@ -6,7 +6,7 @@ int main()
 {
     TabStr T;
     Queue Q, Qds;
-    MakeEmpty(&T);
+    CreateArray(&T);
     CreateQueue(&Q), CreateQueue(&Qds);
 
     while (true)
