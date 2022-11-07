@@ -6,7 +6,7 @@ int main()
 {
     TabStr T;
     Queue Q, Qds;
-    MakeEmpty(&T);
+    CreateArray(&T);
     CreateQueue(&Q), CreateQueue(&Qds);
 
     while (true)
@@ -51,6 +51,10 @@ int main()
         {
             playgame(&T, &Q);
         }
+        else if (isEqual(currentWord, "SKIPGAME"))
+        {
+            skipgame(currentWord, &T, &Q);
+        }
         else if (isEqual(currentWord, "QUIT"))
         {
             quit();
@@ -62,6 +66,10 @@ int main()
         // Command lain
         else
             commandlain();
+
+        // Reset currentWord
+        currentWord.TabWord[0] = '\0';
+        currentWord.Length = 0;
     }
     return 0;
 }

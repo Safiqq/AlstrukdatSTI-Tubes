@@ -72,4 +72,6 @@ extern boolean isEqual(Word str1, char *str2);
    F.S. : Mengembalikan true apabila isi dari str1.TabWord = str2
 */
 
+extern int StringLength(char *str);
+
 #endif
