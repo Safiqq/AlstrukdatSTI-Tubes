@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "./ADT/array/array.h"
 #include "./ADT/queue/queue.h"
+#include "./ADT/mesinkata/mesinkata.h"
+#include <stdlib.h>
 
 // TabInt ElType= Char
 void QueueGame(TabStr *listgame, Queue *antriangameidx)
@@ -19,7 +21,8 @@ void QueueGame(TabStr *listgame, Queue *antriangameidx)
     }
     int n;
     printf("\nNomor Game yang mau ditambahkan ke antrian: ");
-    scanf("%d", &n);
+    STARTWORD("","");
+    n=atoi(currentWord.TabWord);
     if (n > listgame->Neff)
     {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
