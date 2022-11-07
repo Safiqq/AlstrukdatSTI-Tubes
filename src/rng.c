@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "boolean.h"
+#include "./ADT/mesinkata/mesinkata.h"
 
 // RNG_MAX = RAND_MAX (32767) * 3 = 98301
 #define RNG_MAX 98301
@@ -25,7 +26,8 @@ void RNG_GAME()
     while (i < 10 && !isTrue)
     {
         printf("Tebakan: ");
-        scanf("%d", &inpNum);
+        STARTWORD("", "");
+        inpNum=atoi(currentWord.TabWord);
         if (inpNum > randomNum)
             printf("Lebih kecil\n");
         else if (inpNum == randomNum)

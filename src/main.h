@@ -11,21 +11,16 @@
 #include "boolean.h"
 
 void BNMO_START(TabStr *T);
-
+void load(TabStr *T);
 void save(char* namafile, TabStr listgame);
-
 void createGame(char *name, TabStr *T);
-
 void listgame(TabStr T);
-
 void deletegame(TabStr *listgame, Queue antriangameidx);
-
 void QueueGame( TabStr *listgame, Queue *antriangameidx);
-
 void playgame(TabStr *listgame, Queue *antriangameidx);
-
+void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx);
 void quit();
-
 void help();
+void commandlain();
 
 #endif

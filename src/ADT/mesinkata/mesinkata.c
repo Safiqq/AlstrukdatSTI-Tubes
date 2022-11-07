@@ -98,12 +98,20 @@ void CopyWord()
 boolean isEqual(Word str1, char *str2)
 {
     int i = 0;
-    boolean isDiffer = false;
-    while (str1.TabWord[i] != '\0' && str2[i] != '\0' && !isDiffer)
+    boolean checker = (str1.Length == StringLength(str2));
+    while (str1.TabWord[i] != '\0' && str2[i] != '\0' && checker)
     {
         if (str1.TabWord[i] != str2[i])
-            isDiffer = true;
+            checker = false;
         i++;
     }
-    return !isDiffer;
+    return checker;
+}
+
+int StringLength(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+        i++;
+    return i;
 }
