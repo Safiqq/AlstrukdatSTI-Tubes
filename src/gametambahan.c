@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(){
+int gametambahan(){
     int poin;
 	srand(time(NULL));
 	poin = rand() % 100;
