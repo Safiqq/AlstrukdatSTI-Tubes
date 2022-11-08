@@ -16,13 +16,18 @@ void playgame(TabStr *listgame, Queue *antriangameidx){
             dinerdash();
         }
         else if (play==0){
+            printf("Loading RNG ...");
             printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
             RNG_GAME();
         }
         else if (play<=4 && play>=2){
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.\n",listgame->TI[play]);
         }   
-        else{
+        else if (play==5){          //ini kalo misalkan game bonus dimasukin ke config
+            printf("Loading TICTACTOE ...");
+            tictactoe();
+        }
+        else if (play>=6 && play<=(*listgame).Neff) {
             gametambahan();
         }
     }
