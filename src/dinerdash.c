@@ -178,17 +178,31 @@ void dinerdash(){
 
         // Melakukan validasi input command
         while(!isValid){
-            printf("MASUKKAN COMMAND: ");
-            scanf("%s %s", &cmd, &icmd);
+            printf("\nMASUKKAN COMMAND: ");
+            scanf("%s", &cmd);
             if(checkSame(cmd, "COOK", 4)){
+                scanf("%s", &icmd);
                 if(strToInt(icmd) <= IDX_TAIL(Q) && icmd[0] == 'M'){
                     isValid = true;
                 }
+                else{
+                    printf("M%d tidak ada pada daftar! Silahkan ulangi\n", strToInt(icmd));
+                }
             }
-            if(checkSame(cmd, "SERVE",5)){
+            else if(checkSame(cmd, "SERVE",5)){
+                scanf("%s", &icmd);
                 if(IsMember(Saji,strToInt(icmd))){
                     isValid = true;
-                }    
+                }
+                else{
+                    printf("M%d belum dapat disajikan! Silahkan ulangi\n", strToInt(icmd));
+                }
+            }
+            else if(checkSame(cmd, "SKIP",4)){
+                isValid  = true;
+            }
+            else{
+                printf("Input salah! Silahkan ulangi\n");
             }
         }
 
@@ -238,6 +252,10 @@ void dinerdash(){
             else{  // Jika tidak maka akan menampilkan pesan belum dapat disajikan
                 printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(icmd), IDX_HEAD(Q));
             }
+        }
+        // Jika command skip, maka tidak akan melakukan apa-apa
+        if(checkSame(cmd, "SKIP", 4)){
+            printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
         }
        
        // Tiap putaran maka order akan bertambah
