@@ -22,5 +22,6 @@ void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx);
 void quit();
 void help();
 void commandlain();
+void mainmenu();
 
 #endif
