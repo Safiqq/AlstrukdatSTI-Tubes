@@ -7,5 +7,7 @@
 
 void dinerdash();
 void RNG_GAME();
+int gametambahan();
+void tictactoe();
 
 #endif

@@ -19,8 +19,11 @@ void playgame(TabStr *listgame, Queue *antriangameidx){
             printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
             RNG_GAME();
         }
-        else{
+        else if (play<=4 && play>=2){
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.\n",listgame->TI[play]);
+        }   
+        else{
+            gametambahan();
         }
     }
     else{
