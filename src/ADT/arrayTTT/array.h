@@ -4,7 +4,7 @@
 #ifndef __ARRAY_H__
 #define __ARRAY_H__
 
-#include "boolean.h"
+#include "../../boolean.h"
 
 /* Kamus Umum */
 #define CAPACITY 100
