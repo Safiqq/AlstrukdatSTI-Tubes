@@ -180,7 +180,7 @@ void dinerdash(){
         while(!isValid){
             printf("\nMASUKKAN COMMAND: ");
             scanf("%s", &cmd);
-            if(checkSame(cmd, "COOK", 4)){
+            if(checkSame(cmd, "COOK", 4) || checkSame(cmd, "cook", 4)){
                 scanf("%s", &icmd);
                 if(strToInt(icmd) <= IDX_TAIL(Q) && icmd[0] == 'M'){
                     isValid = true;
@@ -189,7 +189,7 @@ void dinerdash(){
                     printf("M%d tidak ada pada daftar! Silahkan ulangi\n", strToInt(icmd));
                 }
             }
-            else if(checkSame(cmd, "SERVE",5)){
+            else if(checkSame(cmd, "SERVE",5) || checkSame(cmd, "serve",5)){
                 scanf("%s", &icmd);
                 if(IsMember(Saji,strToInt(icmd))){
                     isValid = true;
@@ -198,7 +198,7 @@ void dinerdash(){
                     printf("M%d belum dapat disajikan! Silahkan ulangi\n", strToInt(icmd));
                 }
             }
-            else if(checkSame(cmd, "SKIP",4)){
+            else if(checkSame(cmd, "SKIP",4) || checkSame(cmd, "skip", 4)){
                 isValid  = true;
             }
             else{
@@ -227,14 +227,14 @@ void dinerdash(){
         }
 
         // Jika command = "COOK" maka akan memasak makanan dengan id dari input user
-        if(checkSame(cmd, "COOK", 4)){
+        if(checkSame(cmd, "COOK", 4) || checkSame(cmd, "cook", 4)){
             keytype k = strToInt(icmd);
             valuetype v = Q.buffer[k].timeC;
             Insert(&Masak,k,v);
             printf("\nBerhasil memasak M%d\n", k);
         }
         // Jika command = "SERVE" maka akan menyajikan makanan dengan id dari input user
-        if(checkSame(cmd, "SERVE",5)){
+        if(checkSame(cmd, "SERVE",5) || checkSame(cmd, "serve",5)){
             // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
             if (strToInt(icmd) == IDX_HEAD(Q)){
                 int z;
@@ -254,7 +254,7 @@ void dinerdash(){
             }
         }
         // Jika command skip, maka tidak akan melakukan apa-apa
-        if(checkSame(cmd, "SKIP", 4)){
+        if(checkSame(cmd, "SKIP", 4) || checkSame(cmd, "skip", 4)){
             printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
         }
        
