@@ -11,7 +11,7 @@
 #include "boolean.h"
 
 void BNMO_START(TabStr *T);
-void load(TabStr *T);
+void load(char* namafile, TabStr *T);
 void save(char* namafile, TabStr listgame);
 void createGame(char *name, TabStr *T);
 void listgame(TabStr T);

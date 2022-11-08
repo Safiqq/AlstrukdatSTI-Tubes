@@ -6,7 +6,6 @@
 
 #define MAX_LENGTH 100
 
-// Belum fix, masih jelek
 void BNMO_START(TabStr *T)
 {
     int i, j, len;

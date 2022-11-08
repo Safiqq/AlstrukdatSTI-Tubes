@@ -8,6 +8,7 @@ int main()
     Queue Q, Qds;
     CreateArray(&T);
     CreateQueue(&Q), CreateQueue(&Qds);
+    mainmenu();
 
     while (true)
     {
@@ -22,17 +23,16 @@ int main()
         }
         else if (isEqual(currentWord, "LOAD"))
         {
-            load(&T);
+            ADVWORD();
+            load(currentWord.TabWord, &T);
         }
         else if (isEqual(currentWord, "SAVE"))
         {
-            STARTWORD("", "");
+            ADVWORD();
             save(currentWord.TabWord, T);
         }
         else if (isEqual(currentWord, "CREATEGAME"))
         {
-            printf("Masukkan nama game yang akan ditambahkan: ");
-            STARTWORD("", "");
             createGame(currentWord.TabWord, &T);
         }
         else if (isEqual(currentWord, "LISTGAME"))

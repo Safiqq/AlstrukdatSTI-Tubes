@@ -14,10 +14,10 @@ void deletegame(TabStr *listgame, Queue antriangameidx)
         printf("%d. %s\n", i, listgame->TI[i - 1]);
     }
     QueElType hapus;
-    printf("Masukkan nomor game yang akan dihapus:");
+    printf("Masukkan nomor game yang akan dihapus: ");
     STARTWORD("","");
     hapus=atoi(currentWord.TabWord);
-    if (hapus <= 5 && hapus >= 1)
+    if (hapus <= 5 || hapus > listgame->Neff)
     {
         printf("Game gagal dihapus.\n");
     }
