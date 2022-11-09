@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void mainmenu()
+void mainMenu()
 {
     printf("\n");
     printf("          ..::::^^^^^^^^~~~~~~!!!!!~~^::..                         Tugas Besar IF2111 Algoritma dan Struktur Data\n");

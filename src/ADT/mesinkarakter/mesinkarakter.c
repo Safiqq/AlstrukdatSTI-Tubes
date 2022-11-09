@@ -1,7 +1,5 @@
 #include "mesinkarakter.h"
 
-int countMark;
-int limitMark;
 int retval;
 char currentChar;
 boolean isFile;
@@ -11,18 +9,23 @@ FILE *pitaFile;
 
 void START(char *path, char *type)
 {
-    countMark = 0;
-    if (isFile)
-        pitaFile = fopen(path, type);
-    else
+    if (path[0] == '\0' && type[0] == '\0')
+    {
+        isFile = false;
         pita = stdin;
+    }
+    else
+    {
+        isFile = true;
+        pitaFile = fopen(path, type);
+    }
     ADV();
 }
 
 void ADV()
 {
     retval = fscanf(isFile ? pitaFile : pita, "%c", &currentChar);
-    if (retval < 0)
+    if (IsEOP())
         fclose(isFile ? pitaFile : pita);
 }
 
@@ -33,7 +36,5 @@ char GetCC()
 
 boolean IsEOP()
 {
-    if (currentChar == MARK)
-        countMark++;
     return retval == EOF;
 }

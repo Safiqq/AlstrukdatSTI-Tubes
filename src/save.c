@@ -1,8 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "./ADT/array/array.h"
 
-void save(char *namafile, TabStr listgame)
+void save(char *namafile, TabStr games)
 {
   FILE *txt;
   char path[100] = "../data/";
@@ -15,13 +14,13 @@ void save(char *namafile, TabStr listgame)
   }
   txt = fopen(path, "w");
 
-    fprintf(txt,"%c\n",(char)(listgame.Neff+48));
+    fprintf(txt,"%c\n",(char)(games.Neff+48));
 
-  for (i = 0; i < LengthArray(listgame) - 1; i++)
+  for (i = 0; i < LengthArray(games) - 1; i++)
   {
-    fprintf(txt, "%s\n", listgame.TI[i]);
+    fprintf(txt, "%s\n", games.TI[i]);
   }
-  fprintf(txt, "%s", listgame.TI[LengthArray(listgame) - 1]);
+  fprintf(txt, "%s", games.TI[LengthArray(games) - 1]);
 
   fclose(txt);
   printf("Save file berhasil disimpan.\n");

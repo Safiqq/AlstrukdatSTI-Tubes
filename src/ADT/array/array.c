@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "array.h"
 
 void CreateArray(TabStr *T)
@@ -30,7 +29,9 @@ void SetArray(TabStr *T, IdxType i, ElTypeArray v)
 {
     T->TI[i] = v;
     if (i >= T->Neff)
+    {
         SetNeffArray(T, T->Neff + 1);
+    }
 }
 
 void SetNeffArray(TabStr *T, IdxType N)
@@ -50,15 +51,12 @@ boolean IsFullArray(TabStr T)
 
 void PrintArray(TabStr T)
 {
-    if (IsEmptyArray(T))
-        printf("Tabel kosong\n");
-    else
+    if (!IsEmptyArray(T))
     {
         int i;
         for (i = 0; i < LengthArray(T); i++)
         {
-            // printf("%d\n", i);
-            printf("%s\n", T.TI[i]);
+            printf("%d.%s\n", i + 1, T.TI[i]);
         }
     }
 }

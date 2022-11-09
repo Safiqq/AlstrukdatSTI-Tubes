@@ -1,19 +1,18 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
 
 #define MAX_LENGTH 100
 
-void BNMO_START(TabStr *T)
+void start(TabStr *games)
 {
     int i, j, len;
     char *temp;
-    CreateArray(T);
-    isFile = true;
+    CreateArray(games);
+
     STARTWORD("../data/config.txt", "r");
     len = atoi(currentWord.TabWord);
+
     for (i = 0; i < len; i++)
     {
         ADVLINE();
@@ -25,8 +24,7 @@ void BNMO_START(TabStr *T)
             j++;
         }
         temp[j] = '\0';
-        SetArray(T, i, temp);
+        SetArray(games, i, temp);
     }
-    isFile = false;
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }

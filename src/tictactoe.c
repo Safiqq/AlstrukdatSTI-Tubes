@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "./ADT/arrayTTT/array.h"
 
@@ -8,40 +7,42 @@
 int len(char *str)
 {
     int len;
-    for (len = 0;;++len) if (str[len]==0) return len;
+    for (len = 0;; ++len)
+        if (str[len] == 0)
+            return len;
 }
 
 // Untuk convert string to integer
-int stringToInteger(char*str)
+int stringToInteger(char *str)
 {
     int i, sum = 0;
-    for(i = 0; i < len(str); i++)
+    for (i = 0; i < len(str); i++)
     {
-        sum = sum*10 + (str[i] - '0');
+        sum = sum * 10 + (str[i] - '0');
     }
     return sum;
 }
 
 // Untuk validasi apakah sudah memenuhi kondisi win atau belum
-boolean winCondition(Tab T, char p)
+boolean winCondition(TabChr T, char p)
 {
     int i, j;
     boolean flag = false;
-    for(i = 0; i <=6; i = i+3)
+    for (i = 0; i <= 6; i = i + 3)
     {
-        if(T.TI[i] == p && T.TI[i+1] == p && T.TI[i+2] == p)
+        if (T.TI[i] == p && T.TI[i + 1] == p && T.TI[i + 2] == p)
         {
             flag = true;
         }
     }
-    for(j = 0; j <=2; j++)
+    for (j = 0; j <= 2; j++)
     {
-        if(T.TI[j] == p && T.TI[j+3] == p && T.TI[j+6] == p)
+        if (T.TI[j] == p && T.TI[j + 3] == p && T.TI[j + 6] == p)
         {
             flag = true;
         }
     }
-    if((T.TI[0] == p && T.TI[4] == p && T.TI[8] == p) || T.TI[2] == p && T.TI[4] == p && T.TI[6] == p)
+    if ((T.TI[0] == p && T.TI[4] == p && T.TI[8] == p) || T.TI[2] == p && T.TI[4] == p && T.TI[6] == p)
     {
         flag = true;
     }
@@ -49,13 +50,13 @@ boolean winCondition(Tab T, char p)
 }
 
 // Untuk menampilkan table saat ini
-void displayTable(Tab T)
+void displayTable(TabChr T)
 {
     int i;
     printf("Table saat ini: \n\n");
-    for(i = 0; i <=6; i = i+3)
+    for (i = 0; i <= 6; i = i + 3)
     {
-        printf(" %c | %c | %c\n", T.TI[i], T.TI[i+1], T.TI[i+2]);
+        printf(" %c | %c | %c\n", T.TI[i], T.TI[i + 1], T.TI[i + 2]);
         printf("------------\n");
     }
 }
@@ -63,37 +64,37 @@ void displayTable(Tab T)
 // Untuk menghasilkan random number
 int randomNumber(int min, int max)
 {
-    return ((rand()%max) + min);
+    return ((rand() % max) + min);
 }
 
 // prosedur giliran Bot
-void botTurn(Tab *T, char bot, char player)
+void botTurn(TabChr *T, char bot, char player)
 {
     boolean flag = false;
-    while(!flag)
+    while (!flag)
     {
-        int i = randomNumber(0,8);
-        if((*T).TI[i] != player && (*T).TI[i] != bot)
+        int i = randomNumber(0, 8);
+        if ((*T).TI[i] != player && (*T).TI[i] != bot)
         {
             (*T).TI[i] = bot;
             flag = true;
         }
         else
         {
-            i = (i+1)%8;
+            i = (i + 1) % 8;
         }
     }
     printf("Bot sudah mengisi kotak\n");
 }
 
 // Validasi apakah string itu isinya digit semua atau bukan
-boolean isDigit(char * string)
+boolean isDigit(char *string)
 {
     boolean flag = false;
     int i = 0;
-    while(!flag && i < len(string))
+    while (!flag && i < len(string))
     {
-        if(string[i] - '0' < 0 || string[i] - '0' > 9)
+        if (string[i] - '0' < 0 || string[i] - '0' > 9)
         {
             flag = true;
         }
@@ -106,19 +107,19 @@ boolean isDigit(char * string)
 }
 
 // Prosedur giliran player
-void playerTurn(Tab *T, char player, char bot)
+void playerTurn(TabChr *T, char player, char bot)
 {
     boolean flag = false;
     char idx[21];
     int index;
-    while(!flag)
+    while (!flag)
     {
         boolean flagcmd = false;
-        while(!flagcmd)
+        while (!flagcmd)
         {
             printf("Silahkan masukkan index kotak (0-8) yang akan diisi : ");
             scanf("%s", &idx);
-            if(isDigit(idx))
+            if (isDigit(idx))
             {
                 flagcmd = true;
                 index = stringToInteger(idx);
@@ -128,15 +129,14 @@ void playerTurn(Tab *T, char player, char bot)
                 printf("Kamu nanyeeaa kenapa gabisa? Biar aku kasih tau ya kamu inputnya string ya bukan integer! RAAAWWRRR\n");
             }
             printf("\n");
-
         }
-        if(index > 8 || index <0)
+        if (index > 8 || index < 0)
         {
             printf("Index di luar jangkauan, Silahkan masukkan index yang benar!\n");
         }
         else
         {
-            if((*T).TI[index] != bot && (*T).TI[index] != player)
+            if ((*T).TI[index] != bot && (*T).TI[index] != player)
             {
                 (*T).TI[index] = player;
                 flag = true;
@@ -154,14 +154,14 @@ char botChar(char player)
 {
     boolean flag = false;
     char bot;
-    while(!flag)
+    while (!flag)
     {
-        int ibot = randomNumber(0,2);  //0 = Gunting, 1 = Batu, 2 = Kertas
-        if(ibot == 0)
+        int ibot = randomNumber(0, 2); // 0 = Gunting, 1 = Batu, 2 = Kertas
+        if (ibot == 0)
         {
             bot = 'G';
         }
-        else if(bot == 1)
+        else if (bot == 1)
         {
             bot = 'B';
         }
@@ -170,7 +170,7 @@ char botChar(char player)
             bot = 'K';
         }
 
-        if(bot != player)
+        if (bot != player)
         {
             flag = true;
         }
@@ -182,7 +182,7 @@ char botChar(char player)
 boolean suit(char player, char bot)
 {
     // Condition
-    if( (bot == 'G' && player == 'B') || (bot == 'K' && player == 'G') || (bot == 'B' && player == 'K'))
+    if ((bot == 'G' && player == 'B') || (bot == 'K' && player == 'G') || (bot == 'B' && player == 'K'))
     {
         return true;
     }
@@ -193,10 +193,13 @@ boolean suit(char player, char bot)
 }
 
 // Check string 1 string 2 sama atau beda
-boolean isSame(char *str1, char *str2, int len){
+boolean isSame(char *str1, char *str2, int len)
+{
     int i = 0;
-    while (i < len){
-        if(str1[i] != str2[i]){
+    while (i < len)
+    {
+        if (str1[i] != str2[i])
+        {
             return false;
         }
         i++;
@@ -204,17 +207,16 @@ boolean isSame(char *str1, char *str2, int len){
     return true;
 }
 
-
 // Program Utama
 void tictactoe()
 {
     int i;
     // Membuat table kosong
-    Tab Table;
-    CreateArray(&Table);
-    for(i = 0; i <9; i++)
+    TabChr Table;
+    CreateArr(&Table);
+    for (i = 0; i < 9; i++)
     {
-       SetArray(&Table, i, ' ');
+        SetArr(&Table, i, ' ');
     }
 
     // Deklarasi variabel
@@ -225,12 +227,12 @@ void tictactoe()
 
     // Input Pengguna dan check apakah player menang atau kalah suit dengan bot
     boolean flagp = false;
-    while(!flagp)
+    while (!flagp)
     {
         printf("Silahkan input (Batu/Gunting/Kertas) untuk menentukan giliran pertama : ");
         char cmd[10];
         scanf("%s", &cmd);
-        if(isSame(cmd, "BATU", 4) || isSame(cmd, "Batu", 4) || isSame(cmd, "batu", 4))
+        if (isSame(cmd, "BATU", 4) || isSame(cmd, "Batu", 4) || isSame(cmd, "batu", 4))
         {
             p = 'B';
             flagp = true;
@@ -254,11 +256,11 @@ void tictactoe()
 
     // Deklarasi bot itu tipe suitnya apa
     char bot = botChar(p);
-    
+
     // Check siapa yang menang suit dan menentukan giliran pertama
-    if(suit(p, bot))
+    if (suit(p, bot))
     {
-        if(bot == 'G')
+        if (bot == 'G')
         {
             printf("Bot memilih Gunting sehingga Anda menang dan mendapatkan giliran pertama\n\n");
         }
@@ -275,7 +277,7 @@ void tictactoe()
     }
     else
     {
-        if(bot == 'G')
+        if (bot == 'G')
         {
             printf("Bot memilih Gunting sehingga Anda kalah dan mendapatkan giliran kedua\n\n");
         }
@@ -295,15 +297,15 @@ void tictactoe()
     int count = 0;
 
     // Selama belum menang atau kalah atau seri maka permainan akan terus dijalankan
-    while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <8)
+    while (!winCondition(Table, botType) && !winCondition(Table, playerType) && count < 8)
     {
         // Kalau player menang suit dengan bot maka player jalan lebih dulu
-        if(suit(p, bot))
+        if (suit(p, bot))
         {
             playerTurn(&Table, playerType, botType);
             count++;
             displayTable(Table);
-            botTurn(&Table,botType, playerType);
+            botTurn(&Table, botType, playerType);
             count++;
             displayTable(Table);
         }
@@ -320,11 +322,11 @@ void tictactoe()
     }
 
     // Check siapakah pemenangnya atau bisa seri
-    if(winCondition(Table,playerType))
+    if (winCondition(Table, playerType))
     {
         printf("Selamat Anda menang!\n");
     }
-    else if(winCondition(Table, botType))
+    else if (winCondition(Table, botType))
     {
         printf("Selamat Anda kalah :V\n");
     }

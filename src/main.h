@@ -1,27 +1,25 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <stdio.h>
 #include "./ADT/array/array.h"
-#include "./ADT/mapDS/map.h"
+#include "./ADT/map/map.h"
 #include "./ADT/mesinkarakter/mesinkarakter.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/queueDS/queue.h"
-#include "boolean.h"
 
-void BNMO_START(TabStr *T);
-void load(char* namafile, TabStr *T);
-void save(char* namafile, TabStr listgame);
-void createGame(char *name, TabStr *T);
-void listgame(TabStr T);
-void deletegame(TabStr *listgame, Queue antriangameidx);
-void QueueGame( TabStr *listgame, Queue *antriangameidx);
-void playgame(TabStr *listgame, Queue *antriangameidx);
-void skipgame(Word skip, TabStr *listgame, Queue *antriangameidx);
+void mainMenu();
+void start(TabStr *games);
+void load(char* namafile, TabStr *games);
+void save(char* namafile, TabStr games);
+void createGame(char *name, TabStr *games);
+void listGame(TabStr games);
+void deleteGame(TabStr *games, Queue antriangames);
+void queueGame( TabStr *games, Queue *antriangames);
+void playGame(TabStr *games, Queue *antriangames);
+void skipGame(Word skip, TabStr *games, Queue *antriangames);
 void quit();
 void help();
-void commandlain();
-void mainmenu();
+void commandLain();
 
 #endif

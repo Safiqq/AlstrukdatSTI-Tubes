@@ -1,26 +1,24 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
 
-void load(char *namafile, TabStr *T)
+void load(char *namafile, TabStr *games)
 {
-    int i, j, len;
+    int i = 8, j, len;
     char *temp;
     char path[100] = "../data/";
-    i = 8;
+
     while (*namafile != '\0')
     {
         path[i] = *namafile;
         i++;
         *namafile++;
     }
-    CreateArray(T);
-    isFile = true;
     STARTWORD(path, "r");
+
     if (pitaFile)
     {
+        CreateArray(games);
         len = atoi(currentWord.TabWord);
         for (i = 0; i < len; i++)
         {
@@ -33,11 +31,10 @@ void load(char *namafile, TabStr *T)
                 j++;
             }
             temp[j] = '\0';
-            SetArray(T, i, temp);
+            SetArray(games, i, temp);
         }
         printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
     }
     else
         printf("File save tidak ditemukan.\n");
-    isFile = false;
 }
