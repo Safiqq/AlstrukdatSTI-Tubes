@@ -1,54 +1,45 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "boolean.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
-#include "boolean.h"
-#include <stdlib.h>
 
-void deletegame(TabStr *listgame, Queue antriangameidx)
+void deleteGame(TabStr *games, Queue antriangames)
 {
     int i;
+    ElTypeQue hapus;
+
     printf("Berikut adalah daftar game yang tersedia\n");
-    for (i = 1; i <= LengthArray(*listgame); i++)
-    {
-        printf("%d. %s\n", i, listgame->TI[i - 1]);
-    }
-    QueElType hapus;
+    for (i = 1; i <= LengthArray(*games); i++)
+        printf("%d. %s\n", i, games->TI[i - 1]);
+
     printf("Masukkan nomor game yang akan dihapus: ");
-    STARTWORD("","");
-    hapus=atoi(currentWord.TabWord);
-    if (hapus <= 5 || hapus > listgame->Neff)
-    {
+    STARTWORD("", "");
+    hapus = atoi(currentWord.TabWord);
+
+    if (hapus <= 5 || hapus > games->Neff)
         printf("Game gagal dihapus.\n");
-    }
     else
     {
         boolean isInAntrian = false;
         i = 0;
-        while ((i < length(antriangameidx)) && !isInAntrian)
+        while ((i < LengthQueue(antriangames)) && !isInAntrian)
         {
-            if (hapus == antriangameidx.buffer[i])
-            {
+            if (hapus == antriangames.buffer[i])
                 isInAntrian = true;
-            }
             i++;
         }
         if (isInAntrian)
-        {
             printf("Game gagal dihapus.\n");
-        }
         else
         {
-            for (i = hapus - 1; i < LengthArray(*listgame); i++)
+            for (i = hapus - 1; i < LengthArray(*games); i++)
             {
-                if (i != LengthArray(*listgame) - 1)
-                {
-                    (*listgame).TI[i] = (*listgame).TI[i + 1];
-                }
+                if (i != LengthArray(*games) - 1)
+                    (*games).TI[i] = (*games).TI[i + 1];
                 else
-                {
-                    (*listgame).Neff -= 1; // menghapus elemen terakhir menjadi sampah
-                }
+                    (*games).Neff -= 1; // menghapus elemen terakhir menjadi sampah
             }
             printf("Game berhasil dihapus.\n");
         }

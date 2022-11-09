@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "queue.h"
 
 void CreateQueue(Queue *q)
@@ -7,12 +6,12 @@ void CreateQueue(Queue *q)
     IDX_TAIL(*q) = IDX_UNDEF;
 }
 
-boolean isEmpty(Queue q)
+boolean IsEmptyQueue(Queue q)
 {
     return IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF;
 }
 
-boolean isFull(Queue q)
+boolean IsFullQueue(Queue q)
 {
     if (IDX_TAIL(q) >= IDX_HEAD(q))
         return IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1;
@@ -20,9 +19,9 @@ boolean isFull(Queue q)
         return IDX_HEAD(q) - IDX_TAIL(q) == 1;
 }
 
-int length(Queue q)
+int LengthQueue(Queue q)
 {
-    if (isEmpty(q))
+    if (IsEmptyQueue(q))
         return 0;
     else if (IDX_TAIL(q) >= IDX_HEAD(q))
         return IDX_TAIL(q) - IDX_HEAD(q) + 1;
@@ -30,22 +29,23 @@ int length(Queue q)
         return IDX_TAIL(q) - IDX_HEAD(q) + CAPACITY + 1;
 }
 
-void enqueue(Queue *q, QueElType val)
+void Enqueue(Queue *q, ElTypeQue val)
 {
-    if (isEmpty(*q))
+    if (IsEmptyQueue(*q))
     {
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     }
     else
     {
-        IDX_TAIL(*q)++;
+        IDX_TAIL(*q)
+        ++;
         IDX_TAIL(*q) %= CAPACITY;
     }
     TAIL(*q) = val;
 }
 
-void dequeue(Queue *q, QueElType *val)
+void Dequeue(Queue *q, ElTypeQue *val)
 {
     *val = HEAD(*q);
     if (IDX_HEAD(*q) == IDX_TAIL(*q))
@@ -56,16 +56,15 @@ void dequeue(Queue *q, QueElType *val)
     else
     {
         int i;
-        for (i=0; i<IDX_TAIL(*q);i++){
-            (*q).buffer[i] = (*q).buffer[i+1];
-        }	
-		IDX_TAIL(*q)=IDX_TAIL(*q)-1;	
+        for (i = 0; i < IDX_TAIL(*q); i++)
+            (*q).buffer[i] = (*q).buffer[i + 1];
+        IDX_TAIL(*q) = IDX_TAIL(*q) - 1;
     }
 }
 
-void displayQueue(Queue q)
+void DisplayQueue(Queue q)
 {
-    int i, len = length(q);
+    int i, len = LengthQueue(q);
     printf("[");
     for (i = 0; i < len; i++)
     {

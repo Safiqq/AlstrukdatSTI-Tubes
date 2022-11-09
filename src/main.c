@@ -4,68 +4,61 @@
 
 int main()
 {
-    TabStr T;
-    Queue Q, Qds;
-    CreateArray(&T);
-    CreateQueue(&Q), CreateQueue(&Qds);
+    TabStr games;
+    Queue antriangames;
+    CreateArray(&games);
+    CreateQueue(&antriangames);
     mainmenu();
 
     while (true)
     {
         printf("ENTER COMMAND: ");
-
-        isFile = false;
         STARTWORD("", "");
 
         if (isEqual(currentWord, "START"))
         {
-            BNMO_START(&T);
+            start(&games);
         }
         else if (isEqual(currentWord, "LOAD"))
         {
             ADVWORD();
-            load(currentWord.TabWord, &T);
+            load(currentWord.TabWord, &games);
         }
         else if (isEqual(currentWord, "SAVE"))
         {
             ADVWORD();
-            save(currentWord.TabWord, T);
+            save(currentWord.TabWord, games);
         }
         else if (isEqual(currentWord, "CREATEGAME"))
         {
-            createGame(currentWord.TabWord, &T);
+            createGame(currentWord.TabWord, &games);
         }
         else if (isEqual(currentWord, "LISTGAME"))
         {
-            listgame(T);
+            listGame(games);
         }
         else if (isEqual(currentWord, "DELETEGAME"))
         {
-            deletegame(&T, Q);
+            deleteGame(&games, antriangames);
         }
         else if (isEqual(currentWord, "QUEUEGAME"))
         {
-            QueueGame(&T, &Q);
+            queueGame(&games, &antriangames);
         }
         else if (isEqual(currentWord, "PLAYGAME"))
         {
-            playgame(&T, &Q);
+            playGame(&games, &antriangames);
         }
         else if (isEqual(currentWord, "SKIPGAME"))
         {
-            skipgame(currentWord, &T, &Q);
+            skipGame(currentWord, &games, &antriangames);
         }
         else if (isEqual(currentWord, "QUIT"))
-        {
             quit();
-        }
         else if (isEqual(currentWord, "HELP"))
-        {
             help();
-        }
-        // Command lain
         else
-            commandlain();
+            commandLain();
 
         // Reset currentWord
         currentWord.TabWord[0] = '\0';

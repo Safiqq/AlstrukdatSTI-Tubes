@@ -1,61 +1,60 @@
-#include <stdio.h>
 #include "array.h"
 
-void CreateArray(Tab *T)
+void CreateArr(TabChr *T)
 {
     T->Neff = 0;
 }
 
-int LengthArray(Tab T)
+int LengthArr(TabChr T)
 {
     return T.Neff;
 }
 
-ElType GetArray(Tab T, IdxType i)
+ElTypeArr GetArr(TabChr T, IdxType i)
 {
     return T.TI[i];
 }
 
-void CopyArray(Tab Tin, Tab *Tout)
+void CopyArr(TabChr Tin, TabChr *Tout)
 {
     int i;
-    for (i = 0; i < LengthArray(Tin); i++)
+    for (i = 0; i < LengthArr(Tin); i++)
     {
         Tout->TI[i] = Tin.TI[i];
     }
     Tout->Neff = Tin.Neff;
 }
 
-void SetArray(Tab *T, IdxType i, ElType v)
+void SetArr(TabChr *T, IdxType i, ElTypeArr v)
 {
     T->TI[i] = v;
     if (i >= T->Neff)
-        SetNeffArray(T, T->Neff + 1);
+        SetNeffArr(T, T->Neff + 1);
 }
 
-void SetNeffArray(Tab *T, IdxType N)
+void SetNeffArr(TabChr *T, IdxType N)
 {
     T->Neff = N;
 }
 
-boolean IsEmptyArray(Tab T)
+boolean IsEmptyArr(TabChr T)
 {
     return T.Neff == 0;
 }
 
-boolean IsFullArray(Tab T)
+boolean IsFullArr(TabChr T)
 {
     return T.Neff == CAPACITY;
 }
 
-void PrintArray(Tab T)
+void PrintArr(TabChr T)
 {
-    if (IsEmptyArray(T))
+    if (IsEmptyArr(T))
         printf("Tabel kosong\n");
     else
     {
         int i;
-        for (i = 0; i < LengthArray(T); i++)
+        for (i = 0; i < LengthArr(T); i++)
         {
             // printf("%d\n", i);
             printf("%c\n", T.TI[i]);

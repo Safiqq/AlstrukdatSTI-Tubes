@@ -4,7 +4,6 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "../../boolean.h"
 #include "../mesinkarakter/mesinkarakter.h"
 
 #define NMax 50
@@ -12,13 +11,24 @@
 
 typedef struct
 {
-    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-    int Length;
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
 } Word;
 
 /* State Mesin Kata */
 extern boolean EndWord;
 extern Word currentWord;
+
+extern int StringLength(char *str);
+/*
+   I.S. : str sembarang
+   F.S. : Mengembalikan panjang dari str */
+
+extern boolean isEqual(Word str1, char *str2);
+/* Mengecek apakah isi dari str1 = str2
+   I.S. : str1 tidak kosong (str1.TabWord ada dan str1.Length > 0);
+          str2 tidak kosong
+   F.S. : Mengembalikan true apabila isi dari str1.TabWord = str2 */
 
 extern void ConcatWords(Word *str1, char separator, Word str2);
 /* Menggabungkan isi dari str2 ke isi dari str1
@@ -64,14 +74,5 @@ extern void CopyWord();
           currentChar = BLANK atau currentChar = MARK atau currentChar = EOF;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-
-extern boolean isEqual(Word str1, char *str2);
-/* Mengecek apakah isi dari str1 = str2
-   I.S. : str1 tidak kosong (str1.TabWord ada dan str1.Length > 0);
-          str2 tidak kosong
-   F.S. : Mengembalikan true apabila isi dari str1.TabWord = str2
-*/
-
-extern int StringLength(char *str);
 
 #endif

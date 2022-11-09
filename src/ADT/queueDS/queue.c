@@ -1,25 +1,27 @@
-#include <stdio.h>
 #include "queue.h"
 
-void CreateQueueDS(QueueDS *q){
+void CreateQueueDS(QueueDS *q)
+{
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 };
 
-boolean isEmptyDS(QueueDS q){
+boolean IsEmptyQueueDS(QueueDS q)
+{
     return (IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF);
 };
 
-boolean isFullDS(QueueDS q){
+boolean IsFullQueueDS(QueueDS q)
+{
     if (IDX_TAIL(q) >= IDX_HEAD(q))
         return (IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1);
     else
         return (IDX_HEAD(q) - IDX_TAIL(q) == 1);
 };
 
-int lengthDS(QueueDS q)
+int LengthQueueDS(QueueDS q)
 {
-    if (isEmptyDS(q)) 
+    if (IsEmptyQueueDS(q))
         return 0;
     else if (IDX_TAIL(q) >= IDX_HEAD(q))
         return (IDX_TAIL(q) - IDX_HEAD(q) + 1);
@@ -27,42 +29,43 @@ int lengthDS(QueueDS q)
         return (IDX_TAIL(q) - IDX_HEAD(q) + CAPACITY + 1);
 }
 
-void enqueueDS(QueueDS *q, ElType val)
+void EnqueueDS(QueueDS *q, ElTypeDS val)
 {
-    if (isEmptyDS(*q)){
+    if (IsEmptyQueueDS(*q))
+    {
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     }
-    else{
+    else
         IDX_TAIL(*q) = (IDX_TAIL(*q) + 1) % CAPACITY;
-    }
     TAIL(*q) = val;
 }
 
-void dequeueDS(QueueDS *q, ElType *val)
+void DequeueDS(QueueDS *q, ElTypeDS *val)
 {
     *val = HEAD(*q);
-    if (IDX_HEAD(*q) == IDX_TAIL(*q)){
+    if (IDX_HEAD(*q) == IDX_TAIL(*q))
+    {
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     }
-    else{
+    else
         IDX_HEAD(*q) = (IDX_HEAD(*q) + 1) % CAPACITY;
-    }
 }
 
-void displayQueueDS(QueueDS q){
-    if(lengthDS(q) == 0){
+void DisplayQueueDS(QueueDS q)
+{
+    if (LengthQueueDS(q) == 0)
         printf("[]\n");
-    }
-    else{
+    else
+    {
         int i = 0;
         printf("[");
-        for(i; i<= lengthDS(q) - 1; i++){
-            printf("%d", q.buffer[(i+IDX_HEAD(q))%CAPACITY]);
-            if (i <= lengthDS(q)- 2){
+        for (i; i <= LengthQueueDS(q) - 1; i++)
+        {
+            printf("%d", q.buffer[(i + IDX_HEAD(q)) % CAPACITY]);
+            if (i <= LengthQueueDS(q) - 2)
                 printf(",");
-            }
         }
         printf("]\n");
     }

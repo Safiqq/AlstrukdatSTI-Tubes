@@ -4,16 +4,17 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#include <stdio.h>
 #include "../../boolean.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef int QueElType;
+typedef int ElTypeQue;
 typedef struct
 {
-        QueElType buffer[CAPACITY];
+        ElTypeQue buffer[CAPACITY];
         int idxHead;
         int idxTail;
 } Queue;
@@ -34,29 +35,29 @@ extern void CreateQueue(Queue *q);
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-extern boolean isEmpty(Queue q);
+extern boolean IsEmptyQueue(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
-extern boolean isFull(Queue q);
+extern boolean IsFullQueue(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-extern int length(Queue q);
+extern int LengthQueue(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-extern void enqueue(Queue *q, QueElType val);
+extern void Enqueue(Queue *q, ElTypeQue val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-extern void dequeue(Queue *q, QueElType *val);
+extern void Dequeue(Queue *q, ElTypeQue *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
 /* *** Display Queue *** */
-extern void displayQueue(Queue q);
+extern void DisplayQueue(Queue q);
 /* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung
    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */

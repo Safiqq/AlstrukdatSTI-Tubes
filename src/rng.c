@@ -1,13 +1,11 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <time.h>
-#include "boolean.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
 // RNG_MAX = RAND_MAX (32767) * 3 = 98301
 #define RNG_MAX 98301
 
-int RNG(int min, int max)
+int random(int min, int max)
 {
     int r1, r2, r3;
     srand(time(NULL));
@@ -17,17 +15,19 @@ int RNG(int min, int max)
     return ((r1 + r2 + r3) % (max - min + 1)) + min;
 }
 
-void RNG_GAME()
+void rng()
 {
     // Jumlah percobaan maks 10
     // Angka random dari 1-100 inklusif
     boolean isTrue = false;
-    int i = 0, inpNum, randomNum = RNG(1, 100);
+    int i = 0, inpNum, randomNum = random(1, 100);
+
+    printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     while (i < 10 && !isTrue)
     {
         printf("Tebakan: ");
         STARTWORD("", "");
-        inpNum=atoi(currentWord.TabWord);
+        inpNum = atoi(currentWord.TabWord);
         if (inpNum > randomNum)
             printf("Lebih kecil\n");
         else if (inpNum == randomNum)

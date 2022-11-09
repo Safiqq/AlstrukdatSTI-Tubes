@@ -1,7 +1,7 @@
+#include <stdlib.h>
+#include "boolean.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
-#include "boolean.h"
-#include <stdlib.h>
 
 boolean isEqualStr(char *str1, char *str2)
 {
@@ -16,18 +16,16 @@ boolean isEqualStr(char *str1, char *str2)
     return checker;
 }
 
-void createGame(char *name, TabStr *T)
+void createGame(char *name, TabStr *games)
 {
     printf("Masukkan nama game yang akan ditambahkan: ");
-
-    isFile = false;
     STARTWORD("", "");
     int i = 0, j;
     char *temp;
     boolean isAvail = true;
-    while (i < T->Neff && isAvail)
+    while (i < games->Neff && isAvail)
     {
-        if (isEqualStr(T->TI[i], name))
+        if (isEqualStr(games->TI[i], name))
             isAvail = false;
         i++;
     }
@@ -41,7 +39,7 @@ void createGame(char *name, TabStr *T)
             j++;
         }
         temp[j] = '\0';
-        SetArray(T, T->Neff, temp);
+        SetArray(games, games->Neff, temp);
         printf("Game berhasil ditambahkan.\n");
     }
     else

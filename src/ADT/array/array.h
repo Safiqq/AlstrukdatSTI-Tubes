@@ -4,6 +4,7 @@
 #ifndef __ARRAY_H__
 #define __ARRAY_H__
 
+#include <stdio.h>
 #include "../../boolean.h"
 
 /* Kamus Umum */
@@ -76,10 +77,9 @@ extern void PrintArray(TabStr T);
 /* I.S. T boleh kosong */
 /* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
 /* Jika isi tabel ["RNG", "Diner DASH", "DINOSAUR IN EARTH"] maka akan diprint
-RNG
-Diner DASH
-DINOSAUR IN EARTH
+1.RNG
+2.Diner DASH
+3.DINOSAUR IN EARTH
 */
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
 
 #endif

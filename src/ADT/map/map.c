@@ -1,39 +1,35 @@
-#include <stdio.h>
 #include "map.h"
 
-
-void CreateEmptyDS(Map *M)
+void CreateMap(Map *M)
 {
     M->Count = Nil;
 }
 
-boolean IsEmptyDS(Map M)
+boolean IsEmptyMap(Map M)
 {
     return M.Count == Nil;
 }
 
-boolean IsFullDS(Map M)
+boolean IsFullMap(Map M)
 {
     return M.Count == MaxEl;
 }
 
-valuetype Value(Map M, keytype k)
+valuetype GetValueMap(Map M, keytype k)
 {
     int i = 0;
     while (i < M.Count)
     {
         if (M.Elements[i].Key == k)
-        {
             return M.Elements[i].Value;
-        }
         i++;
     }
     return Undefined;
 }
 
-void Insert(Map *M, keytype k, valuetype v)
+void InsertMap(Map *M, keytype k, valuetype v)
 {
-    if (!IsFullDS(*M))
+    if (!IsFullMap(*M))
     {
         {
             M->Count++;
@@ -43,21 +39,17 @@ void Insert(Map *M, keytype k, valuetype v)
     }
 }
 
-void Delete(Map *M, keytype k)
+void DeleteMap(Map *M, keytype k)
 {
     if (M->Count == 1)
-    {
         M->Count = Nil;
-    }
     else
     {
-        if (IsMember(*M, k))
+        if (IsMemberMap(*M, k))
         {
             int i = 0;
             while (i < M->Count && M->Elements[i].Key != k)
-            {
                 i++;
-            }
             while (i < M->Count)
             {
                 M->Elements[i].Key = M->Elements[i + 1].Key;
@@ -69,15 +61,13 @@ void Delete(Map *M, keytype k)
     }
 }
 
-boolean IsMember(Map M, keytype k)
+boolean IsMemberMap(Map M, keytype k)
 {
     int i = 0;
     while (i < M.Count)
     {
         if (M.Elements[i].Key == k)
-        {
             return true;
-        }
         i++;
     }
     return false;

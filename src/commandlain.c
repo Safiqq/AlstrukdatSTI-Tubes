@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void commandlain()
+void commandLain()
 {
     printf("Command tidak dikenali, silakan masukkan command yang valid.\n");
 }

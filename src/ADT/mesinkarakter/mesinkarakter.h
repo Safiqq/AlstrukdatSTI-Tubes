@@ -12,7 +12,6 @@
 
 /* State Mesin */
 extern int retval;
-extern int countMark;
 extern char currentChar;
 extern boolean isFile;
 
