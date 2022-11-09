@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ADT/queueDS/queue.h"
-#include "ADT/mapDS/map.h"
+#include "ADT/map/map.h"
 
 // FUNGSI DAN PROSEDUR UNTUK DINERDASH
 
@@ -17,10 +17,11 @@ void tampilSaldo(int saldo){
 
 // Menampilkan order ke layar
 void tampilPesanan(QueueDS Q, int count){
+    int i;
     printf("Daftar Pesanan\n");
     printf("Makanan\t| Durasi memasak |  Ketahanan\t|  Harga\n");
     printf("--------------------------------------------------\n");
-    for(int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
+    for(i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
         printf("M%d\t|\t%d\t |\t%d\t|  %d\n", i, Q.buffer[i].timeC, Q.buffer[i].timeK, Q.buffer[i].price);
     }
     printf("\n");
@@ -35,7 +36,8 @@ void tampilMasak(Map M, address count){
         printf("\t|");
     }
     else{
-        for(int i = 0; i < count; i++){
+        int i;
+        for(i = 0; i < count; i++){
             printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -51,7 +53,8 @@ void tampilSaji(Map M, address count){
         printf("\t|");
     }
     else{
-        for(int i = 0; i < count; i++){
+        int i;
+        for(i = 0; i < count; i++){
         printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -81,9 +84,9 @@ boolean checkSame(char *str1, char *str2, int len){
 
 // Mengubah string ke integer
 int strToInt(char*str){
-    int sum = 0;
+    int i, sum = 0;
 
-    for(int i = 1; i<3;i++){
+    for(i = 1; i<3;i++){
         if(str[i]-'0' >= 0 && str[i]-'0' <=99){
             sum = sum*10 + (str[i] - '0');
         }
@@ -93,7 +96,8 @@ int strToInt(char*str){
 
 // Mengurangkan value dari Map Masak dan Saji tiap putaran
 void tickValue(Map*M){
-    for(int i = 0; i<(*M).Count; i++){
+    int i;
+    for(i = 0; i<(*M).Count; i++){
         if((*M).Elements[i].Value >0){
             (*M).Elements[i].Value--;
         }
@@ -126,6 +130,7 @@ void dinerdash(){
     // Deklarasi Variabel bertipe integer
     int saldo = 0;
     int totalSaji = 0;
+    int i;
 
     // Deklarasi ADT
     QueueDS Q;
@@ -146,7 +151,7 @@ void dinerdash(){
     CreateEmptyDS(&Saji);
 
     // Membuat 3 order pertama sesuai pada deskripsi yang diberikan
-    for(int i = 0; i < 3; i++){
+    for(i = 0; i < 3; i++){
         enqOrder(&Q);
     }
 
