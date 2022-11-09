@@ -5,13 +5,9 @@
 
 // FUNGSI DAN PROSEDUR UNTUK DINERDASH
 
-// Menghasilkan angka random range min-max dengan kuantitas count
-int getRandom(int min, int max, int count){
-    int i;
-    for (i = 0; i < count; i++) {
-        int num = (rand()%(max - min + 1)) + min;
-        return num;
-    }
+// Menghasilkan angka random range min-max
+int getRandom(int min, int max){
+    return ((rand()%max) + min);
 }
 
 // Menampilkan saldo ke layar
@@ -21,11 +17,10 @@ void tampilSaldo(int saldo){
 
 // Menampilkan order ke layar
 void tampilPesanan(QueueDS Q, int count){
-    int i;
     printf("Daftar Pesanan\n");
     printf("Makanan\t| Durasi memasak |  Ketahanan\t|  Harga\n");
     printf("--------------------------------------------------\n");
-    for(i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
+    for(int i = IDX_HEAD(Q); i <= IDX_TAIL(Q); i++){
         printf("M%d\t|\t%d\t |\t%d\t|  %d\n", i, Q.buffer[i].timeC, Q.buffer[i].timeK, Q.buffer[i].price);
     }
     printf("\n");
@@ -40,8 +35,7 @@ void tampilMasak(Map M, address count){
         printf("\t|");
     }
     else{
-        int i;
-        for(i = 0; i < count; i++){
+        for(int i = 0; i < count; i++){
             printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -57,8 +51,7 @@ void tampilSaji(Map M, address count){
         printf("\t|");
     }
     else{
-        int i;
-        for(i = 0; i < count; i++){
+        for(int i = 0; i < count; i++){
         printf("M%d\t|\t%d\n", M.Elements[i].Key, M.Elements[i].Value);
         }
     }
@@ -68,9 +61,9 @@ void tampilSaji(Map M, address count){
 // Menghasilkan order random
 void enqOrder(QueueDS*q){
     ElType order;
-    order.timeC = getRandom(1,5,1);
-    order.timeK = getRandom(1,5,1);
-    order.price = getRandom(10000,15000,1);
+    order.timeC = getRandom(1,5);
+    order.timeK = getRandom(1,5);
+    order.price = getRandom(10000,50000);
     enqueueDS(q,order);
 }
 
@@ -88,10 +81,9 @@ boolean checkSame(char *str1, char *str2, int len){
 
 // Mengubah string ke integer
 int strToInt(char*str){
-    int i = 1;
     int sum = 0;
 
-    for(i; i<3;i++){
+    for(int i = 1; i<3;i++){
         if(str[i]-'0' >= 0 && str[i]-'0' <=99){
             sum = sum*10 + (str[i] - '0');
         }
@@ -101,8 +93,7 @@ int strToInt(char*str){
 
 // Mengurangkan value dari Map Masak dan Saji tiap putaran
 void tickValue(Map*M){
-    int i;
-    for(i =0; i<(*M).Count; i++){
+    for(int i = 0; i<(*M).Count; i++){
         if((*M).Elements[i].Value >0){
             (*M).Elements[i].Value--;
         }
@@ -123,12 +114,9 @@ void sortedMap(Map *M){
     for(i =1; i < count; i++){
         for(j = 0; j < count - 1; j++){
             if((*M).Elements[j].Value > (*M).Elements[j+1].Value){
-                int tempK = (*M).Elements[j].Key;
-                int tempV = (*M).Elements[j].Value;
-                (*M).Elements[j].Key = (*M).Elements[j+1].Key;
-                (*M).Elements[j].Value = (*M).Elements[j+1].Value;
-                (*M).Elements[j+1].Key = tempK;
-                (*M).Elements[j+1].Value = tempV;
+                infotype temp = (*M).Elements[j];
+                (*M).Elements[j] = (*M).Elements[j+1];
+                (*M).Elements[j+1] = temp;
             }
         }
     }
@@ -137,9 +125,7 @@ void sortedMap(Map *M){
 void dinerdash(){
     // Deklarasi Variabel bertipe integer
     int saldo = 0;
-    int count = 3;
     int totalSaji = 0;
-    int i;
 
     // Deklarasi ADT
     QueueDS Q;
@@ -160,7 +146,7 @@ void dinerdash(){
     CreateEmptyDS(&Saji);
 
     // Membuat 3 order pertama sesuai pada deskripsi yang diberikan
-    for(i = 0; i < 3; i++){
+    for(int i = 0; i < 3; i++){
         enqOrder(&Q);
     }
 
@@ -170,7 +156,7 @@ void dinerdash(){
     while(lengthDS(Q) <= 7 &&  totalSaji < 15){
         // Menampilkan ke layar
         tampilSaldo(saldo);
-        tampilPesanan(Q, count);
+        tampilPesanan(Q, lengthDS(Q));
         sortedMap(&Masak);   // Sorting Map Masak agar lebih mudah dipindahkan ke Map Saji jika sudah dimasak
         sortedMap(&Saji);   // Sorting Map Saji agar lebih mudah dihapus jika waktu ketahanan habis
         tampilMasak(Masak, Masak.Count);
@@ -200,6 +186,7 @@ void dinerdash(){
             }
             else if(checkSame(cmd, "SKIP",4) || checkSame(cmd, "skip", 4)){
                 isValid  = true;
+                printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
             }
             else{
                 printf("Input salah! Silahkan ulangi\n");
@@ -253,14 +240,9 @@ void dinerdash(){
                 printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(icmd), IDX_HEAD(Q));
             }
         }
-        // Jika command skip, maka tidak akan melakukan apa-apa
-        if(checkSame(cmd, "SKIP", 4) || checkSame(cmd, "skip", 4)){
-            printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
-        }
        
        // Tiap putaran maka order akan bertambah
         enqOrder(&Q);
-        count++;
 
         // Mengupdate kondisi untuk validasi input command putaran selanjutnya
         isValid = false;
