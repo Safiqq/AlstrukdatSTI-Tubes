@@ -11,7 +11,7 @@ int len(char *str)
 }
 
 // Untuk convert string to integer
-int strToInt(char*str)
+int stringToInteger(char*str)
 {
     int sum = 0;
     for(int i = 0; i < len(str); i++)
@@ -114,7 +114,7 @@ void playerTurn(Tab *T, char player)
             if(isDigit(idx))
             {
                 flagcmd = true;
-                index = strToInt(idx);
+                index = stringToInteger(idx);
             }
             else
             {
@@ -186,7 +186,7 @@ boolean suit(char player, char bot)
 }
 
 // Check string 1 string 2 sama atau beda
-boolean checkSame(char *str1, char *str2, int len){
+boolean isSame(char *str1, char *str2, int len){
     int i = 0;
     while (i < len){
         if(str1[i] != str2[i]){
@@ -222,17 +222,17 @@ void tictactoe()
         printf("Silahkan input (Batu/Gunting/Kertas) untuk menentukan giliran pertama : ");
         char cmd[10];
         scanf("%s", &cmd);
-        if(checkSame(cmd, "BATU", 4) || checkSame(cmd, "Batu", 4) || checkSame(cmd, "batu", 4))
+        if(isSame(cmd, "BATU", 4) || isSame(cmd, "Batu", 4) || isSame(cmd, "batu", 4))
         {
             p = 'B';
             flagp = true;
         }
-        else if (checkSame(cmd, "Gunting", 4) || checkSame(cmd, "GUNTING", 4) || checkSame(cmd, "gunting", 4))
+        else if (isSame(cmd, "Gunting", 4) || isSame(cmd, "GUNTING", 4) || isSame(cmd, "gunting", 4))
         {
             p = 'G';
             flagp = true;
         }
-        else if (checkSame(cmd, "KERTAS", 4) || checkSame(cmd, "Kertas", 4) || checkSame(cmd, "kertas", 4))
+        else if (isSame(cmd, "KERTAS", 4) || isSame(cmd, "Kertas", 4) || isSame(cmd, "kertas", 4))
         {
             p = 'K';
             flagp = true;
