@@ -269,15 +269,15 @@ void tictactoe()
     {
         if(bot == 'G')
         {
-            printf("Bot memilih Gunting sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+            printf("Bot memilih Gunting sehingga Anda kalah dan mendapatkan giliran kedua\n\n");
         }
         else if (bot == 'K')
         {
-            printf("Bot memilih Kertas sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+            printf("Bot memilih Kertas sehingga Anda kalah dan mendapatkan giliran kedua\n\n");
         }
         else if (bot == 'B')
         {
-            printf("Bot memilih Batu sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+            printf("Bot memilih Batu sehingga Anda kalah dan mendapatkan giliran kedua\n\n");
         }
         botType = 'X';
         playerType = 'O';
