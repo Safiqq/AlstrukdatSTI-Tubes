@@ -16,7 +16,7 @@ int stringToInteger(char*str)
     int sum = 0;
     for(int i = 0; i < len(str); i++)
     {
-        sum += str[i] - '0';
+        sum = sum*10 + (str[i] - '0');
     }
     return sum;
 }
@@ -64,16 +64,20 @@ int randomNumber(int min, int max)
 }
 
 // prosedur giliran Bot
-void botTurn(Tab *T, char bot)
+void botTurn(Tab *T, char bot, char player)
 {
     boolean flag = false;
     while(!flag)
     {
         int i = randomNumber(0,8);
-        if((*T).TI[i] == ' ')
+        if((*T).TI[i] != player && (*T).TI[i] != bot)
         {
             (*T).TI[i] = bot;
             flag = true;
+        }
+        else
+        {
+            i = (i+1)%8;
         }
     }
     printf("Bot sudah mengisi kotak\n");
@@ -99,7 +103,7 @@ boolean isDigit(char * string)
 }
 
 // Prosedur giliran player
-void playerTurn(Tab *T, char player)
+void playerTurn(Tab *T, char player, char bot)
 {
     boolean flag = false;
     char idx[21];
@@ -129,7 +133,7 @@ void playerTurn(Tab *T, char player)
         }
         else
         {
-            if((*T).TI[index] == ' ')
+            if((*T).TI[index] != bot && (*T).TI[index] != player)
             {
                 (*T).TI[index] = player;
                 flag = true;
@@ -292,20 +296,20 @@ void tictactoe()
         // Kalau player menang suit dengan bot maka player jalan lebih dulu
         if(suit(p, bot))
         {
-            playerTurn(&Table, playerType);
+            playerTurn(&Table, playerType, botType);
             count++;
             displayTable(Table);
-            botTurn(&Table,botType);
+            botTurn(&Table,botType, playerType);
             count++;
             displayTable(Table);
         }
         // Kalau player kalah suit dengan bot maka bot jalan lebih dulu
         else
         {
-            botTurn(&Table, botType);
+            botTurn(&Table, botType, playerType);
             count++;
             displayTable(Table);
-            playerTurn(&Table, playerType);
+            playerTurn(&Table, playerType, botType);
             count++;
             displayTable(Table);
         }
