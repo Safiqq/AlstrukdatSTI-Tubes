@@ -52,21 +52,3 @@ void DequeueDS(QueueDS *q, ElTypeDS *val)
     else
         IDX_HEAD(*q) = (IDX_HEAD(*q) + 1) % CAPACITY;
 }
-
-void DisplayQueueDS(QueueDS q)
-{
-    if (LengthQueueDS(q) == 0)
-        printf("[]\n");
-    else
-    {
-        int i = 0;
-        printf("[");
-        for (i; i <= LengthQueueDS(q) - 1; i++)
-        {
-            printf("%d", q.buffer[(i + IDX_HEAD(q)) % CAPACITY]);
-            if (i <= LengthQueueDS(q) - 2)
-                printf(",");
-        }
-        printf("]\n");
-    }
-};

@@ -8,13 +8,13 @@
 #include "./ADT/queue/queue.h"
 #include "./ADT/queueDS/queue.h"
 
-void mainmenu();
+void mainMenu();
 void start(TabStr *games);
 void load(char* namafile, TabStr *games);
 void save(char* namafile, TabStr games);
 void createGame(char *name, TabStr *games);
 void listGame(TabStr games);
-void deletegame(TabStr *games, Queue antriangames);
+void deleteGame(TabStr *games, Queue antriangames);
 void queueGame( TabStr *games, Queue *antriangames);
 void playGame(TabStr *games, Queue *antriangames);
 void skipGame(Word skip, TabStr *games, Queue *antriangames);

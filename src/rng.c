@@ -5,7 +5,7 @@
 // RNG_MAX = RAND_MAX (32767) * 3 = 98301
 #define RNG_MAX 98301
 
-int random(int min, int max)
+int randomNum(int min, int max)
 {
     int r1, r2, r3;
     srand(time(NULL));
@@ -20,7 +20,7 @@ void rng()
     // Jumlah percobaan maks 10
     // Angka random dari 1-100 inklusif
     boolean isTrue = false;
-    int i = 0, inpNum, randomNum = random(1, 100);
+    int i = 0, inpNum, answer = randomNum(1, 100);
 
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     while (i < 10 && !isTrue)
@@ -28,16 +28,16 @@ void rng()
         printf("Tebakan: ");
         STARTWORD("", "");
         inpNum = atoi(currentWord.TabWord);
-        if (inpNum > randomNum)
+        if (inpNum > answer)
             printf("Lebih kecil\n");
-        else if (inpNum == randomNum)
+        else if (inpNum == answer)
             isTrue = true;
         else
             printf("Lebih besar\n");
         i++;
     }
     if (isTrue)
-        printf("\nYa, X adalah %d.\n", randomNum);
+        printf("\nYa, X adalah %d.\n", answer);
     else
-        printf("\nTebakan Anda salah semua, X adalah %d.\n", randomNum);
+        printf("\nTebakan Anda salah semua, X adalah %d.\n", answer);
 }

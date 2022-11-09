@@ -8,7 +8,7 @@ int main()
     Queue antriangames;
     CreateArray(&games);
     CreateQueue(&antriangames);
-    mainmenu();
+    mainMenu();
 
     while (true)
     {

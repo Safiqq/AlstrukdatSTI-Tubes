@@ -61,14 +61,4 @@ void DequeueDS(QueueDS *q, ElTypeDS *val);
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
-/* *** Display Queue *** */
-void DisplayQueueDS(QueueDS q);
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. q boleh kosong */
-/* F.S. Jika q tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Queue kosong : menulis [] */
-
 #endif

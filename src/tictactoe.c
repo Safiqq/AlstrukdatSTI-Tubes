@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "./ADT/arrayTTT/array.h"
 
@@ -214,10 +213,10 @@ void tictactoe()
     int i;
     // Membuat table kosong
     TabChr Table;
-    CreateArray(&Table);
+    CreateArr(&Table);
     for (i = 0; i < 9; i++)
     {
-        SetArray(&Table, i, ' ');
+        SetArr(&Table, i, ' ');
     }
 
     // Deklarasi variabel

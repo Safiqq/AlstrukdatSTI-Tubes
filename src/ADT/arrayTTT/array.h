@@ -1,8 +1,8 @@
 /* File: array.h */
 /* Definisi ADT Array */
 
-#ifndef __ARRAY_H__
-#define __ARRAY_H__
+#ifndef __ARRAYTTT_H__
+#define __ARRAYTTT_H__
 
 #include <stdio.h>
 #include "../../boolean.h"
