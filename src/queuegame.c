@@ -27,7 +27,7 @@ void queueGame(TabStr *games, Queue *antriangames)
     }
     else
     {
-        Enqueue(&(*antriangames), n - 1);
+        Enqueue(antriangames, n - 1);
         printf("\nGame berhasil ditambahkan kedalam daftar antrian.\n");
     }
 }
