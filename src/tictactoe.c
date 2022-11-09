@@ -1,20 +1,21 @@
 #include <stdio.h>
-#include "./ADT/arrayTTT/array.h"
 #include <stdlib.h>
+#include "./ADT/arrayTTT/array.h"
 
 // FUNGSI / PROSEDUR PRIMITIF
 
 // Untuk menghitung panjang string
 int len(char *str)
 {
-    for (int len = 0;;++len) if (str[len]==0) return len;
+    int len;
+    for (len = 0;;++len) if (str[len]==0) return len;
 }
 
 // Untuk convert string to integer
 int stringToInteger(char*str)
 {
-    int sum = 0;
-    for(int i = 0; i < len(str); i++)
+    int i, sum = 0;
+    for(i = 0; i < len(str); i++)
     {
         sum = sum*10 + (str[i] - '0');
     }
@@ -24,15 +25,16 @@ int stringToInteger(char*str)
 // Untuk validasi apakah sudah memenuhi kondisi win atau belum
 boolean winCondition(Tab T, char p)
 {
+    int i, j;
     boolean flag = false;
-    for(int i = 0; i <=6; i = i+3)
+    for(i = 0; i <=6; i = i+3)
     {
         if(T.TI[i] == p && T.TI[i+1] == p && T.TI[i+2] == p)
         {
             flag = true;
         }
     }
-    for(int j = 0; j <=2; j++)
+    for(j = 0; j <=2; j++)
     {
         if(T.TI[j] == p && T.TI[j+3] == p && T.TI[j+6] == p)
         {
@@ -49,8 +51,9 @@ boolean winCondition(Tab T, char p)
 // Untuk menampilkan table saat ini
 void displayTable(Tab T)
 {
+    int i;
     printf("Table saat ini: \n\n");
-    for(int i = 0; i <=6; i = i+3)
+    for(i = 0; i <=6; i = i+3)
     {
         printf(" %c | %c | %c\n", T.TI[i], T.TI[i+1], T.TI[i+2]);
         printf("------------\n");
@@ -205,10 +208,11 @@ boolean isSame(char *str1, char *str2, int len){
 // Program Utama
 void tictactoe()
 {
+    int i;
     // Membuat table kosong
     Tab Table;
     CreateArray(&Table);
-    for(int i = 0; i <9; i++)
+    for(i = 0; i <9; i++)
     {
        SetArray(&Table, i, ' ');
     }
