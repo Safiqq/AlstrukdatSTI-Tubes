@@ -2,6 +2,26 @@
 #include "./ADT/arrayTTT/array.h"
 #include <stdlib.h>
 
+// FUNGSI / PROSEDUR PRIMITIF
+
+// Untuk menghitung panjang string
+int len(char *str)
+{
+    for (int len = 0;;++len) if (str[len]==0) return len;
+}
+
+// Untuk convert string to integer
+int strToInt(char*str)
+{
+    int sum = 0;
+    for(int i = 0; i < len(str); i++)
+    {
+        sum += str[i] - '0';
+    }
+    return sum;
+}
+
+// Untuk validasi apakah sudah memenuhi kondisi win atau belum
 boolean winCondition(Tab T, char p)
 {
     boolean flag = false;
@@ -26,6 +46,7 @@ boolean winCondition(Tab T, char p)
     return flag;
 }
 
+// Untuk menampilkan table saat ini
 void displayTable(Tab T)
 {
     printf("Table saat ini: \n\n");
@@ -36,11 +57,13 @@ void displayTable(Tab T)
     }
 }
 
+// Untuk menghasilkan random number
 int randomNumber(int min, int max)
 {
     return ((rand()%max) + min);
 }
 
+// prosedur giliran Bot
 void botTurn(Tab *T, char bot)
 {
     boolean flag = false;
@@ -56,15 +79,51 @@ void botTurn(Tab *T, char bot)
     printf("Bot sudah mengisi kotak\n");
 }
 
+// Validasi apakah string itu isinya digit semua atau bukan
+boolean isDigit(char * string)
+{
+    boolean flag = false;
+    int i = 0;
+    while(!flag && i < len(string))
+    {
+        if(string[i] - '0' < 0 || string[i] - '0' > 9)
+        {
+            flag = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return !flag;
+}
+
+// Prosedur giliran player
 void playerTurn(Tab *T, char player)
 {
     boolean flag = false;
+    char idx[21];
+    int index;
     while(!flag)
     {
-        int index;
-        printf("Silahkan input index kotak (0-8) yang akan diisi : ");
-        scanf("%d", &index);
-        if(index > 8)
+        boolean flagcmd = false;
+        while(!flagcmd)
+        {
+            printf("Silahkan masukkan index kotak (0-8) yang akan diisi : ");
+            scanf("%s", &idx);
+            if(isDigit(idx))
+            {
+                flagcmd = true;
+                index = strToInt(idx);
+            }
+            else
+            {
+                printf("Kamu nanyeeaa kenapa gabisa? Biar aku kasih tau ya kamu inputnya string ya bukan integer! RAAAWWRRR\n");
+            }
+            printf("\n");
+
+        }
+        if(index > 8 || index <0)
         {
             printf("Index di luar jangkauan, Silahkan masukkan index yang benar!\n");
         }
@@ -83,6 +142,7 @@ void playerTurn(Tab *T, char player)
     }
 }
 
+// Menghasilkan tipe suit bot (batu/gunting/kertas)
 char botChar(char player)
 {
     boolean flag = false;
@@ -111,6 +171,7 @@ char botChar(char player)
     return bot;
 }
 
+// Check siapakah yang menang suit
 boolean suit(char player, char bot)
 {
     // Condition
@@ -124,6 +185,20 @@ boolean suit(char player, char bot)
     }
 }
 
+// Check string 1 string 2 sama atau beda
+boolean checkSame(char *str1, char *str2, int len){
+    int i = 0;
+    while (i < len){
+        if(str1[i] != str2[i]){
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+
+
+// Program Utama
 void tictactoe()
 {
     // Membuat table kosong
@@ -139,20 +214,71 @@ void tictactoe()
     char playerType, botType;
 
     printf("---Selamat datang di TicTacToe---\n\n");
-    printf("Silahkan input (B/G/K) untuk menentukan giliran pertama : ");
 
     // Input Pengguna dan check apakah player menang atau kalah suit dengan bot
-    scanf("%c", &p);
+    boolean flagp = false;
+    while(!flagp)
+    {
+        printf("Silahkan input (Batu/Gunting/Kertas) untuk menentukan giliran pertama : ");
+        char cmd[10];
+        scanf("%s", &cmd);
+        if(checkSame(cmd, "BATU", 4) || checkSame(cmd, "Batu", 4) || checkSame(cmd, "batu", 4))
+        {
+            p = 'B';
+            flagp = true;
+        }
+        else if (checkSame(cmd, "Gunting", 4) || checkSame(cmd, "GUNTING", 4) || checkSame(cmd, "gunting", 4))
+        {
+            p = 'G';
+            flagp = true;
+        }
+        else if (checkSame(cmd, "KERTAS", 4) || checkSame(cmd, "Kertas", 4) || checkSame(cmd, "kertas", 4))
+        {
+            p = 'K';
+            flagp = true;
+        }
+        else
+        {
+            printf("Input salah! Mohon ulangi dengan benar\n");
+        }
+        printf("\n");
+    }
+
+    // Deklarasi bot itu tipe suitnya apa
     char bot = botChar(p);
+    
+    // Check siapa yang menang suit dan menentukan giliran pertama
     if(suit(p, bot))
     {
-        printf("Bot memilih %c sehingga Anda menang dan mendapatkan giliran pertama\n\n", bot);
+        if(bot == 'G')
+        {
+            printf("Bot memilih Gunting sehingga Anda menang dan mendapatkan giliran pertama\n\n");
+        }
+        else if (bot == 'K')
+        {
+            printf("Bot memilih Kertas sehingga Anda menang dan mendapatkan giliran pertama\n\n");
+        }
+        else if (bot == 'B')
+        {
+            printf("Bot memilih Batu sehingga Anda menang dan mendapatkan giliran pertama\n\n");
+        }
         botType = 'O';
         playerType = 'X';
     }
     else
     {
-        printf("Bot memilih %c sehingga Anda kalah dan mendapatkan giliran kedua\n\n", bot);
+        if(bot == 'G')
+        {
+            printf("Bot memilih Gunting sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+        }
+        else if (bot == 'K')
+        {
+            printf("Bot memilih Kertas sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+        }
+        else if (bot == 'B')
+        {
+            printf("Bot memilih Batu sehingga Anda kalah dan mendapatkan giliran pertama\n\n");
+        }
         botType = 'X';
         playerType = 'O';
     }
