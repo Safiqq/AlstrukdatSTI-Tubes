@@ -5,7 +5,7 @@ PROGRAMS = $(wildcard ../src/*.c)
 all: bnmo clean
 
 bnmo: $(ADT) $(PROGRAMS)
-	gcc -o bnmo $(ADT) $(PROGRAMS) -I.
+	gcc -std=gnu90 -o bnmo $(ADT) $(PROGRAMS) -I.
 
 clean:
 	rm -f *.o

@@ -5,6 +5,7 @@
 #define __ARRAYTTT_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "../../boolean.h"
 
@@ -34,8 +35,12 @@ typedef struct
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong */
-extern void CreateMtx(Matrix2D *T);
+extern void CreateMtx(Matrix2D *M);
 /* I.S. sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas CAPACITY */
+
+extern void PrintMtx(Matrix2D M);
+
+extern boolean IsFullMtx(Matrix2D M);
 
 #endif
