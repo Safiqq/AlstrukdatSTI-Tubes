@@ -2,10 +2,7 @@ ADT = ../src/ADT/array/array.c ../src/ADT/arrayTTT/array.c ../src/ADT/map/map.c 
 
 PROGRAMS = $(wildcard ../src/*.c)
 
-all: bnmo clean
+all: bnmo
 
 bnmo: $(ADT) $(PROGRAMS)
 	gcc -std=gnu90 -o bnmo $(ADT) $(PROGRAMS) -I.
-
-clean:
-	rm -f *.o
