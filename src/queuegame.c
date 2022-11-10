@@ -21,7 +21,7 @@ void queueGame(TabStr *games, Queue *antriangames)
     printf("\nNomor Game yang mau ditambahkan ke antrian: ");
     STARTWORD("", "");
     n = atoi(currentWord.TabWord);
-    if (n > games->Neff)
+    if (n > games->Neff && n<=0)
     {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
     }
