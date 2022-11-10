@@ -20,6 +20,16 @@ void createGame(char *name, TabStr *games)
 {
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTWORD("", "");
+    int count = 0;
+    Word tempWord = currentWord;
+    while (!IsEOP() && GetCC() != NEWLINE)
+    {
+        ADVWORD();
+        ConcatWords(&tempWord, ' ', currentWord);
+        count++;
+    }
+    if (count > 0)
+        currentWord = tempWord;
     int i = 0, j;
     char *temp;
     boolean isAvail = true;
