@@ -62,6 +62,17 @@ void displayTable(TabChr T)
     }
 }
 
+void infoTable()
+{
+    int i;
+    printf("Penjelasan Index Table: \n\n");
+    for (i = 0; i <= 6; i = i + 3)
+    {
+        printf(" %d | %d | %d\n", i, i+1, i+2);
+        printf("------------\n");
+    }
+}
+
 // Untuk menghasilkan random number
 int randomNumber(int min, int max)
 {
@@ -277,6 +288,7 @@ void tictactoe()
         playerType = 'O';
     }
 
+    infoTable();
     displayTable(Table);
     int count = 0;
 
