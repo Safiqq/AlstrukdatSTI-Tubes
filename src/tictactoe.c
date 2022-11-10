@@ -328,6 +328,6 @@ void tictactoe()
     }
     else
     {
-        printf("Masa Seri sama bot :V");
+        printf("Masa Seri sama bot :V\n");
     }
 }

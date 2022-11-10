@@ -4,6 +4,8 @@
 
 #define MAX_LENGTH 100
 
+int isLogged = false;
+
 int main()
 {
     TabStr games;
@@ -20,45 +22,68 @@ int main()
         if (isEqual(currentWord, "START"))
         {
             start(&games);
+            isLogged = true;
         }
         else if (isEqual(currentWord, "LOAD"))
         {
             ADVWORD();
             load(currentWord.TabWord, &games);
+            isLogged = true;
         }
         else if (isEqual(currentWord, "SAVE"))
         {
             ADVWORD();
-            save(currentWord.TabWord, games);
+            if (isLogged)
+                save(currentWord.TabWord, games);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "CREATEGAME"))
         {
-            createGame(currentWord.TabWord, &games);
+            if (isLogged)
+                createGame(currentWord.TabWord, &games);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "LISTGAME"))
         {
-            listGame(games);
+            if (isLogged)
+                listGame(games);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "DELETEGAME"))
         {
-            deleteGame(&games, antriangames);
+            if (isLogged)
+                deleteGame(&games, antriangames);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "QUEUEGAME"))
         {
-            queueGame(&games, &antriangames);
+            if (isLogged)
+                queueGame(&games, &antriangames);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "PLAYGAME"))
         {
-            playGame(&games, &antriangames);
+            if (isLogged)
+                playGame(&games, &antriangames);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "SKIPGAME"))
         {
-            skipGame(currentWord, &games, &antriangames);
+            if (isLogged)
+                skipGame(currentWord, &games, &antriangames);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "QUIT"))
             quit();
         else if (isEqual(currentWord, "HELP"))
-            help();
+            help(isLogged);
         else
             commandLain();
 
