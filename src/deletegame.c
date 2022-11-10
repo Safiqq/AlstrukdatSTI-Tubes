@@ -5,7 +5,7 @@
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
-void deleteGame(TabStr *games, Queue antriangames)
+void deleteGame(TabStr *games, Queue *antriangames)
 {
     int i;
     ElTypeQue hapus;
@@ -24,9 +24,9 @@ void deleteGame(TabStr *games, Queue antriangames)
     {
         boolean isInAntrian = false;
         i = 0;
-        while ((i < LengthQueue(antriangames)) && !isInAntrian)
+        while ((i < LengthQueue(*antriangames)) && !isInAntrian)
         {
-            if (hapus -1 == antriangames.buffer[i])
+            if (hapus - 1 == (*antriangames).buffer[i])
                 isInAntrian = true;
             i++;
         }
@@ -40,6 +40,14 @@ void deleteGame(TabStr *games, Queue antriangames)
                     (*games).TI[i] = (*games).TI[i + 1];
                 else
                     (*games).Neff -= 1; // menghapus elemen terakhir menjadi sampah
+            }
+            ElTypeQue val;
+            for (i = 0; i < LengthQueue(*antriangames); i++)
+            {
+                Dequeue(antriangames, &val);
+                if (val >= hapus)
+                    val--;
+                Enqueue(antriangames, val);
             }
             printf("Game berhasil dihapus.\n");
         }

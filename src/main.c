@@ -55,7 +55,7 @@ int main()
         else if (isEqual(currentWord, "DELETEGAME"))
         {
             if (isLogged)
-                deleteGame(&games, antriangames);
+                deleteGame(&games, &antriangames);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
