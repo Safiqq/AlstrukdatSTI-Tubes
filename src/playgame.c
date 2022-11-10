@@ -1,4 +1,6 @@
-#include "playgame.h"
+#include "./ADT/array/array.h"
+#include "./ADT/queue/queue.h"
+// #include "playgame.h"
 
 void playGame(TabStr *games, Queue *antriangames)
 {

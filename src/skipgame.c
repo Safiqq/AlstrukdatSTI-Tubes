@@ -1,4 +1,7 @@
-#include "skipgame.h"
+#include <stdlib.h>
+#include "ADT/queue/queue.h"
+#include "ADT/array/array.h"
+#include "ADT/mesinkata/mesinkata.h"
 
 void skipGame(Word skip, TabStr *games, Queue *antriangames)
 {
