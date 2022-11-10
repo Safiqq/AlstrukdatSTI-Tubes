@@ -38,47 +38,83 @@ int main()
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
-        else if (isEqual(currentWord, "CREATEGAME"))
+        else if (isEqual(currentWord, "CREATE"))
         {
-            if (isLogged)
-                createGame(currentWord.TabWord, &games);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    createGame(currentWord.TabWord, &games);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
-        else if (isEqual(currentWord, "LISTGAME"))
+        else if (isEqual(currentWord, "LIST"))
         {
-            if (isLogged)
-                listGame(games);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    listGame(games);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
-        else if (isEqual(currentWord, "DELETEGAME"))
+        else if (isEqual(currentWord, "DELETE"))
         {
-            if (isLogged)
-                deleteGame(&games, &antriangames);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    deleteGame(&games, &antriangames);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
-        else if (isEqual(currentWord, "QUEUEGAME"))
+        else if (isEqual(currentWord, "QUEUE"))
         {
-            if (isLogged)
-                queueGame(&games, &antriangames);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    queueGame(&games, &antriangames);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
-        else if (isEqual(currentWord, "PLAYGAME"))
+        else if (isEqual(currentWord, "PLAY"))
         {
-            if (isLogged)
-                playGame(&games, &antriangames);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    playGame(&games, &antriangames);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
-        else if (isEqual(currentWord, "SKIPGAME"))
+        else if (isEqual(currentWord, "SKIP"))
         {
-            if (isLogged)
-                skipGame(currentWord, &games, &antriangames);
+            ADVWORD();
+            if (isEqual(currentWord, "GAME"))
+            {
+                if (isLogged)
+                    skipGame(currentWord, &games, &antriangames);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+                commandLain();
         }
         else if (isEqual(currentWord, "QUIT"))
             quit();
