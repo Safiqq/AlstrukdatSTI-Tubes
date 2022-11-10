@@ -18,7 +18,7 @@ void deleteGame(TabStr *games, Queue antriangames)
     STARTWORD("", "");
     hapus = atoi(currentWord.TabWord);
 
-    if (hapus <= 6 || hapus > games->Neff)
+    if (hapus <= 7 || hapus > games->Neff)
         printf("Game gagal dihapus.\n");
     else
     {
@@ -26,7 +26,7 @@ void deleteGame(TabStr *games, Queue antriangames)
         i = 0;
         while ((i < LengthQueue(antriangames)) && !isInAntrian)
         {
-            if (hapus == antriangames.buffer[i])
+            if (hapus -1 == antriangames.buffer[i])
                 isInAntrian = true;
             i++;
         }
