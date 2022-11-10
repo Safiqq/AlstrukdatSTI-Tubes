@@ -29,11 +29,15 @@ void playGame(TabStr *games, Queue *antriangames)
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.\n", games->TI[play]);
         }
         else if (play == 5)
-        { // ini kalo misalkan game bonus dimasukin ke config
-            printf("Loading TICTACTOE ...");
+        { 
+            printf("Loading TICTACTOE ...\n");
             tictactoe();
         }
-        else if (play >= 6 && play <= (*games).Neff)
+        else if (play==6) {
+            printf("Loading Sudoku ...\n");
+            sudoku();
+        }
+        else if (play >= 7 && play <= (*games).Neff)
         {
             gameTambahan();
         }
