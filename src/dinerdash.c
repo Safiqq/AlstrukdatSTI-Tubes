@@ -214,9 +214,13 @@ void dinerdash()
                 inp[4] = 'E';
                 inp[5] = '\0';
                 ADVWORD();
-                if (IsMemberMap(Saji, strToInt(currentWord.TabWord)))
+                if (IsMemberMap(Saji, strToInt(currentWord.TabWord)) && strToInt(currentWord.TabWord) == IDX_HEAD(Q))
                 {
                     isValid = true;
+                }
+                else if (IsMemberMap(Saji, strToInt(currentWord.TabWord)) && strToInt(currentWord.TabWord) != IDX_HEAD(Q))
+                {
+                    printf("M%d belum dapat disajikan karena M%d belum disajikan. Silahkan ulangi!\n", strToInt(currentWord.TabWord), IDX_HEAD(Q));
                 }
                 else
                 {
