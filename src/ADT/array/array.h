@@ -44,16 +44,10 @@ extern int LengthArray(TabStr T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
-extern ElTypeArray GetArray(TabStr T, IdxType i);
-/* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen tabel yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-extern void CopyArray(TabStr Tin, TabStr *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
+
 extern void SetArray(TabStr *T, IdxType i, ElTypeArray v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
@@ -68,8 +62,6 @@ extern void SetNeffArray(TabStr *T, IdxType N);
 extern boolean IsEmptyArray(TabStr T);
 /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
 /* *** Test tabel penuh *** */
-extern boolean IsFullArray(TabStr T);
-/* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 extern void PrintArray(TabStr T);
