@@ -1,4 +1,5 @@
 #include "./ADT/matriks/matriks.h"
+#include "./ADT/mesinkata/mesinkata.h"
 
 boolean cekBaris(Matrix2D M, int x, int y, int num)
 {
@@ -78,16 +79,18 @@ void sudoku()
         }
         else {
             printf("Masukkan koordinat X [1..9]: ");
-            scanf("%d\n", &y);
+            STARTWORD("", "");
+            y = atoi(currentWord.TabWord);
             printf("Masukkan koordinat Y [1..9]: ");
-            scanf("%d\n", &x);
+            STARTWORD("", "");
+            x = atoi(currentWord.TabWord);
             printf("Masukkan angka [1..10]: ");
-            scanf("%d\n", &num);
+            STARTWORD("", "");
+            num = atoi(currentWord.TabWord);
             if (cekAngka(M, x-1, y-1, num))
                 M.TI[x-1][y-1] = num;
             else
             {
-                printf("2\n");
                 counter++;
                 if (counter < 10)
                     printf("\nDahlah gabisa main, nyawa kamu sisa %d\n", 10 - counter);
