@@ -20,20 +20,27 @@ void rng()
     // Jumlah percobaan maks 10
     // Angka random dari 1-100 inklusif
     boolean isTrue = false;
-    int i = 0, inpNum, answer = randomNum(1, 100);
+    int i = 0, inpNum = 0, answer = randomNum(1, 100);
 
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
+    printf("X merupakan angka random dengan range [1.100]\n");
     while (i < 10 && !isTrue)
     {
-        printf("Tebakan: ");
-        STARTWORD("", "");
-        inpNum = atoi(currentWord.TabWord);
+        while (inpNum < 1 || inpNum > 100)
+        {
+            printf("Tebakan [1.100]: ");
+            STARTWORD("", "");
+            inpNum = atoi(currentWord.TabWord);
+            if (inpNum < 1 || inpNum > 100)
+                printf("Input salah\n");
+        }
         if (inpNum > answer)
             printf("Lebih kecil\n");
         else if (inpNum == answer)
             isTrue = true;
         else
             printf("Lebih besar\n");
+        inpNum = 0;
         i++;
     }
     if (isTrue)

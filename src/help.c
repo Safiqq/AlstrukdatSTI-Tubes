@@ -11,12 +11,12 @@ void help(boolean isLogged)
     if (isLogged)
     {
         printf("|\t3\t|\tSAVE <filename>\t\t|\tUntuk menyimpan state game saat ini ke dalam file\t|\n");
-        printf("|\t4\t|\tCREATEGAME\t\t|\tUntuk menambahkan game baru pada daftar game\t\t|\n");
-        printf("|\t5\t|\tLISTGAME\t\t|\tUntuk menampilkan daftar game yang tersedia\t\t|\n");
-        printf("|\t6\t|\tDELETEGAME\t\t|\tUntuk menghapus sebuah game dari daftar game\t\t|\n");
-        printf("|\t7\t|\tQUEUEGAME\t\t|\tUntuk mendaftarkan game kedalam list game\t\t|\n");
-        printf("|\t8\t|\tPLAYGAME\t\t|\tUntuk memainkan sebuah permainan pada list game\t\t|\n");
-        printf("|\t9\t|\tSKIPGAME <n>\t\t|\tUntuk melewatkan game pada list game sebanyak n\t\t|\n");
+        printf("|\t4\t|\tCREATE GAME\t\t|\tUntuk menambahkan game baru pada daftar game\t\t|\n");
+        printf("|\t5\t|\tLIST GAME\t\t|\tUntuk menampilkan daftar game yang tersedia\t\t|\n");
+        printf("|\t6\t|\tDELETE GAME\t\t|\tUntuk menghapus sebuah game dari daftar game\t\t|\n");
+        printf("|\t7\t|\tQUEUE GAME\t\t|\tUntuk mendaftarkan game kedalam list game\t\t|\n");
+        printf("|\t8\t|\tPLAY GAME\t\t|\tUntuk memainkan sebuah permainan pada list game\t\t|\n");
+        printf("|\t9\t|\tSKIP GAME <n>\t\t|\tUntuk melewatkan game pada list game sebanyak n\t\t|\n");
     }
     printf("|\t%d\t|\tQUIT\t\t\t|\tUntuk keluar dari program\t\t\t\t|\n", isLogged ? 10 : 3);
     printf("-----------------------------------------------------------------------------------------------------------------\n");
