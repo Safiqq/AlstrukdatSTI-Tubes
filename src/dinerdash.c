@@ -1,6 +1,7 @@
 #include <stdlib.h>
-#include "ADT/queueDS/queue.h"
 #include "ADT/map/map.h"
+#include "ADT/queueDS/queue.h"
+#include "ADT/mesinkata/mesinkata.h"
 
 // FUNGSI DAN PROSEDUR UNTUK DINERDASH
 
@@ -82,33 +83,18 @@ void enqOrder(QueueDS *q)
     EnqueueDS(q, order);
 }
 
-// Check kedua string apakah sama
-boolean checkSame(char *str1, char *str2, int len)
-{
-    int i = 0;
-    while (i < len)
-    {
-        if (str1[i] != str2[i])
-        {
-            return false;
-        }
-        i++;
-    }
-    return true;
-}
-
 // Mengubah string ke integer
 int strToInt(char *str)
 {
-    int i, sum = 0;
+    int i = 1, sum = 0;
 
-    for (i = 1; i < 3; i++)
+    while (str[i] != '\0')
     {
-        if (str[i] - '0' >= 0 && str[i] - '0' <= 99)
-        {
-            sum = sum * 10 + (str[i] - '0');
-        }
+        if (str[i] - '0' >= 0 && str[i] - '0' <= 9)
+            sum = sum * 10 + str[i] - '0';
+        i++;
     }
+
     return sum;
 }
 
@@ -159,14 +145,13 @@ void dinerdash()
     int totalSaji = 0;
     int i;
 
+    // Deklarasi String
+    char *inp;
+
     // Deklarasi ADT
     QueueDS Q;
     Map Masak;
     Map Saji;
-
-    // Deklarasi Variabel bertipe string
-    char cmd[6];
-    char icmd[4];
 
     // Deklarasi Variabel bertipe boolean
     boolean isValid = false;
@@ -200,32 +185,45 @@ void dinerdash()
         while (!isValid)
         {
             printf("\nMASUKKAN COMMAND: ");
-            scanf("%s", &cmd);
-            if (checkSame(cmd, "COOK", 4) || checkSame(cmd, "cook", 4))
+            STARTWORD("", "");
+            if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
             {
-                scanf("%s", &icmd);
-                if (strToInt(icmd) <= IDX_TAIL(Q) && icmd[0] == 'M')
+                inp = (char *)malloc(sizeof(char) * 10);
+                inp[0] = 'C';
+                inp[1] = 'O';
+                inp[2] = 'O';
+                inp[3] = 'K';
+                inp[4] = '\0';
+                ADVWORD();
+                if (strToInt(currentWord.TabWord) <= IDX_TAIL(Q) && currentWord.TabWord[0] == 'M')
                 {
                     isValid = true;
                 }
                 else
                 {
-                    printf("M%d tidak ada pada daftar! Silahkan ulangi\n", strToInt(icmd));
+                    printf("M%d tidak ada pada daftar! Silahkan ulangi\n", strToInt(currentWord.TabWord));
                 }
             }
-            else if (checkSame(cmd, "SERVE", 5) || checkSame(cmd, "serve", 5))
+            else if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
             {
-                scanf("%s", &icmd);
-                if (IsMemberMap(Saji, strToInt(icmd)))
+                inp = (char *)malloc(sizeof(char) * 10);
+                inp[0] = 'S';
+                inp[1] = 'E';
+                inp[2] = 'R';
+                inp[3] = 'V';
+                inp[4] = 'E';
+                inp[5] = '\0';
+                ADVWORD();
+                if (IsMemberMap(Saji, strToInt(currentWord.TabWord)))
                 {
                     isValid = true;
                 }
                 else
                 {
-                    printf("M%d belum dapat disajikan! Silahkan ulangi\n", strToInt(icmd));
+                    printf("M%d belum dapat disajikan! Silahkan ulangi\n", strToInt(currentWord.TabWord));
                 }
             }
-            else if (checkSame(cmd, "SKIP", 4) || checkSame(cmd, "skip", 4))
+            else if (isEqual(currentWord, "SKIP") || isEqual(currentWord, "skip"))
             {
                 isValid = true;
                 printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
@@ -261,23 +259,25 @@ void dinerdash()
         }
 
         // Jika command = "COOK" maka akan memasak makanan dengan id dari input user
-        if (checkSame(cmd, "COOK", 4) || checkSame(cmd, "cook", 4))
+        if (inp[0] == 'C' || inp[0] == 'c')
+        // if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
         {
-            keytype k = strToInt(icmd);
+            keytype k = strToInt(currentWord.TabWord);
             valuetype v = Q.buffer[k].timeC;
             InsertMap(&Masak, k, v);
             printf("\nBerhasil memasak M%d\n", k);
         }
         // Jika command = "SERVE" maka akan menyajikan makanan dengan id dari input user
-        if (checkSame(cmd, "SERVE", 5) || checkSame(cmd, "serve", 5))
+        if (inp[0] == 'S' || inp[0] == 's')
+        // if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
         {
             // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
-            if (strToInt(icmd) == IDX_HEAD(Q))
+            if (strToInt(currentWord.TabWord) == IDX_HEAD(Q))
             {
                 int z;
                 for (z = 0; z < Saji.Count; z++)
                 {
-                    if (strToInt(icmd) == Saji.Elements[z].Key)
+                    if (strToInt(currentWord.TabWord) == Saji.Elements[z].Key)
                     { // Jika ada maka sajikan makanannya
                         DeleteMap(&Saji, Saji.Elements[z].Key);
                         ElTypeDS val;
@@ -286,11 +286,11 @@ void dinerdash()
                         DequeueDS(&Q, &val);
                     }
                 }
-                printf("\nBerhasil mengantar M%d\n", strToInt(icmd));
+                printf("\nBerhasil mengantar M%d\n", strToInt(currentWord.TabWord));
             }
             else
             { // Jika tidak maka akan menampilkan pesan belum dapat disajikan
-                printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(icmd), IDX_HEAD(Q));
+                printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(currentWord.TabWord), IDX_HEAD(Q));
             }
         }
 

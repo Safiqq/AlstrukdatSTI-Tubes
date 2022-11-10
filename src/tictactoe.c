@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "./ADT/arrayTTT/array.h"
+#include "./ADT/mesinkata/mesinkata.h"
 
 // FUNGSI / PROSEDUR PRIMITIF
 
@@ -110,7 +111,6 @@ boolean isDigit(char *string)
 void playerTurn(TabChr *T, char player, char bot)
 {
     boolean flag = false;
-    char idx[21];
     int index;
     while (!flag)
     {
@@ -118,11 +118,11 @@ void playerTurn(TabChr *T, char player, char bot)
         while (!flagcmd)
         {
             printf("Silahkan masukkan index kotak (0-8) yang akan diisi : ");
-            scanf("%s", &idx);
-            if (isDigit(idx))
+            STARTWORD("", "");
+            if (isDigit(currentWord.TabWord))
             {
                 flagcmd = true;
-                index = stringToInteger(idx);
+                index = stringToInteger(currentWord.TabWord);
             }
             else
             {
@@ -192,21 +192,6 @@ boolean suit(char player, char bot)
     }
 }
 
-// Check string 1 string 2 sama atau beda
-boolean isSame(char *str1, char *str2, int len)
-{
-    int i = 0;
-    while (i < len)
-    {
-        if (str1[i] != str2[i])
-        {
-            return false;
-        }
-        i++;
-    }
-    return true;
-}
-
 // Program Utama
 void tictactoe()
 {
@@ -230,19 +215,18 @@ void tictactoe()
     while (!flagp)
     {
         printf("Silahkan input (Batu/Gunting/Kertas) untuk menentukan giliran pertama : ");
-        char cmd[10];
-        scanf("%s", &cmd);
-        if (isSame(cmd, "BATU", 4) || isSame(cmd, "Batu", 4) || isSame(cmd, "batu", 4))
+        STARTWORD("", "");
+        if (isEqual(currentWord, "BATU") || isEqual(currentWord, "Batu") || isEqual(currentWord, "batu"))
         {
             p = 'B';
             flagp = true;
         }
-        else if (isSame(cmd, "Gunting", 4) || isSame(cmd, "GUNTING", 4) || isSame(cmd, "gunting", 4))
+        else if (isEqual(currentWord, "GUNTING") || isEqual(currentWord, "Gunting") || isEqual(currentWord, "gunting"))
         {
             p = 'G';
             flagp = true;
         }
-        else if (isSame(cmd, "KERTAS", 4) || isSame(cmd, "Kertas", 4) || isSame(cmd, "kertas", 4))
+        else if (isEqual(currentWord, "KERTAS") || isEqual(currentWord, "Kertas") || isEqual(currentWord, "kertas"))
         {
             p = 'K';
             flagp = true;
