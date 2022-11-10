@@ -1,4 +1,6 @@
-#include "main.h"
+#include "./ADT/array/array.h"
+#include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/queue/queue.h"
 
 #define MAX_LENGTH 100
 

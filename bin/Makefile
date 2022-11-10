@@ -1,2 +1,11 @@
-bnmo: ../src/main.c ../src/mainmenu.c ../src/ADT/arrayTTT/array.c ../src/ADT/array/array.c ../src/ADT/map/map.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c ../src/ADT/queueDS/queue.c ../src/start.c ../src/load.c ../src/save.c ../src/creategame.c ../src/listgame.c ../src/deletegame.c ../src/queuegame.c ../src/playgame.c ../src/skipgame.c ../src/quit.c ../src/help.c ../src/dinerdash.c ../src/rng.c ../src/gametambahan.c ../src/tictactoe.c ../src/commandlain.c
-	gcc -o bnmo ../src/main.c ../src/mainmenu.c ../src/ADT/arrayTTT/array.c ../src/ADT/array/array.c ../src/ADT/map/map.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c ../src/ADT/queueDS/queue.c ../src/start.c ../src/load.c ../src/save.c ../src/creategame.c ../src/listgame.c ../src/deletegame.c ../src/queuegame.c ../src/playgame.c ../src/skipgame.c ../src/quit.c ../src/help.c ../src/dinerdash.c ../src/rng.c ../src/gametambahan.c ../src/tictactoe.c ../src/commandlain.c -I.
+ADT = ../src/ADT/array/array.c ../src/ADT/arrayTTT/array.c ../src/ADT/map/map.c ../src/ADT/matriks/matriks.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/queue/queue.c ../src/ADT/queueDS/queue.c
+
+PROGRAMS = $(wildcard ../src/*.c)
+
+all: bnmo clean
+
+bnmo: $(ADT) $(PROGRAMS)
+	gcc -o bnmo $(ADT) $(PROGRAMS) -I.
+
+clean:
+	rm -f *.o

@@ -1,5 +1,6 @@
 .vscode
-bnmo
+*.o
 *.exe
+bnmo
 settings.json
 tempCodeRunnerFile.c
