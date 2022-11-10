@@ -21,13 +21,13 @@ void queueGame(TabStr *games, Queue *antriangames)
     printf("\nNomor Game yang mau ditambahkan ke antrian: ");
     STARTWORD("", "");
     n = atoi(currentWord.TabWord);
-    if (n > games->Neff || n<=0)
-    {
-        printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
-    }
-    else
+    if (!(n > games->Neff || n<=0))
     {
         Enqueue(antriangames, n - 1);
         printf("\nGame berhasil ditambahkan kedalam daftar antrian.\n");
+    }
+    else
+    {
+       printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n"); 
     }
 }
