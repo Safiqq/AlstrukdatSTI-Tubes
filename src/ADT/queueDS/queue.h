@@ -42,9 +42,6 @@ void CreateQueueDS(QueueDS *q);
 /* ********* Prototype ********* */
 boolean IsEmptyQueueDS(QueueDS q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean IsFullQueueDS(QueueDS q);
-/* Mengirim true jika tabel penampung elemen q sudah penuh */
-/* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
 int LengthQueueDS(QueueDS q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */

@@ -11,14 +11,6 @@ boolean IsEmptyQueueDS(QueueDS q)
     return (IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF);
 };
 
-boolean IsFullQueueDS(QueueDS q)
-{
-    if (IDX_TAIL(q) >= IDX_HEAD(q))
-        return (IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1);
-    else
-        return (IDX_HEAD(q) - IDX_TAIL(q) == 1);
-};
-
 int LengthQueueDS(QueueDS q)
 {
     if (IsEmptyQueueDS(q))
