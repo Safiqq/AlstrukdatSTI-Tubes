@@ -49,3 +49,17 @@ void Dequeue(Queue *q, ElTypeQue *val)
         IDX_TAIL(*q) = IDX_TAIL(*q) - 1;
     }
 }
+
+void DisplayQueue(Queue q)
+{
+    int i, len = LengthQueue(q);
+    printf("[");
+    for (i = 0; i < len; i++)
+    {
+        printf("%d", q.buffer[(i + IDX_HEAD(q)) % CAPACITY]);
+        if (i < (len - 1))
+            printf(","); 
+    }
+    printf("]\n");
+}
+

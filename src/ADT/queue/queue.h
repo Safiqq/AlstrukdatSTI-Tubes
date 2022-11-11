@@ -48,5 +48,6 @@ extern void Enqueue(Queue *q, ElTypeQue val);
 extern void Dequeue(Queue *q, ElTypeQue *val);
 //dequeue alt-1
 
-
+extern void DisplayQueue(Queue q);
+//menampilkan isi queue
 #endif
