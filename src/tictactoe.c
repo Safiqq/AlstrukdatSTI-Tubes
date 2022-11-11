@@ -89,7 +89,6 @@ void botTurn(TabChr *T, char bot, char player)
         if ((*T).TI[i] != player && (*T).TI[i] != bot)
         {
             SetArr(T, i, bot);
-            printf("nilai i = %d\n", i);
             flag = true;
         }
         else
