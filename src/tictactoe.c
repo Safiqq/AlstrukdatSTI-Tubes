@@ -82,18 +82,19 @@ int randomNumber(int min, int max)
 // prosedur giliran Bot
 void botTurn(TabChr *T, char bot, char player)
 {
+    int i = randomNumber(0, 8);
     boolean flag = false;
     while (!flag)
     {
-        int i = randomNumber(0, 8);
         if ((*T).TI[i] != player && (*T).TI[i] != bot)
         {
-            (*T).TI[i] = bot;
+            SetArr(T, i, bot);
+            printf("nilai i = %d\n", i);
             flag = true;
         }
         else
         {
-            i = (i + 1) % 8;
+            i = (i + 1) % 9;
         }
     }
     printf("Bot sudah mengisi kotak\n");
@@ -148,7 +149,7 @@ void playerTurn(TabChr *T, char player, char bot)
         {
             if ((*T).TI[index] != bot && (*T).TI[index] != player)
             {
-                (*T).TI[index] = player;
+                SetArr(T, index, player);
                 flag = true;
             }
             else
@@ -291,11 +292,12 @@ void tictactoe()
     infoTable();
     displayTable(Table);
     int count = 0;
-
-    // Selama belum menang atau kalah atau seri maka permainan akan terus dijalankan
+    boolean seri = false;
+    // Jika player menang suwit sama bot maka player mendapatkan giliran pertama
     if (suit(p, bot))
         {
-            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <= 8)
+            // Selama belum menang atau kalah atau seri maka permainan akan terus dijalankan
+            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <= 8 && !seri)
             {
                 playerTurn(&Table, playerType, botType);
                 count++;
@@ -306,35 +308,54 @@ void tictactoe()
                     count++;
                     displayTable(Table);
                 }
+                if (count == 9)
+                {
+                    seri = true;
+                }
             }
         }
-    else
+    else   // Jika player kalah suwit sama bot
         {
-            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count < 8)
+            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <= 8 && !seri)
             {
+                printf("sebelum bot count = %d", count);
                 botTurn(&Table, botType, playerType);
                 count++;
+                printf("sesudah bot count = %d", count);
                 displayTable(Table);
                 if(!winCondition(Table, botType))
                 {
                     playerTurn(&Table, playerType, botType);
                     count++;
+                    printf("setelah player count = %d", count);
                     displayTable(Table);
                 }
+                if (count == 9)
+                {
+                    seri = true;
+                }
+                printf("setelah 1 putaran count = %d", count);
             }
         }
 
+    printf("\n");
+    printf("=========================================\n");
     // Check siapakah pemenangnya atau bisa seri
     if (winCondition(Table, playerType))
     {
         printf("Selamat Anda menang!\n");
+        printf("Score Anda : 100\n");
+
     }
     else if (winCondition(Table, botType))
     {
         printf("Selamat Anda kalah :V\n");
+        printf("Score Anda : 0\n");
     }
     else
     {
         printf("Masa Seri sama bot :V\n");
+        printf("Score Anda : 50\n");
     }
+    printf("=========================================\n\n");
 }
