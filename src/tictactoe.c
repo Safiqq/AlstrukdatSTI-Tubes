@@ -139,7 +139,6 @@ void playerTurn(TabChr *T, char player, char bot)
             {
                 printf("Kamu nanyeeaa kenapa gabisa? Biar aku kasih tau ya kamu inputnya string atau angka minus ya, bukan integer positif! RAAAWWRRR\n");
             }
-            printf("\n");
         }
         if (index > 8 || index < 0)
         {
@@ -202,6 +201,7 @@ boolean suit(char player, char bot)
         return false;
     }
 }
+
 
 // Program Utama
 void tictactoe()
@@ -293,29 +293,36 @@ void tictactoe()
     int count = 0;
 
     // Selama belum menang atau kalah atau seri maka permainan akan terus dijalankan
-    while (!winCondition(Table, botType) && !winCondition(Table, playerType) && count < 8)
-    {
-        // Kalau player menang suit dengan bot maka player jalan lebih dulu
-        if (suit(p, bot))
+    if (suit(p, bot))
         {
-            playerTurn(&Table, playerType, botType);
-            count++;
-            displayTable(Table);
-            botTurn(&Table, botType, playerType);
-            count++;
-            displayTable(Table);
+            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <= 8)
+            {
+                playerTurn(&Table, playerType, botType);
+                count++;
+                displayTable(Table);
+                if(!winCondition(Table, playerType))
+                {
+                    botTurn(&Table, botType, playerType);
+                    count++;
+                    displayTable(Table);
+                }
+            }
         }
-        // Kalau player kalah suit dengan bot maka bot jalan lebih dulu
-        else
+    else
         {
-            botTurn(&Table, botType, playerType);
-            count++;
-            displayTable(Table);
-            playerTurn(&Table, playerType, botType);
-            count++;
-            displayTable(Table);
+            while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count < 8)
+            {
+                botTurn(&Table, botType, playerType);
+                count++;
+                displayTable(Table);
+                if(!winCondition(Table, botType))
+                {
+                    playerTurn(&Table, playerType, botType);
+                    count++;
+                    displayTable(Table);
+                }
+            }
         }
-    }
 
     // Check siapakah pemenangnya atau bisa seri
     if (winCondition(Table, playerType))
