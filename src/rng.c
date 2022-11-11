@@ -47,4 +47,5 @@ void rng()
         printf("\nYa, X adalah %d.\n", answer);
     else
         printf("\nTebakan Anda salah semua, X adalah %d.\n", answer);
+    printf("Skor kamu %d\n", 100 - (10 * i));
 }
