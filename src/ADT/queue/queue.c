@@ -11,11 +11,6 @@ boolean IsEmptyQueue(Queue q)
     return IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF;
 }
 
-boolean IsFullQueue(Queue q)
-{
-    return IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1;
-}
-
 int LengthQueue(Queue q)
 {
     if (IsEmptyQueue(q))
@@ -53,17 +48,4 @@ void Dequeue(Queue *q, ElTypeQue *val)
             (*q).buffer[i] = (*q).buffer[i + 1];
         IDX_TAIL(*q) = IDX_TAIL(*q) - 1;
     }
-}
-
-void DisplayQueue(Queue q)
-{
-    int i, len = LengthQueue(q);
-    printf("[");
-    for (i = 0; i < len; i++)
-    {
-        printf("%d", q.buffer[(i + IDX_HEAD(q)) % CAPACITY]);
-        if (i < (len - 1))
-            printf(",");
-    }
-    printf("]\n");
 }
