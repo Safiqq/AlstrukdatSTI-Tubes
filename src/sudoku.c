@@ -29,14 +29,14 @@ boolean cekKolom(Matrix2D M, int x, int y, int num)
 
 boolean cekBlok(Matrix2D M, int x, int y, int num)
 {
-    int blok = (0 <= y && y < 3 && 0 <= x && x < 3) ? 0 : (3 <= y && y < 6 && 0 <= x && x < 3) ? 1
-                                                      : (6 <= y && y < 9 && 0 <= x && x < 3)   ? 2
-                                                      : (0 <= y && y < 3 && 3 <= x && x < 6)   ? 3
-                                                      : (3 <= y && y < 6 && 3 <= x && x < 6)   ? 4
-                                                      : (6 <= y && y < 9 && 3 <= x && x < 6)   ? 5
-                                                      : (0 <= y && y < 3 && 6 <= x && x < 9)   ? 6
-                                                      : (3 <= y && y < 6 && 6 <= x && x < 9)   ? 7
-                                                                                               : 8;
+    int blok = (0 <= y && y < 3 && 0 <= x && x < 3) ? 0 :
+               (3 <= y && y < 6 && 0 <= x && x < 3) ? 1 :
+               (6 <= y && y < 9 && 0 <= x && x < 3) ? 2 :
+               (0 <= y && y < 3 && 3 <= x && x < 6) ? 3 :
+               (3 <= y && y < 6 && 3 <= x && x < 6) ? 4 :
+               (6 <= y && y < 9 && 3 <= x && x < 6) ? 5 :
+               (0 <= y && y < 3 && 6 <= x && x < 9) ? 6 :
+               (3 <= y && y < 6 && 6 <= x && x < 9) ? 7 : 8;
     int i = 3 * (blok / 3), j = 3 * (blok % 3), count = 0;
     boolean isAvail = true;
     while (count < CAPACITY && isAvail)
@@ -75,7 +75,7 @@ void sudoku()
         PrintMtx(M);
         if (IsFullMtx(M))
         {
-            printf("Selamat, kamu berhasil menamatkan SUDOku!");
+            printf("Selamat, kamu berhasil menamatkan SUDOku!\n");
             isDone = true;
         }
         else

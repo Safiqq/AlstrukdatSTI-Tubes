@@ -52,17 +52,20 @@ void CreateMtx(Matrix2D *M)
 
 boolean IsFullMtx(Matrix2D M)
 {
-    int i = 0, j = 0;
+    int i = 0, j;
     boolean isFull = true;
     while (i < CAPACITY && isFull)
     {
+        j = 0;
         while (j < CAPACITY && isFull)
         {
+            printf("%d", M.TI[i][j]);
             if (M.TI[i][j] == 0)
                 isFull = false;
             j++;
         }
         i++;
+        printf("\n");
     }
     return isFull;
 }
