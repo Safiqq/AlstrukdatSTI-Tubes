@@ -14,7 +14,7 @@ int getRandom(int min, int max)
 // Menampilkan saldo ke layar
 void tampilSaldo(int saldo)
 {
-    printf("SALDO: %d\n\n", saldo);
+    printf("\nSALDO: %d\n\n", saldo);
 }
 
 // Menampilkan order ke layar
@@ -185,7 +185,7 @@ void dinerdash()
         // Melakukan validasi input command
         while (!isValid)
         {
-            printf("\nMASUKKAN COMMAND: ");
+            printf("MASUKKAN COMMAND: ");
             STARTWORD("", "");
             if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
             {
@@ -312,8 +312,9 @@ void dinerdash()
         flag = false;
         isSkip = false;
 
-        printf("==========================================================\n\n");
+        printf("==========================================================\n");
     }
 
     printf("Game berakhir dan score Anda : %d\n", saldo);
+    printf("==========================================================\n\n");
 }
