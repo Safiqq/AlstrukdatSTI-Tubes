@@ -302,15 +302,15 @@ void tictactoe()
                 playerTurn(&Table, playerType, botType);
                 count++;
                 displayTable(Table);
-                if(!winCondition(Table, playerType))
+                if (count == 9)
+                {
+                    seri = true;
+                }
+                if(!winCondition(Table, playerType) && !seri)
                 {
                     botTurn(&Table, botType, playerType);
                     count++;
                     displayTable(Table);
-                }
-                if (count == 9)
-                {
-                    seri = true;
                 }
             }
         }
@@ -318,23 +318,19 @@ void tictactoe()
         {
             while(!winCondition(Table, botType) && !winCondition(Table, playerType) && count <= 8 && !seri)
             {
-                printf("sebelum bot count = %d", count);
                 botTurn(&Table, botType, playerType);
                 count++;
-                printf("sesudah bot count = %d", count);
                 displayTable(Table);
-                if(!winCondition(Table, botType))
-                {
-                    playerTurn(&Table, playerType, botType);
-                    count++;
-                    printf("setelah player count = %d", count);
-                    displayTable(Table);
-                }
                 if (count == 9)
                 {
                     seri = true;
                 }
-                printf("setelah 1 putaran count = %d", count);
+                if(!winCondition(Table, botType) && !seri)
+                {
+                    playerTurn(&Table, playerType, botType);
+                    count++;
+                    displayTable(Table);
+                }
             }
         }
 
