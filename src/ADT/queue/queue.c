@@ -11,22 +11,12 @@ boolean IsEmptyQueue(Queue q)
     return IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF;
 }
 
-boolean IsFullQueue(Queue q)
-{
-    if (IDX_TAIL(q) >= IDX_HEAD(q))
-        return IDX_TAIL(q) - IDX_HEAD(q) == CAPACITY - 1;
-    else
-        return IDX_HEAD(q) - IDX_TAIL(q) == 1;
-}
-
 int LengthQueue(Queue q)
 {
     if (IsEmptyQueue(q))
         return 0;
-    else if (IDX_TAIL(q) >= IDX_HEAD(q))
-        return IDX_TAIL(q) - IDX_HEAD(q) + 1;
     else
-        return IDX_TAIL(q) - IDX_HEAD(q) + CAPACITY + 1;
+        return IDX_TAIL(q) - IDX_HEAD(q) + 1;
 }
 
 void Enqueue(Queue *q, ElTypeQue val)
@@ -38,9 +28,7 @@ void Enqueue(Queue *q, ElTypeQue val)
     }
     else
     {
-        IDX_TAIL(*q)
-        ++;
-        IDX_TAIL(*q) %= CAPACITY;
+        IDX_TAIL(*q)++;
     }
     TAIL(*q) = val;
 }
@@ -70,7 +58,8 @@ void DisplayQueue(Queue q)
     {
         printf("%d", q.buffer[(i + IDX_HEAD(q)) % CAPACITY]);
         if (i < (len - 1))
-            printf(",");
+            printf(","); 
     }
     printf("]\n");
 }
+
