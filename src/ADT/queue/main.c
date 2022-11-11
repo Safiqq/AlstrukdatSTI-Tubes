@@ -2,6 +2,7 @@
 
 int main()
 {
+    //Inisialisasi
     Queue Q;
     //Membuat Queue kosong
     CreateQueue(&Q);
@@ -31,4 +32,5 @@ int main()
     if (!IsEmptyQueue(Q)){
         printf("Queue sudah berisi.");
     }
+    return 0;
 }

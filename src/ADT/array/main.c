@@ -1,6 +1,7 @@
 #include "array.h"
 
 int main(){
+    //Inisialisasi
     TabStr A;
     //Membuat array kosong
     CreateArray(&A);
@@ -20,4 +21,5 @@ int main(){
     PrintArray(A);
     //Mengecek panjang array sekarang
     printf("Panjang array sekarang: %d\n",LengthArray(A));
+    return 0;
 }
