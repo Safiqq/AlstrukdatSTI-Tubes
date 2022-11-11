@@ -1,6 +1,7 @@
 #include "array.h"
 
-int main(){
+int main()
+{
     // Inisialisasi T
     TabChr T;
 
@@ -20,8 +21,6 @@ int main(){
     SetArr(&T, 5, 0);
     printf("Array baru saja ditambahkan sehingga Neffnya menjadi : %d\n", LengthArr(T));
     printf("Array yang ditambahkan yaitu : %d dengan index ke-%d\n", T.TI[5], 5);
-
-
 
     return 0;
 }
