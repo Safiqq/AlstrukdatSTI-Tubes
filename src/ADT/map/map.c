@@ -5,26 +5,9 @@ void CreateMap(Map *M)
     M->Count = Nil;
 }
 
-boolean IsEmptyMap(Map M)
-{
-    return M.Count == Nil;
-}
-
 boolean IsFullMap(Map M)
 {
     return M.Count == MaxEl;
-}
-
-valuetype GetValueMap(Map M, keytype k)
-{
-    int i = 0;
-    while (i < M.Count)
-    {
-        if (M.Elements[i].Key == k)
-            return M.Elements[i].Value;
-        i++;
-    }
-    return Undefined;
 }
 
 void InsertMap(Map *M, keytype k, valuetype v)
