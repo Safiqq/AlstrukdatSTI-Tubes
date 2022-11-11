@@ -10,20 +10,6 @@ int LengthArray(TabStr T)
     return T.Neff;
 }
 
-ElTypeArray GetArray(TabStr T, IdxType i)
-{
-    return T.TI[i];
-}
-
-void CopyArray(TabStr Tin, TabStr *Tout)
-{
-    int i;
-    for (i = 0; i < LengthArray(Tin); i++)
-    {
-        Tout->TI[i] = Tin.TI[i];
-    }
-    Tout->Neff = Tin.Neff;
-}
 
 void SetArray(TabStr *T, IdxType i, ElTypeArray v)
 {
@@ -44,10 +30,6 @@ boolean IsEmptyArray(TabStr T)
     return T.Neff == 0;
 }
 
-boolean IsFullArray(TabStr T)
-{
-    return T.Neff == CAPACITY;
-}
 
 void PrintArray(TabStr T)
 {

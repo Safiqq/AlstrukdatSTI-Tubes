@@ -156,6 +156,7 @@ void dinerdash()
     // Deklarasi Variabel bertipe boolean
     boolean isValid = false;
     boolean flag = false;
+    boolean isSkip = false;
 
     // Membuat Queue order kosong, Map Masak kosong, Map Saji kosong
     CreateQueueDS(&Q);
@@ -230,6 +231,7 @@ void dinerdash()
             else if (isEqual(currentWord, "SKIP") || isEqual(currentWord, "skip"))
             {
                 isValid = true;
+                isSkip = true;
                 printf("Putaran telah dilewati tanpa melakukan apa-apa\n");
             }
             else
@@ -262,41 +264,45 @@ void dinerdash()
             }
         }
 
-        // Jika command = "COOK" maka akan memasak makanan dengan id dari input user
-        if (inp[0] == 'C' || inp[0] == 'c')
-        // if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
+        if(!isSkip)
         {
-            keytype k = strToInt(currentWord.TabWord);
-            valuetype v = Q.buffer[k].timeC;
-            InsertMap(&Masak, k, v);
-            printf("\nBerhasil memasak M%d\n", k);
-        }
-        // Jika command = "SERVE" maka akan menyajikan makanan dengan id dari input user
-        if (inp[0] == 'S' || inp[0] == 's')
-        // if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
-        {
-            // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
-            if (strToInt(currentWord.TabWord) == IDX_HEAD(Q))
+            // Jika command = "COOK" maka akan memasak makanan dengan id dari input user
+            if (inp[0] == 'C' || inp[0] == 'c')
+            // if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
             {
-                int z;
-                for (z = 0; z < Saji.Count; z++)
-                {
-                    if (strToInt(currentWord.TabWord) == Saji.Elements[z].Key)
-                    { // Jika ada maka sajikan makanannya
-                        DeleteMap(&Saji, Saji.Elements[z].Key);
-                        ElTypeDS val;
-                        saldo += Q.buffer[IDX_HEAD(Q)].price;
-                        totalSaji += 1;
-                        DequeueDS(&Q, &val);
-                    }
-                }
-                printf("\nBerhasil mengantar M%d\n", strToInt(currentWord.TabWord));
+                keytype k = strToInt(currentWord.TabWord);
+                valuetype v = Q.buffer[k].timeC;
+                InsertMap(&Masak, k, v);
+                printf("\nBerhasil memasak M%d\n", k);
             }
-            else
-            { // Jika tidak maka akan menampilkan pesan belum dapat disajikan
-                printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(currentWord.TabWord), IDX_HEAD(Q));
+            // Jika command = "SERVE" maka akan menyajikan makanan dengan id dari input user
+            if (inp[0] == 'S' || inp[0] == 's' && (inp[1] == 'E' || inp[1] == 'e'))
+            // if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
+            {
+                // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
+                if (strToInt(currentWord.TabWord) == IDX_HEAD(Q))
+                {
+                    int z;
+                    for (z = 0; z < Saji.Count; z++)
+                    {
+                        if (strToInt(currentWord.TabWord) == Saji.Elements[z].Key)
+                        { // Jika ada maka sajikan makanannya
+                            DeleteMap(&Saji, Saji.Elements[z].Key);
+                            ElTypeDS val;
+                            saldo += Q.buffer[IDX_HEAD(Q)].price;
+                            totalSaji += 1;
+                            DequeueDS(&Q, &val);
+                        }
+                    }
+                    printf("\nBerhasil mengantar M%d\n", strToInt(currentWord.TabWord));
+                }
+                else
+                { // Jika tidak maka akan menampilkan pesan belum dapat disajikan
+                    printf("\nM%d belum dapat disajikan karena M%d belum selesai\n", strToInt(currentWord.TabWord), IDX_HEAD(Q));
+                }
             }
         }
+
 
         // Tiap putaran maka order akan bertambah
         enqOrder(&Q);
@@ -304,7 +310,10 @@ void dinerdash()
         // Mengupdate kondisi untuk validasi input command putaran selanjutnya
         isValid = false;
         flag = false;
+        isSkip = false;
 
         printf("==========================================================\n\n");
     }
+
+    printf("Game berakhir dan score Anda : %d\n", saldo);
 }

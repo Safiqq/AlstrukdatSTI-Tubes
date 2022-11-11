@@ -34,7 +34,7 @@ void playGame(TabStr *games, Queue *antriangames)
             tictactoe();
         }
         else if (play==6) {
-            printf("Loading Sudoku ...\n");
+            printf("Loading SUDOku ...\n");
             sudoku();
         }
         else if (play >= 7 && play <= (*games).Neff)

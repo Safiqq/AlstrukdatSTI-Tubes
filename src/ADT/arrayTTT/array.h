@@ -44,16 +44,8 @@ extern int LengthArr(TabChr T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
-extern ElTypeArr GetArr(TabChr T, IdxType i);
-/* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen tabel yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
-/* Untuk type private/limited private pada bahasa tertentu */
-extern void CopyArr(TabChr Tin, TabChr *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
 extern void SetArr(TabChr *T, IdxType i, ElTypeArr v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
@@ -68,19 +60,7 @@ extern void SetNeffArr(TabChr *T, IdxType N);
 extern boolean IsEmptyArr(TabChr T);
 /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
 /* *** Test tabel penuh *** */
-extern boolean IsFullArr(TabChr T);
-/* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-extern void PrintArr(TabChr T);
-/* Proses : Menuliskan isi tabel dengan traversal */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
-/* Jika isi tabel ["RNG", "Diner DASH", "DINOSAUR IN EARTH"] maka akan diprint
-RNG
-Diner DASH
-DINOSAUR IN EARTH
-*/
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
+
 
 #endif

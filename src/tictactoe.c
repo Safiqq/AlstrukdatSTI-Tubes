@@ -137,7 +137,7 @@ void playerTurn(TabChr *T, char player, char bot)
             }
             else
             {
-                printf("Kamu nanyeeaa kenapa gabisa? Biar aku kasih tau ya kamu inputnya string ya bukan integer! RAAAWWRRR\n");
+                printf("Kamu nanyeeaa kenapa gabisa? Biar aku kasih tau ya kamu inputnya string atau angka minus ya, bukan integer positif! RAAAWWRRR\n");
             }
             printf("\n");
         }
