@@ -246,9 +246,10 @@ void dinerdash()
             // Tiap putaran akan mengurangi waktu ketahanan
             tickValue(&Saji);
             // Menghapus dari Map Saji jika waktu ketahanan = 0
-            while (Masak.Elements[0].Value == 0 && Masak.Count > 0)
+            while (Saji.Elements[0].Value == 0 && Saji.Count > 0)
             {
                 DeleteMap(&Saji, Saji.Elements[0].Key);
+                printf("M%d telah expired, silahkan masak kembali!\n", Saji.Elements[0].Key);
             }
         }
 
