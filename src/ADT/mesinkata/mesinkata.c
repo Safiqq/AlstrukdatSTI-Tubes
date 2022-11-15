@@ -73,12 +73,6 @@ void ADVWORD()
     IgnoreBlanks();
 }
 
-void STARTLINE(char *path, char *type)
-{
-    START(path, type);
-    ADVLINE();
-}
-
 void ADVLINE()
 {
     IgnoreLines();

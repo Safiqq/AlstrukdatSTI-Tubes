@@ -1,6 +1,7 @@
 #include "queue.h"
 
-int main(){
+int main()
+{
     // Inisialisasi QueueDS
     QueueDS Q;
 
@@ -15,8 +16,12 @@ int main(){
 
     // Check fungsi EnqueueDS dan check apakah bertambah panjangnya setelah dienqueue
     ElTypeDS order1, order2;
-    order1.timeC = 1; order1.timeK = 1; order1.price = 1;
-    order2.timeC = 2; order2.timeK = 2; order2.price = 2;
+    order1.timeC = 1;
+    order1.timeK = 1;
+    order1.price = 1;
+    order2.timeC = 2;
+    order2.timeK = 2;
+    order2.price = 2;
     EnqueueDS(&Q, order1);
     printf("Order 1 baru dienqueue, dan length Q menjadi : %d\n", LengthQueueDS(Q));
     EnqueueDS(&Q, order2);
@@ -28,7 +33,6 @@ int main(){
     printf("Order 2 baru didequeue dan length Q menjadi : %d\n", LengthQueueDS(Q));
     DequeueDS(&Q, &dorder1);
     printf("Order 1 baru didequeue dan length Q menjadi : %d\n", LengthQueueDS(Q));
-
 
     return 0;
 }
