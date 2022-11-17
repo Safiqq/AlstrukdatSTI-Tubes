@@ -138,6 +138,21 @@ void sortedMap(Map *M)
     }
 }
 
+// Check apakah Map sudah tersort menaik
+boolean isSorted(Map M, int n)
+{
+    // Basis
+    if (n == 1 || n == 0)
+        return true;
+
+    // Kalau belum kesort, return false
+    if (M.Elements[n-1].Value < M.Elements[n-2].Value)
+        return false;
+
+    // Rekurens
+    return isSorted(M, n - 1);
+}
+
 void dinerdash()
 {
     // Deklarasi Variabel bertipe integer
@@ -177,8 +192,14 @@ void dinerdash()
         // Menampilkan ke layar
         tampilSaldo(saldo);
         tampilPesanan(Q, LengthQueueDS(Q));
-        sortedMap(&Masak); // Sorting Map Masak agar lebih mudah dipindahkan ke Map Saji jika sudah dimasak
-        sortedMap(&Saji);  // Sorting Map Saji agar lebih mudah dihapus jika waktu ketahanan habis
+        while(!(isSorted(Masak, Masak.Count)))
+        {
+            sortedMap(&Masak); // Sorting Map Masak agar lebih mudah dipindahkan ke Map Saji jika sudah dimasak
+        }
+        while (!(isSorted(Saji, Saji.Count)))
+        {
+            sortedMap(&Saji); // Sorting Map Saji agar lebih mudah dihapus jika waktu ketahanan habis
+        }
         tampilMasak(Masak, Masak.Count);
         tampilSaji(Saji, Saji.Count);
 
@@ -196,7 +217,7 @@ void dinerdash()
                 inp[3] = 'K';
                 inp[4] = '\0';
                 ADVWORD();
-                if (strToInt(currentWord.TabWord) <= IDX_TAIL(Q) && currentWord.TabWord[0] == 'M')
+                if (strToInt(currentWord.TabWord) <= IDX_TAIL(Q) && strToInt(currentWord.TabWord) >= IDX_HEAD(Q) && currentWord.TabWord[0] == 'M')
                 {
                     isValid = true;
                 }
@@ -245,12 +266,6 @@ void dinerdash()
         {
             // Tiap putaran akan mengurangi waktu ketahanan
             tickValue(&Saji);
-            // Menghapus dari Map Saji jika waktu ketahanan = 0
-            while (Saji.Elements[0].Value == 0 && Saji.Count > 0)
-            {
-                DeleteMap(&Saji, Saji.Elements[0].Key);
-                printf("M%d telah expired, silahkan masak kembali!\n", Saji.Elements[0].Key);
-            }
         }
 
         // Check apakah ada daftar makanan yang sedang dimasak
@@ -304,6 +319,17 @@ void dinerdash()
             }
         }
 
+        // Check saji lebih dari 0
+        if(Saji.Count > 0)
+        {
+            // Menghapus dari Map Saji jika waktu ketahanan = 0
+            while (Saji.Elements[0].Value == 0 && Saji.Count > 0)
+            {
+                printf("M%d telah expired, silahkan masak kembali!\n", Saji.Elements[0].Key);
+                DeleteMap(&Saji, Saji.Elements[0].Key);
+            }
+        }
+
 
         // Tiap putaran maka order akan bertambah
         enqOrder(&Q);
@@ -315,7 +341,6 @@ void dinerdash()
 
         printf("==========================================================\n");
     }
-
     printf("Game berakhir dan score Anda : %d\n", saldo);
     printf("==========================================================\n\n");
 }
