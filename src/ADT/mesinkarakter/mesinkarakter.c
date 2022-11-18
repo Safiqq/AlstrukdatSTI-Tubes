@@ -13,13 +13,15 @@ void START(char *path, char *type)
     {
         isFile = false;
         pita = stdin;
+        ADV();
     }
     else
     {
         isFile = true;
         pitaFile = fopen(path, type);
+        if (pitaFile != NULL)
+            ADV();
     }
-    ADV();
 }
 
 void ADV()

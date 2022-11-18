@@ -16,7 +16,7 @@ void load(char *namafile, TabStr *games)
     }
     STARTWORD(path, "r");
 
-    if (pitaFile)
+    if (pitaFile != NULL)
     {
         CreateArray(games);
         len = atoi(currentWord.TabWord);

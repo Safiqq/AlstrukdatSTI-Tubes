@@ -7,12 +7,13 @@
 
 int randomNum(int min, int max)
 {
-    int r1, r2, r3;
+    int r1, r2, r3, res;
     srand(time(NULL));
     r1 = rand();
     r2 = rand();
     r3 = rand();
-    return ((r1 + r2 + r3) % (max - min + 1)) + min;
+    res = ((r1 + r2 + r3) % (max - min + 1)) + min;
+    return res > 0 ? res : res * (-1);
 }
 
 void rng()

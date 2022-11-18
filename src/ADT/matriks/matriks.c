@@ -59,13 +59,11 @@ boolean IsFullMtx(Matrix2D M)
         j = 0;
         while (j < CAPACITY && isFull)
         {
-            printf("%d", M.TI[i][j]);
             if (M.TI[i][j] == 0)
                 isFull = false;
             j++;
         }
         i++;
-        printf("\n");
     }
     return isFull;
 }
