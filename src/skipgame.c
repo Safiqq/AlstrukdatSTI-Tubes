@@ -14,6 +14,11 @@ void skipGame(Word skip, TabStr *games, Queue *antriangames)
     }
     if (num > LengthQueue(*antriangames) - 1)
     {
+        while (!IsEmptyQueue(*antriangames))
+        {
+            ElTypeQue val;
+            Dequeue(antriangames, &val);
+        }
         printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
     }
     else
