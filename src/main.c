@@ -1,6 +1,7 @@
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/queue.h"
+#include "./ADT/stackH/stack.h"
 
 #define MAX_LENGTH 100
 
@@ -10,8 +11,10 @@ int main()
 {
     TabStr games;
     Queue antriangames;
+    Stack riwayat;
     CreateArray(&games);
     CreateQueue(&antriangames);
+    CreateEmptyStack(&riwayat);
     mainMenu();
 
     while (true)
@@ -96,7 +99,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    playGame(&games, &antriangames);
+                    playGame(&games, &antriangames, &riwayat);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
@@ -109,7 +112,27 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    skipGame(currentWord, &games, &antriangames);
+                    skipGame(currentWord, &games, &antriangames, &riwayat);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
+            else
+                commandLain();
+        }
+        else if (isEqual(currentWord, "HISTORY"))
+        {
+            if (isLogged)
+                history(&riwayat, games);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+        }
+        else if (isEqual(currentWord, "RESET"))
+        {
+            ADVWORD();
+            if (isEqual(currentWord, "HISTORY"))
+            {
+                if (isLogged)
+                    resethistory(&riwayat, games);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
