@@ -15,27 +15,33 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history)
     if (!IsEmptyQueue(*antriangames))
     {
         Dequeue(antriangames, &play);
+        printf("Loading %s\n", games->TI[play]);
         if (play == 0)
         {
-            printf("Loading RNG ...\n");
             rng();
         }
         else if (play == 1)
         {
-            printf("Loading DINNER DASH ...\n");
             dinerdash();
         }
-        else if (play <= 4 && play >= 2)
+        else if (play == 2)
         {
-            printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.\n", games->TI[play]);
+            // hangman();
+        }
+        else if (play == 3)
+        {
+            // towerOfHanoi();
+        }
+        else if (play == 4)
+        {
+            snakeOnMeteor();
         }
         else if (play == 5)
-        { 
-            printf("Loading TICTACTOE ...\n");
+        {
             tictactoe();
         }
-        else if (play==6) {
-            printf("Loading SUDOku ...\n");
+        else if (play == 6)
+        {
             sudoku();
         }
         else if (play >= 7 && play <= (*games).Neff)
