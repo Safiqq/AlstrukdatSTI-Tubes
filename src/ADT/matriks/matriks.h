@@ -9,16 +9,14 @@
 #include <time.h>
 #include "../../boolean.h"
 
-/* Kamus Umum */
-#define CAPACITY 9
-
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;
 
 typedef struct
 {
-    int TI[CAPACITY][CAPACITY]; /* memori tempat penyimpan elemen (container) */
-    int Neff;                   /* banyaknya elemen efektif */
+   IdxType **MI; /* memori tempat penyimpan elemen (container) */
+   int capacity; /* kapasitas matriks */
+   int Neff;     /* banyaknya elemen efektif */
 } Matrix2D;
 
 /* Indeks yang digunakan [0..CAPACITY-1][0..CAPACITY-1] */
@@ -35,12 +33,12 @@ typedef struct
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong */
-extern void CreateMtx(Matrix2D *M);
+extern void CreateMtx(Matrix2D *M, int cap);
 /* I.S. sembarang
-   F.S. Terbentuk matriks M berisi template dengan ukuran 9x9
+   F.S. Terbentuk matriks M berisi template dengan ukuran capxcap
 */
 
-extern void PrintMtx(Matrix2D M);
+extern void PrintMtx(Matrix2D M, int sub, char zero);
 /* I.S. sembarang
    F.S. Menampilkan matriks sesuai format
 */

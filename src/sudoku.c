@@ -1,13 +1,49 @@
 #include "./ADT/matriks/matriks.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
+int template1[9][9] = {
+    {5, 8, 7, 2, 1, 0, 0, 9, 4},
+    {0, 1, 4, 6, 9, 5, 0, 8, 3},
+    {0, 0, 0, 0, 0, 7, 0, 5, 2},
+    {1, 7, 0, 0, 6, 4, 0, 0, 0},
+    {0, 0, 3, 0, 0, 0, 5, 0, 0},
+    {0, 0, 0, 1, 3, 0, 0, 4, 0},
+    {0, 2, 1, 0, 0, 0, 9, 7, 0},
+    {0, 0, 0, 0, 0, 6, 0, 1, 0},
+    {3, 5, 0, 9, 0, 0, 4, 0, 0}
+};
+
+int template2[9][9] = {
+    {0, 3, 0, 7, 0, 4, 8, 0, 5},
+    {0, 7, 0, 5, 0, 9, 0, 4, 0},
+    {2, 0, 0, 0, 0, 6, 0, 0, 1},
+    {8, 1, 0, 6, 5, 0, 0, 7, 4},
+    {7, 6, 0, 0, 4, 0, 1, 0, 0},
+    {0, 5, 0, 0, 7, 8, 0, 0, 0},
+    {4, 0, 0, 2, 0, 1, 5, 8, 0},
+    {0, 0, 6, 0, 0, 5, 0, 0, 0},
+    {5, 0, 3, 0, 6, 7, 0, 1, 2}
+};
+
+int template3[9][9] = {
+    {0, 5, 8, 0, 3, 0, 0, 2, 0},
+    {4, 0, 2, 0, 0, 0, 9, 0, 5},
+    {0, 0, 7, 0, 0, 0, 6, 8, 0},
+    {2, 9, 0, 0, 5, 4, 0, 7, 0},
+    {5, 0, 0, 0, 6, 2, 0, 0, 0},
+    {0, 0, 3, 8, 1, 0, 2, 5, 0},
+    {1, 0, 9, 0, 0, 3, 0, 6, 4},
+    {8, 6, 5, 4, 9, 0, 1, 3, 0},
+    {0, 7, 0, 0, 0, 6, 0, 0, 0}
+};
+
 boolean cekBaris(Matrix2D M, int x, int y, int num)
 {
     int i = 0;
     boolean isAvail = true;
-    while (i < CAPACITY && isAvail)
+    while (i < M.capacity && isAvail)
     {
-        if (M.TI[x][i] == num && i != y)
+        if (M.MI[x][i] == num && i != y)
             isAvail = false;
         i++;
     }
@@ -18,9 +54,9 @@ boolean cekKolom(Matrix2D M, int x, int y, int num)
 {
     int i = 0;
     boolean isAvail = true;
-    while (i < CAPACITY && isAvail)
+    while (i < M.capacity && isAvail)
     {
-        if (M.TI[i][y] == num && i != x)
+        if (M.MI[i][y] == num && i != x)
             isAvail = false;
         i++;
     }
@@ -39,10 +75,10 @@ boolean cekBlok(Matrix2D M, int x, int y, int num)
                (3 <= y && y < 6 && 6 <= x && x < 9) ? 7 : 8;
     int i = 3 * (blok / 3), j = 3 * (blok % 3), count = 0;
     boolean isAvail = true;
-    while (count < CAPACITY && isAvail)
+    while (count < M.capacity && isAvail)
     {
         count++;
-        if (M.TI[i][j] == num && i != x && j != y)
+        if (M.MI[i][j] == num && i != x && j != y)
             isAvail = false;
         if (count % 3 == 0)
         {
@@ -56,7 +92,22 @@ boolean cekBlok(Matrix2D M, int x, int y, int num)
 
 boolean cekAngka(Matrix2D M, int x, int y, int num)
 {
-    return M.TI[x][y] == 0 && cekBaris(M, x, y, num) && cekKolom(M, x, y, num) && cekBlok(M, x, y, num);
+    return M.MI[x][y] == 0 && cekBaris(M, x, y, num) && cekKolom(M, x, y, num) && cekBlok(M, x, y, num);
+}
+
+void createSudoku(Matrix2D *M)
+{
+    CreateMtx(M, 9);
+    srand(time(NULL));
+    int i, j, no = rand();
+    for (i = 0; i < M->capacity; i++)
+    {
+        for (j = 0; j < M->capacity; j++)
+        {
+            M->MI[i][j] = no % 3 == 0 ? template1[i][j] :
+                          no % 3 == 1 ? template2[i][j] : template3[i][j];
+        }
+    }
 }
 
 void sudoku()
@@ -67,12 +118,12 @@ void sudoku()
     boolean isDone = false;
 
     Matrix2D M;
-    CreateMtx(&M);
+    createSudoku(&M);
 
     counter = 0;
     while (counter < 10 && !isDone)
     {
-        PrintMtx(M);
+        PrintMtx(M, 3, '.');
         if (IsFullMtx(M))
         {
             printf("Selamat, kamu berhasil menamatkan SUDOku!\n");
@@ -105,7 +156,7 @@ void sudoku()
                     printf("Input salah\n");
             }
             if (cekAngka(M, x - 1, y - 1, num))
-                M.TI[x - 1][y - 1] = num;
+                M.MI[x - 1][y - 1] = num;
             else
             {
                 counter++;
