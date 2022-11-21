@@ -14,9 +14,9 @@
 typedef int ElTypeQue;
 typedef struct
 {
-        ElTypeQue buffer[CAPACITY];
-        int idxHead;
-        int idxTail;
+    ElTypeQue buffer[CAPACITY];
+    int idxHead;
+    int idxTail;
 } Queue;
 
 /* ********* AKSES (Selektor) ********* */

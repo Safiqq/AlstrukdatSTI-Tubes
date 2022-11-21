@@ -10,11 +10,11 @@
 #include "../../boolean.h"
 
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType;
+typedef char ElTypeMatrix;
 
 typedef struct
 {
-   IdxType **MI; /* memori tempat penyimpan elemen (container) */
+   ElTypeMatrix **MI; /* memori tempat penyimpan elemen (container) */
    int capacity; /* kapasitas matriks */
    int Neff;     /* banyaknya elemen efektif */
 } Matrix2D;
