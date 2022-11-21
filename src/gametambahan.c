@@ -15,12 +15,12 @@ void gameTambahan(Map * sbGameTambahan){
     
     printf("Silahkan input nama anda: ");
     STARTWORD("", "");
-    wordToString(currentWord,*(&nama));
+    // wordToString(currentWord,*(&nama));
 
     if(IsMemberMap(*sbGameTambahan, nama)){
         printf("Nama sudah ada, silahkan input nama anda lagi: ");
         STARTWORD("", "");
-        wordToString(currentWord,*(&nama));
+        // wordToString(currentWord,*(&nama));
     }
     else{
         InsertMap(&M,nama,skor);
@@ -28,7 +28,6 @@ void gameTambahan(Map * sbGameTambahan){
     }
 
     printf("Skor akhir: %d\n", skor);
-    return 0;
 }
 
 // void gameTambahan(Map * sbGameTambahan)
