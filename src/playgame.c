@@ -1,8 +1,9 @@
 #include "./ADT/array/array.h"
 #include "./ADT/queue/queue.h"
+#include "./ADT/stackH/stack.h"
 // #include "playgame.h"
 
-void playGame(TabStr *games, Queue *antriangames)
+void playGame(TabStr *games, Queue *antriangames, Stack *history)
 {
     int i;
     ElTypeQue play;
@@ -41,6 +42,7 @@ void playGame(TabStr *games, Queue *antriangames)
         {
             gameTambahan();
         }
+        push(history, play);
     }
     else
         printf("Belum ada game di antrianmu.\n");
