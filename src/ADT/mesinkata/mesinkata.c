@@ -12,6 +12,18 @@ int StringLength(char *str)
     return i;
 }
 
+boolean wordEqual(Word str1, Word str2)
+{
+    int i = 0;
+    boolean checker = (str1.Length == str2.Length);
+    while (str1.TabWord[i] != '\0' && str2.TabWord[i] != '\0' && checker)
+    {
+        if (str1.TabWord[i] != str1.TabWord[i])
+            checker = false;
+    }
+    return checker;
+}
+
 boolean isEqual(Word str1, char *str2)
 {
     int i = 0;

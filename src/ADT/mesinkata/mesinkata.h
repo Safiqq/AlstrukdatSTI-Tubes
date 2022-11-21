@@ -24,6 +24,8 @@ extern int StringLength(char *str);
    I.S. : str sembarang
    F.S. : Mengembalikan panjang dari str */
 
+extern boolean wordEqual(Word str1, Word str2);
+
 extern boolean isEqual(Word str1, char *str2);
 /* Mengecek apakah isi dari str1 = str2
    I.S. : str1 tidak kosong (str1.TabWord ada dan str1.Length > 0);
