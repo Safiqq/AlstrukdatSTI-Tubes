@@ -1,9 +1,10 @@
 #include "./ADT/array/array.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/stackH/stack.h"
+#include "./ADT/mapscoreboard/map.h"
 // #include "playgame.h"
 
-void playGame(TabStr *games, Queue *antriangames, Stack *history)
+void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbGameTambahan)
 {
     int i;
     ElTypeQue play;
@@ -46,7 +47,7 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history)
         }
         else if (play >= 7 && play <= (*games).Neff)
         {
-            gameTambahan();
+            gameTambahan(&sbGameTambahan);
         }
         push(history, play);
     }

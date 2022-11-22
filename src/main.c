@@ -2,6 +2,7 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/stackH/stack.h"
+#include "./ADT/mapscoreboard/map.h"
 
 #define MAX_LENGTH 100
 
@@ -12,9 +13,12 @@ int main()
     TabStr games;
     Queue antriangames;
     Stack riwayat;
+    MapSB sbGameTambahan;
+
     CreateArray(&games);
     CreateQueue(&antriangames);
     CreateEmptyStack(&riwayat);
+    CreateMap(&sbGameTambahan);
     mainMenu();
 
     while (true)
@@ -138,6 +142,13 @@ int main()
             }
             else
                 commandLain();
+        }
+        else if (isEqual(currentWord, "SCOREBOARD"))
+        {
+            if (isLogged)
+                scoreboard(sbGameTambahan);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
         else if (isEqual(currentWord, "QUIT"))
             quit();

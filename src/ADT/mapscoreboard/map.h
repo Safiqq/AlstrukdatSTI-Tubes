@@ -11,8 +11,8 @@
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
-#define Nil 0
-#define MaxEl 10
+#define Nill 0
+#define MaxEle 10
 #define Undefined -999
 
 typedef char * keytype;
@@ -23,11 +23,11 @@ typedef struct
 {
 	keytype Key;
 	valuetype Value;
-} infotype;
+} infotypem;
 
 typedef struct
 {
-	infotype Elements[MaxEl];
+	infotypem Elements[MaxEle];
 	address Count;
 } MapSB;
 

@@ -19,16 +19,16 @@ boolean stringEqual(char *a,char*b){
 
 void CreateMap(MapSB *M)
 {
-    M->Count = Nil;
+    M->Count = Nill;
 }
 
 boolean IsEmpty(MapSB M){
-    return (M.Count == Nil);
+    return (M.Count == Nill);
 }
 
 boolean IsFullMap(MapSB M)
 {
-    return M.Count == MaxEl;
+    return M.Count == MaxEle;
 }
 
 void InsertMap(MapSB *M, keytype k, valuetype v)
@@ -46,7 +46,7 @@ void InsertMap(MapSB *M, keytype k, valuetype v)
 void DeleteMap(MapSB *M, keytype k)
 {
     if (M->Count == 1)
-        M->Count = Nil;
+        M->Count = Nill;
     else
     {
         if (IsMemberMap(*M, k))
