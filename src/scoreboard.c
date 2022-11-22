@@ -51,12 +51,13 @@ valuetype Val(MapSB M, keytype k){
     }  
 }
 
-void scoreboard(MapSB sbGameTambahan){
-    MapSB temp = sbGameTambahan;
-    printf("**** SCOREBOARD GAME TOWER OF HANOI ****\n");
+void printScoreboard(MapSB sb,char * nama){
+    MapSB temp = sb;
+    printf("**** SCOREBOARD GAME %s ****\n",nama);
+    printf("| NAMA\t\t| SKOR\t\t|\n");
     printf("|-------------------------------|\n");
     int i=0;
-    for(i;i<sbGameTambahan.Count;i++){
+    for(i;i<sb.Count;i++){
         printf("| %s\t",temp.Elements[iMax(temp)].Key);
         if(StringLength(temp.Elements[iMax(temp)].Key)<6){
             printf("\t");
@@ -64,4 +65,14 @@ void scoreboard(MapSB sbGameTambahan){
         printf("| %d\t\t|\n",Val(temp,temp.Elements[iMax(temp)].Key));
         DeleteMap(&temp,temp.Elements[iMax(temp)].Key);
     }
+    printf("\n");
+}
+
+void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHangman, MapSB sbGameT ){
+    printScoreboard(sbTOH, "TOWER OF HANOI");
+    printScoreboard(sbDiner, "DINER DASH");
+    printScoreboard(sbRNG,  "SNAKE ON METEOR");
+    printScoreboard(sbRNG,  "RANDOM NUMBER GENERATOR");
+    printScoreboard(sbHangman, "HANGMAN");
+    printScoreboard(sbGameT,  "GAME TAMBAHAN");
 }

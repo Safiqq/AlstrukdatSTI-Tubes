@@ -1,8 +1,9 @@
 #include "map.h"
+#include "../mesinkata/mesinkata.h"
 
 boolean stringEqual(char *a,char*b){
     boolean beda=false;
-    if(StringLen(a)==StringLen(b)){
+    if(StringLength(a)==StringLength(b)){
         while(*a!='\0' && !beda){
             if(*a!=*b){
                 beda = true;
@@ -32,7 +33,7 @@ boolean IsFullMap(MapSB M)
 }
 
 void InsertMap(MapSB *M, keytype k, valuetype v){
-    if(IsEmptyMap(*M)){
+    if(IsEmpty(*M)){
         (*M).Elements[0].Key = k;
         (*M).Elements[0].Value = v;
         (*M).Count = 1;
@@ -72,21 +73,18 @@ void DeleteMap(MapSB *M, keytype k)
     }
 }
 
-boolean IsMemberMap(MapSB M, keytype k){
-	int i;
-	i = 0;
-	boolean ada;
-	ada = false;
-	while (i < M.Count && ada == false)
-	{
-		if (stringEqual(M.Elements[i].Key,k))
-		{
-			ada = true;
-		}
-		i++;
-	}
-	return ada;
+boolean IsMemberMap(MapSB M, keytype k)
+{
+    int i = 0;
+    while (i < M.Count)
+    {
+        if (M.Elements[i].Key == k)
+            return true;
+        i++;
+    }
+    return false;
 }
+
 
 valuetype Value(MapSB M, keytype k){
     if(IsMemberMap(M,k)){
@@ -107,3 +105,4 @@ valuetype Value(MapSB M, keytype k){
         return Undefined;
     }  
 }
+

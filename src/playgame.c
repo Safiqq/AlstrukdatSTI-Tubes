@@ -4,7 +4,7 @@
 #include "./ADT/mapscoreboard/map.h"
 // #include "playgame.h"
 
-void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbGameTambahan)
+void playGame(TabStr *games, Queue *antriangames, Stack *history, Stack *sbTOH,Stack *sbDiner,Stack *sbSOM,Stack *sbRNG,Stack *sbHangman, Stack *sbGameTambahan)
 {
     int i;
     ElTypeQue play;

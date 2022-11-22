@@ -13,11 +13,21 @@ int main()
     TabStr games;
     Queue antriangames;
     Stack riwayat;
+    MapSB sbTOH;
+    MapSB sbDiner;
+    MapSB sbSOM;
+    MapSB sbRNG;
+    MapSB sbHangman;
     MapSB sbGameTambahan;
 
     CreateArray(&games);
     CreateQueue(&antriangames);
     CreateEmptyStack(&riwayat);
+    CreateMap(&sbTOH);
+    CreateMap(&sbDiner);
+    CreateMap(&sbSOM);
+    CreateMap(&sbRNG);
+    CreateMap(&sbHangman);
     CreateMap(&sbGameTambahan);
     mainMenu();
     while (true)
@@ -102,7 +112,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    playGame(&games, &antriangames, &riwayat, &sbGameTambahan);
+                    playGame(&games, &antriangames, &riwayat,&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
@@ -145,7 +155,7 @@ int main()
         else if (isEqual(currentWord, "SCOREBOARD"))
         {
             if (isLogged)
-                scoreboard(sbGameTambahan);
+                scoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
