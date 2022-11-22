@@ -14,12 +14,9 @@ void gameTambahan (MapSB *sbgameTambahan){
     STARTWORD("", "");
     char *str = currentWord.TabWord;
 
-    printf("%d ",sbgameTambahan->Count);
-    printf("%s\n",str);
     if(!IsMemberMap(*sbgameTambahan,str)){
         InsertMap(*(&sbgameTambahan),str,skor);
-        printf("nama dimasukkan\n");
-        printf("%d\n",IsMemberMap(*sbgameTambahan,str));
+        printf("Oke, nama akan dimasukkan ke scoreboard\n");
     }
     else{
         printf("Nama tidak valid\n");
