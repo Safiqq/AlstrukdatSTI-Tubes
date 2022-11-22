@@ -4,31 +4,30 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "ADT/mapscoreboard/map.h"
 
-void gameTambahan(Map * sbGameTambahan){
+void gameTambahan (MapSB *sbgameTambahan){
     int skor;
-    char *nama;
-    Map M;
     srand(time(NULL));
     skor = rand() % 100;
-
+ 
     printf("GAME OVER\n");
-    
     printf("Silahkan input nama anda: ");
     STARTWORD("", "");
-    // wordToString(currentWord,*(&nama));
+    char *str = currentWord.TabWord;
 
-    if(IsMemberMap(*sbGameTambahan, nama)){
-        printf("Nama sudah ada, silahkan input nama anda lagi: ");
-        STARTWORD("", "");
-        // wordToString(currentWord,*(&nama));
+    if(!IsMemberMap(*sbgameTambahan,str)){
+        InsertMap(*(&sbgameTambahan),str,skor);
+        printf("nama dimasukkan\n");
+        printf("%d\n",IsMemberMap(*sbgameTambahan,str));
     }
     else{
-        InsertMap(&M,nama,skor);
-        printf("a");
+        printf("Nama tidak valid\n");
     }
+    
 
     printf("Skor akhir: %d\n", skor);
+    printf("Nama: %s\n", str);
 }
+
 
 // void gameTambahan(Map * sbGameTambahan)
 // {
@@ -59,3 +58,8 @@ void gameTambahan(Map * sbGameTambahan){
 //     printf("Skor akhir: %d\n", skor);
 // }
 
+// int main(){
+//     MapSB M;
+//     CreateMap(&M);
+//     gameTambahan(&M);
+// }

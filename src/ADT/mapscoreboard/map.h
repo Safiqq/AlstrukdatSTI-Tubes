@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include "../../boolean.h"
-#include "../mesinkata/mesinkata.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -30,7 +29,7 @@ typedef struct
 {
 	infotype Elements[MaxEl];
 	address Count;
-} Map;
+} MapSB;
 
 /* Definisi Map M kosong : M.Count = Nil */
 /* M.Count = jumlah element Map */
@@ -38,38 +37,36 @@ typedef struct
 
 /* ********* Prototype ********* */
 
-extern void wordToString(Word word,char *str);
-
-extern int StringLen(char *str);
-
 extern boolean stringEqual(char *a,char*b);
 
 /* *** Konstruktor/Kreator *** */
-extern void CreateMap(Map *M);
+extern void CreateMap(MapSB *M);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 
-extern boolean IsFullMap(Map M);
+extern boolean isEmpty(MapSB M);
+
+extern boolean IsFullMap(MapSB M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
-extern void InsertMap(Map *M, keytype k, valuetype v);
+extern void InsertMap(MapSB *M, keytype k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
 		M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-extern void DeleteMap(Map *M, keytype k);
+extern void DeleteMap(MapSB *M, keytype k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
 		element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-extern boolean IsMemberMap(Map M, keytype k);
+extern boolean IsMemberMap(MapSB M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
-extern valuetype Value(Map M, keytype k);
+extern valuetype Value(MapSB M, keytype k);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 

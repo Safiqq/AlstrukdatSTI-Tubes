@@ -1,22 +1,5 @@
 #include "map.h"
 
-void wordToString(Word word,char *str){
-    int i;
-    for (i = 0; i < currentWord.Length; i++)
-    {
-        *(str+i) = word.TabWord[i];
-    }
-    *(str+i)='\0';
-}
-
-int StringLen(char *str)
-{
-    int i = 0;
-    while (str[i] != '\0')
-        i++;
-    return i;
-}
-
 boolean stringEqual(char *a,char*b){
     boolean beda=false;
     if(StringLen(a)==StringLen(b)){
@@ -34,29 +17,33 @@ boolean stringEqual(char *a,char*b){
     }
 }
 
-void CreateMap(Map *M)
+void CreateMap(MapSB *M)
 {
     M->Count = Nil;
 }
 
-boolean IsFullMap(Map M)
+boolean IsEmpty(MapSB M){
+    return (M.Count == Nil);
+}
+
+boolean IsFullMap(MapSB M)
 {
     return M.Count == MaxEl;
 }
 
-void InsertMap(Map *M, keytype k, valuetype v)
+void InsertMap(MapSB *M, keytype k, valuetype v)
 {
     if (!IsFullMap(*M))
     {
         {
+            M->Elements[M->Count].Key = k;
+            M->Elements[M->Count].Value = v;
             M->Count++;
-            M->Elements[M->Count - 1].Key = k;
-            M->Elements[M->Count - 1].Value = v;
         }
     }
 }
 
-void DeleteMap(Map *M, keytype k)
+void DeleteMap(MapSB *M, keytype k)
 {
     if (M->Count == 1)
         M->Count = Nil;
@@ -65,7 +52,7 @@ void DeleteMap(Map *M, keytype k)
         if (IsMemberMap(*M, k))
         {
             int i = 0;
-            while (i < M->Count && M->Elements[i].Key!=k)
+            while (i < M->Count && !stringEqual(M->Elements[i].Key,k))
                 i++;
             while (i < M->Count)
             {
@@ -78,24 +65,24 @@ void DeleteMap(Map *M, keytype k)
     }
 }
 
-boolean IsMemberMap(Map M, keytype k)
+boolean IsMemberMap(MapSB M, keytype k)
 {
     int i = 0;
     while (i < M.Count)
     {
-        if (M.Elements[i].Key==k)
+        if (stringEqual(M.Elements[i].Key,k))
             return true;
         i++;
     }
     return false;
 }
 
-valuetype Value(Map M, keytype k){
+valuetype Value(MapSB M, keytype k){
     if(IsMemberMap(M,k)){
         int i = 0;
         boolean found=false;
         while(i<M.Count && !found){
-            if(M.Elements[i].Key==k){
+            if(stringEqual(M.Elements[i].Key,k)){
 
                 found = true;
             }
