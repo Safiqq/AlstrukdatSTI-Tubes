@@ -31,14 +31,21 @@ boolean IsFullMap(MapSB M)
     return M.Count == MaxEle;
 }
 
-void InsertMap(MapSB *M, keytype k, valuetype v)
-{
-    if (!IsFullMap(*M))
-    {
-        {
-            M->Elements[M->Count].Key = k;
-            M->Elements[M->Count].Value = v;
-            M->Count++;
+void InsertMap(MapSB *M, keytype k, valuetype v){
+    if(IsEmptyMap(*M)){
+        (*M).Elements[0].Key = k;
+        (*M).Elements[0].Value = v;
+        (*M).Count = 1;
+    }
+    else{
+        if(!IsMemberMap((*M),k)){
+            int i = 0;
+            while(i != ((*M).Count)){
+                i++;
+            }
+            (*M).Elements[i].Key = k;
+            (*M).Elements[i].Value = v;
+            (*M).Count++;
         }
     }
 }
@@ -65,16 +72,20 @@ void DeleteMap(MapSB *M, keytype k)
     }
 }
 
-boolean IsMemberMap(MapSB M, keytype k)
-{
-    int i = 0;
-    while (i < M.Count)
-    {
-        if (stringEqual(M.Elements[i].Key,k))
-            return true;
-        i++;
-    }
-    return false;
+boolean IsMemberMap(MapSB M, keytype k){
+	int i;
+	i = 0;
+	boolean ada;
+	ada = false;
+	while (i < M.Count && ada == false)
+	{
+		if (stringEqual(M.Elements[i].Key,k))
+		{
+			ada = true;
+		}
+		i++;
+	}
+	return ada;
 }
 
 valuetype Value(MapSB M, keytype k){

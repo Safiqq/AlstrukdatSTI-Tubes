@@ -47,7 +47,7 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbGameT
         }
         else if (play >= 7 && play <= (*games).Neff)
         {
-            gameTambahan(&sbGameTambahan);
+            gameTambahan(*(&sbGameTambahan));
         }
         push(history, play);
     }

@@ -9,11 +9,13 @@ void gameTambahan (MapSB *sbgameTambahan){
     srand(time(NULL));
     skor = rand() % 100;
  
-    printf("GAME OVER\n");
+    printf("\nGAME OVER\n");
     printf("Silahkan input nama anda: ");
     STARTWORD("", "");
     char *str = currentWord.TabWord;
 
+    printf("%d ",sbgameTambahan->Count);
+    printf("%s\n",str);
     if(!IsMemberMap(*sbgameTambahan,str)){
         InsertMap(*(&sbgameTambahan),str,skor);
         printf("nama dimasukkan\n");

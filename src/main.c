@@ -20,7 +20,6 @@ int main()
     CreateEmptyStack(&riwayat);
     CreateMap(&sbGameTambahan);
     mainMenu();
-
     while (true)
     {
         printf("ENTER COMMAND: ");
@@ -103,7 +102,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    playGame(&games, &antriangames, &riwayat);
+                    playGame(&games, &antriangames, &riwayat, &sbGameTambahan);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
