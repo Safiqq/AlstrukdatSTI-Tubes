@@ -19,16 +19,20 @@ int main()
     MapSB sbRNG;
     MapSB sbHangman;
     MapSB sbGameTambahan;
+    MapSB sbTTT;
+    MapSB sbsudoku;
 
     CreateArray(&games);
     CreateQueue(&antriangames);
     CreateEmptyStack(&riwayat);
-    CreateMap(&sbTOH);
-    CreateMap(&sbDiner);
-    CreateMap(&sbSOM);
-    CreateMap(&sbRNG);
-    CreateMap(&sbHangman);
-    CreateMap(&sbGameTambahan);
+    CreateMapSB(&sbTOH);
+    CreateMapSB(&sbDiner);
+    CreateMapSB(&sbSOM);
+    CreateMapSB(&sbRNG);
+    CreateMapSB(&sbHangman);
+    CreateMapSB(&sbGameTambahan);
+    CreateMapSB(&sbTTT);
+    CreateMapSB(&sbsudoku);
     mainMenu();
     while (true)
     {
@@ -50,7 +54,7 @@ int main()
         {
             ADVWORD();
             if (isLogged)
-                save(currentWord.TabWord, games, riwayat, sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan);
+                save(currentWord.TabWord, games, riwayat, sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT,sbsudoku);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
@@ -112,7 +116,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    playGame(&games, &antriangames, &riwayat,&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan);
+                    playGame(&games, &antriangames, &riwayat,&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT,&sbsudoku);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
@@ -155,7 +159,15 @@ int main()
         else if (isEqual(currentWord, "SCOREBOARD"))
         {
             if (isLogged)
-                scoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan);
+                scoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT,sbsudoku);
+            else
+                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+        }
+        else if (isEqual(currentWord, "RESET"))
+        {
+            
+            if (isLogged)
+                resetScoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT, sbsudoku);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
@@ -165,7 +177,6 @@ int main()
             help(isLogged);
         else
             commandLain();
-
         // Reset currentWord
         currentWord.TabWord[0] = '\0';
         currentWord.Length = 0;
