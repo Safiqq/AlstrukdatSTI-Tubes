@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "./ADT/stackTOH/stack.h"
 #include <math.h>
 
@@ -395,6 +396,7 @@ void towerofhanoi()
 
     // Inisialialisasi jumlah turn dan jumlah piringan
     int countTurn = 0;
+    char strMax[10];
     int max;
 
     // Untuk validasi input pengguna
@@ -402,12 +404,13 @@ void towerofhanoi()
     while(!isValidMax)
     {
         printf("Silahkan masukkan banyaknya piringan : ");
-        scanf("%d", &max);
+        scanf("%s", &strMax);
+        max = atoi(strMax);
         if(max >= 1 && max <= 5)
         {
             isValidMax = true;
         }
-        else   //BUG DISINI kalau inputnya chhar/string, lg mlz benerin
+        else
         {
             printf("Input yang valid hanya 1-5, silahkan ulangi!\n");
         }
