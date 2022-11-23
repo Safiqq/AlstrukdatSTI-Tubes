@@ -68,11 +68,13 @@ void printScoreboard(MapSB sb,char * nama){
     printf("\n");
 }
 
-void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHangman, MapSB sbGameT ){
+void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHangman, MapSB sbGameT, MapSB sbTTT, MapSB sbsudoku){
     printScoreboard(sbRNG,  "RNG");
     printScoreboard(sbDiner, "DINER DASH");
     printScoreboard(sbHangman, "HANGMAN");
     printScoreboard(sbTOH, "TOWER OF HANOI");
     printScoreboard(sbRNG,  "SNAKE ON METEOR");
+    printScoreboard(sbTTT,  "TicTacToe");
+    printScoreboard(sbsudoku,  "Sudoku");
     printScoreboard(sbGameT,  "TAMBAHAN");
 }

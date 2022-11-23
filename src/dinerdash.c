@@ -2,6 +2,7 @@
 #include "ADT/map/map.h"
 #include "ADT/queueDS/queue.h"
 #include "ADT/mesinkata/mesinkata.h"
+#include "./ADT/mapscoreboard/map.h"
 
 // FUNGSI DAN PROSEDUR UNTUK DINERDASH
 

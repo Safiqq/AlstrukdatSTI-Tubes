@@ -5,6 +5,7 @@
 #define __MAP_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../boolean.h"
 
 /* MODUL Map
@@ -36,6 +37,8 @@ typedef struct
 /* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
+
+extern void insertSB(MapSB *SB,int skor);
 
 extern boolean stringEqual(char *a,char*b);
 

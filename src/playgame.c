@@ -4,7 +4,7 @@
 #include "./ADT/mapscoreboard/map.h"
 // #include "playgame.h"
 
-void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,MapSB *sbDiner,MapSB *sbSOM,MapSB *sbRNG,MapSB *sbHangman, MapSB *sbGameTambahan)
+void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,MapSB *sbDiner,MapSB *sbSOM,MapSB *sbRNG,MapSB *sbHangman, MapSB *sbGameTambahan, MapSB *sbTTT, MapSB * sbsudoku)
 {
     int i;
     ElTypeQue play;
@@ -39,7 +39,7 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,M
         }
         else if (play == 5)
         {
-            tictactoe();
+            tictactoe(sbTTT);
         }
         else if (play == 6)
         {

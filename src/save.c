@@ -26,7 +26,7 @@ void saveSB(MapSB sb,FILE * txt){
     }
 }
 
-void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan)
+void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan,MapSB sbTTT, MapSB sbsudoku)
 {
   FILE *txt;
   char path[100] = "../data/";
@@ -56,6 +56,8 @@ void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner
   saveSB(sbHangman,txt);
   saveSB(sbTOH,txt);
   saveSB(sbSOM,txt);
+  saveSB(sbTTT,txt);
+  saveSB(sbsudoku,txt);
   saveSB(sbGameTambahan,txt);
 
   fclose(txt);

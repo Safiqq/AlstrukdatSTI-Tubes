@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "./ADT/arrayOfChar/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/mapscoreboard/map.h"
 
 // FUNGSI / PROSEDUR PRIMITIF
 
@@ -204,7 +205,7 @@ boolean suit(char player, char bot)
 
 
 // Program Utama
-void tictactoe()
+void tictactoe(MapSB * sbTTT)
 {
     int i;
     // Membuat table kosong
@@ -336,21 +337,23 @@ void tictactoe()
     printf("\n");
     printf("=========================================\n");
     // Check siapakah pemenangnya atau bisa seri
+    int skor;
     if (winCondition(Table, playerType))
     {
         printf("Selamat Anda menang!\n");
-        printf("Score Anda : 100\n");
+        skor = 100;
 
     }
     else if (winCondition(Table, botType))
     {
         printf("Selamat Anda kalah :V\n");
-        printf("Score Anda : 0\n");
+        skor =0;
     }
     else
     {
         printf("Masa Seri sama bot :V\n");
-        printf("Score Anda : 50\n");
+        skor=50;
     }
+    insertSB(sbTTT,skor);
     printf("=========================================\n\n");
 }
