@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "./ADT/arrayTTT/array.h"
+#include "./ADT/arrayOfChar/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
 // FUNGSI / PROSEDUR PRIMITIF
