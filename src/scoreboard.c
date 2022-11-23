@@ -74,5 +74,5 @@ void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHang
     printScoreboard(sbHangman, "HANGMAN");
     printScoreboard(sbTOH, "TOWER OF HANOI");
     printScoreboard(sbRNG,  "SNAKE ON METEOR");
-    printScoreboard(sbGameT,  "GAME TAMBAHAN");
+    printScoreboard(sbGameT,  "TAMBAHAN");
 }

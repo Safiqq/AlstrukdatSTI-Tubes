@@ -40,18 +40,18 @@ typedef struct
 extern boolean stringEqual(char *a,char*b);
 
 /* *** Konstruktor/Kreator *** */
-extern void CreateMap(MapSB *M);
+extern void CreateMapSB(MapSB *M);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 
-extern boolean isEmpty(MapSB M);
+extern boolean isEmptyMapSB(MapSB M);
 
-extern boolean IsFullMap(MapSB M);
+extern boolean IsFullMapSB(MapSB M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
-extern void InsertMap(MapSB *M, keytype k, valuetype v);
+extern void InsertMapSB(MapSB *M, keytype k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
 		M mungkin sudah beranggotakan v dengan key k */
@@ -63,7 +63,7 @@ extern void DeleteMap(MapSB *M, keytype k);
 		element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-extern boolean IsMemberMap(MapSB M, keytype k);
+extern boolean IsMemberMapSB(MapSB M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
 extern valuetype Value(MapSB M, keytype k);
