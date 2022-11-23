@@ -27,11 +27,11 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,M
         }
         else if (play == 2)
         {
-            // hangman();
+            hangman();
         }
         else if (play == 3)
         {
-            // towerOfHanoi();
+            towerofhanoi();
         }
         else if (play == 4)
         {
