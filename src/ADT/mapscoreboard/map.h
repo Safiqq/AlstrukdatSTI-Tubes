@@ -16,9 +16,8 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define MaxEle 10
 #define Undefined -999
 
-typedef char * keytype;
+typedef char *keytype;
 typedef int valuetype;
-typedef int address;
 
 typedef struct
 {
@@ -29,7 +28,7 @@ typedef struct
 typedef struct
 {
 	infotypem Elements[MaxEle];
-	address Count;
+	int Count;
 } MapSB;
 
 /* Definisi Map M kosong : M.Count = Nil */
@@ -38,9 +37,9 @@ typedef struct
 
 /* ********* Prototype ********* */
 
-extern void insertSB(MapSB *SB,int skor);
+extern void insertSB(MapSB *SB, int skor);
 
-extern boolean stringEqual(char *a,char*b);
+extern boolean stringEqual(char *a, char *b);
 
 /* *** Konstruktor/Kreator *** */
 extern void CreateMapSB(MapSB *M);

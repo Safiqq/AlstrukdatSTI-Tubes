@@ -33,7 +33,7 @@ void tampilPesanan(QueueDS Q, int count)
 }
 
 // Menampilkan makanan yang sedang dimasak ke layar
-void tampilMasak(Map M, address count)
+void tampilMasak(Map M, int count)
 {
     printf("Daftar Makanan yang sedang dimasak\n");
     printf("Makanan\t| Sisa durasi memasak\n");
@@ -54,7 +54,7 @@ void tampilMasak(Map M, address count)
 }
 
 // Menampilkan makanan yang dapat disajikan ke layar
-void tampilSaji(Map M, address count)
+void tampilSaji(Map M, int count)
 {
     printf("Daftar Makanan yang dapat disajikan\n");
     printf("Makanan\t| Sisa ketahanan makanan\n");
