@@ -133,7 +133,7 @@ boolean isSameArr(TabChr kata1, TabChr kata2)
     }
 }
 
-int main()
+void hangman()
 {
     TabChr kamus1, kamus2, history, tebak;
     CreateArr(&kamus1);
@@ -218,6 +218,4 @@ int main()
     printf("=================================\n"
            "GAME BERAKHIR. SCORE ANDA : %d\n"
            "=================================\n", poin);
-    
-    return 0;
 }
