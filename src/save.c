@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "./ADT/array/array.h"
+#include "./ADT/stack/stack.h"
 #include "./ADT/mapscoreboard/map.h"
 
 char* intToString(int val){
@@ -25,7 +26,7 @@ void saveSB(MapSB sb,FILE * txt){
     }
 }
 
-void save(char *namafile, TabStr games, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan)
+void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan)
 {
   FILE *txt;
   char path[100] = "../data/";
@@ -39,11 +40,17 @@ void save(char *namafile, TabStr games, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,Ma
   txt = fopen(path, "w");
 
   fprintf(txt,"%s\n",intToString(games.Neff));
-  for (i = 0; i < LengthArray(games) - 1; i++)
+  for (i = 0; i < LengthArray(games); i++)
   {
     fprintf(txt, "%s\n", games.TI[i]);
   }
-  fprintf(txt, "%s\n", games.TI[LengthArray(games) - 1]);
+
+  fprintf(txt,"%s\n",intToString(nbelmtStack(riwayat)));
+   for (i = nbelmtStack(riwayat); i > 0; i--)
+  {
+    fprintf(txt, "%s\n", games.TI[riwayat.Tab[i - 1]]);
+  }
+
   saveSB(sbRNG,txt);
   saveSB(sbDiner,txt);
   saveSB(sbHangman,txt);

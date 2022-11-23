@@ -50,7 +50,7 @@ int main()
         {
             ADVWORD();
             if (isLogged)
-                save(currentWord.TabWord, games, sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan);
+                save(currentWord.TabWord, games, riwayat, sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
