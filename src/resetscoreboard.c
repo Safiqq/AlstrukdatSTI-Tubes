@@ -20,7 +20,7 @@ Scoreboard berhasil di-reset.
 #include "ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
 
-void resetScoreboard( MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan,MapSB sbTTT, MapSB sbsudoku){
+void resetScoreboard( MapSB *sbTOH,MapSB * sbDiner,MapSB * sbSOM,MapSB * sbRNG,MapSB * sbHangman, MapSB * sbGameTambahan,MapSB * sbTTT, MapSB * sbsudoku){
     // printf("DAFTAR SCOREBOARD:\n");
     // printf("0. ALL\n");
     // printf("1. RNG\n");
@@ -46,38 +46,38 @@ void resetScoreboard( MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sb
 
     if(isEqual(currentWord,"YA")){
         if(n==0){
-            sbRNG.Count=0;
-            sbDiner.Count=0;
-            sbHangman.Count=0;
-            sbTOH.Count=0;
-            sbSOM.Count=0;
-            sbTTT.Count=0;
-            sbsudoku.Count=0;
-            sbGameTambahan.Count=0;
+            sbRNG->Count=0;
+            sbDiner->Count=0;
+            sbHangman->Count=0;
+            sbTOH->Count=0;
+            sbSOM->Count=0;
+            sbTTT->Count=0;
+            sbsudoku->Count=0;
+            sbGameTambahan->Count=0;
         }
         else if(n==1){
-            sbRNG.Count=0;
+            sbRNG->Count=0;
         }
         else if(n==2){
-            sbDiner.Count=0;
+            sbDiner->Count=0;
         }
         else if(n==3){
-            sbHangman.Count=0;
+            sbHangman->Count=0;
         }
          else if(n==4){
-            sbTOH.Count=0;
+            sbTOH->Count=0;
         }
          else if(n==5){
-            sbSOM.Count=0;
+            sbSOM->Count=0;
         }
         else if(n==6){
-            sbTTT.Count=0;
+            sbTTT->Count=0;
         }
         else if(n==7){
-            sbsudoku.Count=0;
+            sbsudoku->Count=0;
         }
         else if(n==8){
-            sbGameTambahan.Count=0;
+            sbGameTambahan->Count=0;
         }
         printf("Scoreboard berhasil di-reset. \n");
     }

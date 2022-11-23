@@ -163,11 +163,10 @@ int main()
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
-        else if (isEqual(currentWord, "RESET"))
+        else if (isEqual(currentWord, "RESE"))
         {
-            
             if (isLogged)
-                resetScoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT, sbsudoku);
+                resetScoreboard(&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT, &sbsudoku);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
