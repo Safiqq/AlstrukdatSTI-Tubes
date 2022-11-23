@@ -23,7 +23,7 @@ void resethistory(Stack *history, TabStr games){
             printf("Berikut adalah daftar game yang telah dimainkan: \n");
             for (i = nbelmtStack(*history); i > 0; i--)
             {
-                printf("%d. %s\n", i, games.TI[history->Tab[i - 1]]);
+                printf("%d. %s\n", nbelmtStack(*history)-i+1, games.TI[history->Tab[i - 1]]);
             }
         }
     }
