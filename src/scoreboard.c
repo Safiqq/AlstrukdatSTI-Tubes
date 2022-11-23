@@ -69,10 +69,10 @@ void printScoreboard(MapSB sb,char * nama){
 }
 
 void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHangman, MapSB sbGameT ){
-    printScoreboard(sbTOH, "TOWER OF HANOI");
+    printScoreboard(sbRNG,  "RNG");
     printScoreboard(sbDiner, "DINER DASH");
-    printScoreboard(sbRNG,  "SNAKE ON METEOR");
-    printScoreboard(sbRNG,  "RANDOM NUMBER GENERATOR");
     printScoreboard(sbHangman, "HANGMAN");
+    printScoreboard(sbTOH, "TOWER OF HANOI");
+    printScoreboard(sbRNG,  "SNAKE ON METEOR");
     printScoreboard(sbGameT,  "GAME TAMBAHAN");
 }
