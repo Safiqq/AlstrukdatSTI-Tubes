@@ -1,6 +1,26 @@
 #include <stdio.h>
 #include "./ADT/arrayOfChar/array.h"
+#include "./ADT/mesinkata/mesinkata.h"
 #include <stdlib.h>
+
+int lengthStr(char str[])
+{
+    int count;     
+    for (count = 0; str[count] != '\0'; ++count);
+    return count; 
+}
+
+void mainmenu()
+{
+    printf("\t __________\n"
+	       "\t|          |\n"
+	       "\t|       WELCOME\n"
+	       "\t|         TO\n"
+	       "\t|       HANGMAN\n"
+	       "\t|              \n"
+	       "\t|              \n"
+           "========================");
+}
 
 void displayHangman(int mistakes, char* body) {
 	switch(mistakes) 
@@ -23,7 +43,8 @@ void displayHangman(int mistakes, char* body) {
 	       "\t|         %c%c%c\n"
 	       "\t|         %c %c\n"
 	       "\t|             \n"
-	       "\t|             ", body[1], body[2], body[3],
+	       "\t|             \n"
+           "========================", body[1], body[2], body[3],
 	       body[4], body[5], body[6], body[7], body[8], body[9]);
 }
 
@@ -48,7 +69,7 @@ TabChr createHistory()
 
 void displayHistory(TabChr history)
 {
-    printf("Tebakan sebelumnya:");
+    printf("Tebakan sebelumnya: ");
     if(IsEmptyArr(history))
     {
         printf("-");
@@ -66,7 +87,7 @@ void displayHistory(TabChr history)
 
 void displayTebak(TabChr kata)
 {
-    printf("Kata:");
+    printf("Kata: ");
     int i = 0;
     for(i; i < kata.Neff; i++)
     {
@@ -133,85 +154,97 @@ boolean isSameArr(TabChr kata1, TabChr kata2)
     }
 }
 
+boolean isCharInArr(TabChr kata, char huruf)
+{
+    int i = 0;
+    while(i < kata.Neff)
+    {
+        if(kata.TI[i] == huruf)
+        {
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
 void hangman()
 {
-    TabChr kamus1, kamus2, history, tebak;
-    CreateArr(&kamus1);
-    CreateArr(&kamus2);
-    SetArr(&kamus1, 0, 'M');
-    SetArr(&kamus1, 1, 'A');
-    SetArr(&kamus1, 2, 'T');
-    SetArr(&kamus1, 3, 'A');
-
-    SetArr(&kamus2, 0, 'A');
-    SetArr(&kamus2, 1, 'L');
-    SetArr(&kamus2, 2, 'S');
-    SetArr(&kamus2, 3, 'T');
-    SetArr(&kamus2, 4, 'R');
-    SetArr(&kamus2, 5, 'U');
-    SetArr(&kamus2, 6, 'K');
-    SetArr(&kamus2, 7, 'D');
-    SetArr(&kamus2, 8, 'A');
-    SetArr(&kamus2, 9, 'T');
-
+    mainmenu();
+    printf("\n\n");
+    TabChr history, tebak, kamus;
+    CreateArr(&kamus);
+    STARTWORD("../data/hangman.txt", "r");
+    int i = 0;
+    for(i; i < currentWord.Length; i++)
+    {
+        SetArr(&kamus, i, currentWord.TabWord[i]);
+    }
     int poin = 0;
     int chance = 10;
     char body[11] = "          ";
     boolean win = false;
-    // Kamus 1
+    tebak = createBlankKata(kamus);
     history = createHistory();
-    tebak = createBlankKata(kamus1);
-    while (chance != 0 && !win)
+    while (chance != 0)
     {
+        char maxHuruf[10];
         char huruf;
         // Display
         displayHangman(10-chance, body);
         printf("\n");
         displayHistory(history);
         displayTebak(tebak);
-        printf("Kesempatan:%d\n", chance);
-        printf("Masukkan tebakan:");
+        printf("Kesempatan: %d\n", chance);
 
         // Proses
-        scanf(" %c", &huruf);
-        setHistory(&history, huruf);
-        prosesKata(&tebak, kamus1, huruf, &chance);
-        printf("\n");
-
-        if(isSameArr(tebak, kamus1))
+        boolean isValid = false;
+        while (!isValid)
         {
-            win = true;
-            printf("Berhasil menebak kata MATA! Kamu mendapatkan %d poin!\n", kamus1.Neff);
-            poin = poin + kamus1.Neff;
+            printf("Masukkan tebakan: ");
+            scanf(" %s", &maxHuruf);
+            if(lengthStr(maxHuruf) > 1)
+            {
+                printf("Silahkan input huruf bertipe char (1 huruf)!\n");
+            }
+            else
+            {
+                huruf = maxHuruf[0];
+                if(isCharInArr(history, huruf))
+                {
+                    printf("Tidak boleh menebak huruf yang sama!\n");
+                }
+                else
+                {
+                    isValid = true;
+                }
+            }
         }
-    }
-
-    //Kamus 2
-    win = false;
-    history = createHistory();
-    tebak = createBlankKata(kamus2);
-    while (chance != 0 && !win)
-    {
-        char huruf;
-        // Display
-        displayHangman(10-chance, body);
-        printf("\n");
-        displayHistory(history);
-        displayTebak(tebak);
-        printf("Kesempatan:%d\n", chance);
-        printf("Masukkan tebakan:");
-
-        // Proses
-        scanf(" %c", &huruf);
         setHistory(&history, huruf);
-        prosesKata(&tebak, kamus2, huruf, &chance);
+        prosesKata(&tebak, kamus, huruf, &chance);
         printf("\n");
 
-        if(isSameArr(tebak, kamus2))
+        if(isSameArr(tebak, kamus))
         {
-            win = true;
-            printf("Berhasil menebak kata ALSTRUKDAT! Kamu mendapatkan %d poin!\n", kamus2.Neff);
-            poin = poin + kamus2.Neff;
+            printf("Berhasil menebak kata ");
+            int j = 0;
+            for(j; j < LengthArr(kamus); j++)
+            {
+                printf("%c", kamus.TI[j]);
+            }
+            printf(". Kamu mendapatkan %d poin!\n", kamus.Neff);
+            poin = poin + kamus.Neff;
+            ADVLINE();
+            CreateArr(&kamus);
+            int i = 0;
+            for(i; i < currentWord.Length; i++)
+            {
+                SetArr(&kamus, i, currentWord.TabWord[i]);
+            }
+
+            printf("\n");
+            tebak = createBlankKata(kamus);
+            history = createHistory();
         }
     }
 
