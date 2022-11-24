@@ -90,7 +90,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    deleteGame(&games, &antriangames);
+                    deleteGame(&games, &antriangames, &riwayat);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }

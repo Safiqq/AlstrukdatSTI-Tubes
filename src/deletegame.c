@@ -4,8 +4,9 @@
 #include "./ADT/queue/queue.h"
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/stackH/stack.h"
 
-void deleteGame(TabStr *games, Queue *antriangames)
+void deleteGame(TabStr *games, Queue *antriangames, Stack *history)
 {
     int i;
     ElTypeQue hapus;
@@ -34,6 +35,24 @@ void deleteGame(TabStr *games, Queue *antriangames)
             printf("Game gagal dihapus.\n");
         else
         {
+            //Menghapus game yang ada di history
+            Stack S2;
+            CreateEmptyStack(&S2);
+            while (!IsEmptyStack(*history))
+            {
+                infotype X;
+                pop(history,&X);
+                if (*X!=*games->TI[hapus-1]){
+                    push(&S2,X);
+                }
+            }
+            reversestack(&S2);
+            int i;
+            for (i=0;i<nbelmtStack(S2);i++){
+                history->Tab[i]=S2.Tab[i];
+            }
+            history->TOP=S2.TOP;
+            //Menghapus game dari list game
             for (i = hapus - 1; i < LengthArray(*games); i++)
             {
                 if (i != LengthArray(*games) - 1)
