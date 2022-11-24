@@ -586,7 +586,7 @@ void towerofhanoi()
     if (countTurn >= minTurn)
     {
         printf("Kamu Berhasil! Dengan turn sebanyak : %d\n", countTurn);
-        score = score - ((countTurn - minTurn)%10);
+        score = score - ((countTurn - minTurn)/10);
     }
     else
     {
