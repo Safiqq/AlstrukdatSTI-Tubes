@@ -434,7 +434,7 @@ void towerofhanoi()
 
     // Inisialisasi dan deklarasi jumlah putaran minimum dan score maksimum
     int minTurn = pow(2,max)-1;
-    int score = 10;
+    int score;
 
     // Mengisikan tiang A sebanyak max piringan
     int i = 0;
@@ -583,15 +583,15 @@ void towerofhanoi()
     
     printf("=====================================\n");
     // Hitung score berdasarkan turn
-    if (countTurn >= minTurn)
+    if (countTurn == minTurn)
+    {
+        printf("Kamu Perfect! Dengan turn sebanyak (minimum turn): %d\n", countTurn);
+        score = 10;
+    }
+    else if(countTurn > minTurn)
     {
         printf("Kamu Berhasil! Dengan turn sebanyak : %d\n", countTurn);
-        score = score - ((countTurn - minTurn)/10);
-    }
-    else
-    {
-        printf("Kamu Gagal!\n\n");
-        score = 0;
+        score = 10 -1 -(countTurn - minTurn)/5;
     }
     printf("Skor didapatkan : %d\n", score);
     printf("=====================================\n");
