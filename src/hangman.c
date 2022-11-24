@@ -3,6 +3,24 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include <stdlib.h>
 
+char toLower(char huruf)
+{
+    if((int)huruf >= 65 && (int)huruf <= 90)
+    {
+        huruf = huruf + 32;
+    }
+    return huruf;
+}
+
+char toUpper(char huruf)
+{
+    if((int)huruf >= 97 && (int)huruf <= 122)
+    {
+        huruf = huruf - 32;
+    }
+    return huruf;
+}
+
 int lengthStr(char str[])
 {
     int count;     
@@ -102,9 +120,9 @@ void prosesKata(TabChr*kata, TabChr kamus, char huruf, int*chance)
     int i = 0;
     for(i; i< kamus.Neff; i++)
     {
-        if(kamus.TI[i] == huruf)
+        if(kamus.TI[i] == toUpper(huruf))
         {
-            kata->TI[i] = huruf;
+            kata->TI[i] = toUpper(huruf);
             flag = true;
         }
     }
@@ -144,7 +162,7 @@ boolean isSameArr(TabChr kata1, TabChr kata2)
         int i = 0;
         while(!same && i < kata1.Neff)
         {
-            if(kata1.TI[i] != kata2.TI[i])
+            if(toLower(kata1.TI[i]) != toLower(kata2.TI[i]))
             {
                 return false;
             }
@@ -172,6 +190,48 @@ void hangman()
 {
     mainmenu();
     printf("\n\n");
+    boolean isNewKamus = false;
+    boolean bukaAwal = false;
+    while(!isNewKamus)
+    {
+        char cmd[10];
+        printf("Apakah kamu mau membuat kamus baru? (Y/N) : ");
+        scanf(" %s", &cmd);
+        if(lengthStr(cmd) > 1)
+        {
+            printf("Input salah, Silahkan ulangi!\n");
+        }
+        else
+        {
+            FILE*txt;
+            if(cmd[0] == 'Y')
+            {
+                if(!bukaAwal)
+                {
+                    txt = fopen("../data/hangman.txt", "w");
+                    fprintf(txt, "%s\n", "PAKRIZA");
+                    fprintf(txt, "%s\n", "LOVE");
+                    fprintf(txt, "%s\n", "ALSTRUKDAT");
+                    fprintf(txt, "%s\n", "HAFIDZ");
+                    fprintf(txt, "%s\n", "PEDRO");
+                    fprintf(txt, "%s\n", "SYAFIQ");
+                    fprintf(txt, "%s\n", "ONCAR");
+                    fprintf(txt, "%s\n", "MARVEL");
+                    bukaAwal = true;
+                }
+                char newKamus[21];
+                printf("Silahkan masukkan kamus baru : ");
+                scanf(" %s", &newKamus);
+                fprintf(txt, "%s\n", newKamus);
+            }
+            if(cmd[0] == 'N')
+            {
+                fclose(txt);
+                isNewKamus = true;
+            }
+        }
+    }
+
     TabChr history, tebak, kamus;
     CreateArr(&kamus);
     STARTWORD("../data/hangman.txt", "r");
@@ -210,7 +270,7 @@ void hangman()
             else
             {
                 huruf = maxHuruf[0];
-                if(isCharInArr(history, huruf))
+                if(isCharInArr(history, toLower(huruf)) || isCharInArr(history, toUpper(huruf)))
                 {
                     printf("Tidak boleh menebak huruf yang sama!\n");
                 }
@@ -227,8 +287,7 @@ void hangman()
         if(isSameArr(tebak, kamus))
         {
             printf("Berhasil menebak kata ");
-            int j = 0;
-            for(j; j < LengthArr(kamus); j++)
+            for(int j = 0; j < LengthArr(kamus); j++)
             {
                 printf("%c", kamus.TI[j]);
             }
