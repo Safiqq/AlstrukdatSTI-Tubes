@@ -191,7 +191,7 @@ void hangman()
     mainmenu();
     printf("\n\n");
     boolean isNewKamus = false;
-    boolean bukaAwal = false;
+    boolean bukaKamus = false;
     while(!isNewKamus)
     {
         char cmd[10];
@@ -204,13 +204,14 @@ void hangman()
         else
         {
             FILE*txt;
+            if(!bukaKamus)
+            {
+                txt = fopen("../data/hangman.txt", "a");
+                bukaKamus = true;
+            }
+
             if(cmd[0] == 'Y')
             {
-                if(!bukaAwal)
-                {
-                    txt = fopen("../data/hangman.txt", "a");
-                    bukaAwal = true;
-                }
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
                 scanf("%s", &newKamus);
