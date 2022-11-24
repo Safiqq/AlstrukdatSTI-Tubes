@@ -159,47 +159,47 @@ void DelLastList(List *L, address *P)
     }
 }
 
-// void DelPList(List *L, char info, int x, int y)
-// {
-//     address P = SearchList(*L, info);
-//     if (P != Nil)
-//     {
-//         if (P == First(*L))
-//             DelFirstList(L, &P);
-//         else
-//             DelAfterList(L, &P, Prev(P));
-//     }
-// }
+void DelPList(List *L, char info, int x, int y)
+{
+    address P = SearchList(*L, x, y);
+    if (P != Nil)
+    {
+        if (P == First(*L))
+            DelFirstList(L, &P);
+        else
+            DelAfterList(L, &P, Prev(P));
+    }
+}
 
-// void DelAfterList(List *L, address *Pdel, address Prec)
-// {
-//     *Pdel = Next(Prec);
-//     if (Next(*Pdel) == Nil)
-//     {
-//         Next(Prec) = Nil;
-//         Last(*L) = Prec;
-//     }
-//     else
-//     {
-//         Next(Prec) = Next(*Pdel);
-//         Prev(Next(*Pdel)) = Prec;
-//     }
-// }
+void DelAfterList(List *L, address *Pdel, address Prec)
+{
+    *Pdel = Next(Prec);
+    if (Next(*Pdel) == Nil)
+    {
+        Next(Prec) = Nil;
+        Last(*L) = Prec;
+    }
+    else
+    {
+        Next(Prec) = Next(*Pdel);
+        Prev(Next(*Pdel)) = Prec;
+    }
+}
 
-// void DelBeforeList(List *L, address *Pdel, address Succ)
-// {
-//     *Pdel = Prev(Succ);
-//     if (Prev(*Pdel) == Nil)
-//     {
-//         Prev(Succ) = Nil;
-//         First(*L) = Succ;
-//     }
-//     else
-//     {
-//         Prev(Succ) = Prev(*Pdel);
-//         Next(Prev(*Pdel)) = Succ;
-//     }
-// }
+void DelBeforeList(List *L, address *Pdel, address Succ)
+{
+    *Pdel = Prev(Succ);
+    if (Prev(*Pdel) == Nil)
+    {
+        Prev(Succ) = Nil;
+        First(*L) = Succ;
+    }
+    else
+    {
+        Prev(Succ) = Prev(*Pdel);
+        Next(Prev(*Pdel)) = Succ;
+    }
+}
 
 void PrintForwardList(List L)
 {
