@@ -434,7 +434,7 @@ void towerofhanoi()
 
     // Inisialisasi dan deklarasi jumlah putaran minimum dan score maksimum
     int minTurn = pow(2,max)-1;
-    int score = 2*max;
+    int score = 10;
 
     // Mengisikan tiang A sebanyak max piringan
     int i = 0;
