@@ -208,7 +208,7 @@ void hangman()
             {
                 if(!bukaAwal)
                 {
-                    txt = fopen("../hangman.txt", "a");
+                    txt = fopen("../data/hangman.txt", "a");
                     bukaAwal = true;
                 }
                 char newKamus[21];
@@ -226,7 +226,7 @@ void hangman()
 
     TabChr history, tebak, kamus;
     CreateArr(&kamus);
-    STARTWORD("../hangman.txt", "r");
+    STARTWORD("../data/hangman.txt", "r");
     int i = 0;
     for(i; i < currentWord.Length; i++)
     {
