@@ -236,10 +236,9 @@ void hangman()
     int poin = 0;
     int chance = 10;
     char body[11] = "          ";
-    boolean win = false;
     tebak = createBlankKata(kamus);
     history = createHistory();
-    while (chance != 0 && !IsEmptyArr(tebak))
+    while (chance != 0)
     {
         char maxHuruf[10];
         char huruf;
@@ -296,6 +295,17 @@ void hangman()
             }
 
             printf("\n");
+            tebak = createBlankKata(kamus);
+            history = createHistory();
+        }
+        if(IsEmptyArr(tebak))
+        {
+            STARTWORD("../data/hangman.txt", "r");
+            int i = 0;
+            for(i; i < currentWord.Length; i++)
+            {
+                SetArr(&kamus, i, currentWord.TabWord[i]);
+            }
             tebak = createBlankKata(kamus);
             history = createHistory();
         }
