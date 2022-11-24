@@ -202,10 +202,26 @@ void displayTOH(Stack S1, Stack S2, Stack S3, int max)
     {
         printf("Tower A   Tower B   Tower C");
     }
-    else
+    else if (max == 5)
     {
         printf("Tower A     Tower B     Tower C");
     }
+    else if (max == 6)
+    {
+        printf("Tower A       Tower B       Tower C");
+    } else if (max == 7)
+    {
+        printf("Tower A         Tower B         Tower C");
+    }
+     else if (max == 8)
+    {
+        printf("Tower A           Tower B           Tower C");
+    }
+     else if (max == 9)
+    {
+        printf("Tower A             Tower B             Tower C");
+    }
+    
     
     
 }
@@ -406,13 +422,13 @@ void towerofhanoi()
         printf("Silahkan masukkan banyaknya piringan : ");
         scanf("%s", &strMax);
         max = atoi(strMax);
-        if(max >= 1 && max <= 5)
+        if(max >= 1 && max <= 9)
         {
             isValidMax = true;
         }
         else
         {
-            printf("Input yang valid hanya 1-5, silahkan ulangi!\n");
+            printf("Input yang valid hanya 1-9, silahkan ulangi!\n");
         }
     }
 
@@ -570,7 +586,7 @@ void towerofhanoi()
     if (countTurn >= minTurn)
     {
         printf("Kamu Berhasil! Dengan turn sebanyak : %d\n", countTurn);
-        score = score - 0.2*(countTurn - minTurn);
+        score = score - ((countTurn - minTurn)%10);
     }
     else
     {
