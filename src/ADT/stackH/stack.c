@@ -41,6 +41,26 @@ void pop(Stack * S, infotype* X){
 /* F.S. X adalah nilai elemen Top yang lama, Top berkurang 1 */
 
 int nbelmtStack(Stack S)
+/* Mengembalikan jumlah elemen dari stack*/
 {
     return Top(S) + 1;
+}
+
+void reversestack(Stack *S)
+/* I.S Stack tidak kosong, stack terdefinisi*/
+/* F.S Stack berisi elemen yang urutannya terbalik dari yang awal*/
+{
+    Stack S2;
+    CreateEmptyStack(&S2);
+    while (!IsEmptyStack(*S))
+    {
+        infotype X;
+        pop(S,&X);
+        push(&S2,X);
+    }
+    int i;
+    for (i=0;i<nbelmtStack(S2);i++){
+        S->Tab[i]=S2.Tab[i];
+    }
+    S->TOP=S2.TOP;
 }

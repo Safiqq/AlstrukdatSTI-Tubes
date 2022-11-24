@@ -58,4 +58,8 @@ void pop(Stack * S, infotype* X);
 int nbelmtStack(Stack S);
 /* Mengembalikan jumlah elemen dari stack*/
 
+void reversestack(Stack *S);
+/* I.S Stack tidak kosong, stack terdefinisi*/
+/* F.S Stack berisi elemen yang urutannya terbalik dari yang awal*/
+
 #endif
