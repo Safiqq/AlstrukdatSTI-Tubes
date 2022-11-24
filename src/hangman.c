@@ -208,21 +208,13 @@ void hangman()
             {
                 if(!bukaAwal)
                 {
-                    txt = fopen("../data/hangman.txt", "w");
-                    fprintf(txt, "%s\n", "PAKRIZA");
-                    fprintf(txt, "%s\n", "LOVE");
-                    fprintf(txt, "%s\n", "ALSTRUKDAT");
-                    fprintf(txt, "%s\n", "HAFIDZ");
-                    fprintf(txt, "%s\n", "PEDRO");
-                    fprintf(txt, "%s\n", "SYAFIQ");
-                    fprintf(txt, "%s\n", "ONCAR");
-                    fprintf(txt, "%s\n", "MARVEL");
+                    txt = fopen("../hangman.txt", "a");
                     bukaAwal = true;
                 }
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
-                scanf(" %s", &newKamus);
-                fprintf(txt, "%s\n", newKamus);
+                scanf("%s", &newKamus);
+                fprintf(txt, "\n%s", newKamus);
             }
             if(cmd[0] == 'N')
             {
@@ -234,7 +226,7 @@ void hangman()
 
     TabChr history, tebak, kamus;
     CreateArr(&kamus);
-    STARTWORD("../data/hangman.txt", "r");
+    STARTWORD("../hangman.txt", "r");
     int i = 0;
     for(i; i < currentWord.Length; i++)
     {
@@ -246,7 +238,7 @@ void hangman()
     boolean win = false;
     tebak = createBlankKata(kamus);
     history = createHistory();
-    while (chance != 0)
+    while (chance != 0 && !IsEmptyArr(tebak))
     {
         char maxHuruf[10];
         char huruf;
