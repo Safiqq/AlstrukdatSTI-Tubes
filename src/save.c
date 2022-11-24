@@ -48,7 +48,7 @@ void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner
   fprintf(txt,"%s\n",intToString(nbelmtStack(riwayat)));
    for (i = 1; i <=nbelmtStack(riwayat) ; i++)
   {
-    fprintf(txt, "%s\n", games.TI[riwayat.Tab[i - 1]]);
+    fprintf(txt, "%s\n", riwayat.Tab[i - 1]);
   }
 
   saveSB(sbRNG,txt);

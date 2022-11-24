@@ -11,13 +11,13 @@ void history(Stack *history, TabStr games){
             if (num>=nbelmtStack(*history)) {
                 for (i = nbelmtStack(*history); i > 0; i--)
                 {
-                    printf("%d. %s\n", nbelmtStack(*history)-i+1, games.TI[history->Tab[i - 1]]);
+                    printf("%d. %s\n", nbelmtStack(*history)-i+1, history->Tab[i - 1]);
                 }
             }
             else{
                 for (i = nbelmtStack(*history); i > nbelmtStack(*history)-num; i--)
                 {
-                    printf("%d. %s\n", nbelmtStack(*history)-i+1, games.TI[history->Tab[i - 1]]);
+                    printf("%d. %s\n", nbelmtStack(*history)-i+1, history->Tab[i - 1]);
                 } 
             }
         }else{

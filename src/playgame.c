@@ -49,7 +49,9 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,M
         {
             gameTambahan(sbGameTambahan);
         }
-        push(history, play);
+        infotype hist;
+        hist=games->TI[play];
+        push(history, hist);
     }
     else
         printf("Belum ada game di antrianmu.\n");

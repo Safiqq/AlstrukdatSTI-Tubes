@@ -51,14 +51,7 @@ void load(char *namafile, TabStr *games, Stack *history, MapSB *sbTOH,MapSB *sbD
                 j++;
             }
             hist[j] = '\0';
-            int num, k=0;
-            while (k<LengthArray(*games)){
-                if (*hist==*games->TI[k]){
-                    num=k;
-                }
-                k++;
-            }
-            push(history,num);
+            push(history,hist);
         }
         printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
     }
