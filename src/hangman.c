@@ -287,7 +287,8 @@ void hangman()
         if(isSameArr(tebak, kamus))
         {
             printf("Berhasil menebak kata ");
-            for(int j = 0; j < LengthArr(kamus); j++)
+            int j = 0;
+            for(j; j < LengthArr(kamus); j++)
             {
                 printf("%c", kamus.TI[j]);
             }
