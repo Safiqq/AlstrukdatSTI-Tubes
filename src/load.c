@@ -53,6 +53,9 @@ void load(char *namafile, TabStr *games, Stack *history, MapSB *sbTOH,MapSB *sbD
             hist[j] = '\0';
             push(history,hist);
         }
+        reversestack(history);
+        //Membaca SCOREBOARD
+        
         printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
     }
     else
