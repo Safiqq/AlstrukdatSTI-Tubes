@@ -47,7 +47,7 @@ int main()
         else if (isEqual(currentWord, "LOAD"))
         {
             ADVWORD();
-            load(currentWord.TabWord, &games);
+            load(currentWord.TabWord, &games, &riwayat, &sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT,&sbsudoku);
             isLogged = true;
         }
         else if (isEqual(currentWord, "SAVE"))

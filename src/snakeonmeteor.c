@@ -4,6 +4,31 @@
 #include "./ADT/listlinier/listlinier.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
+// int meteorX, meteorY, foodX, foodY;
+
+void clearMeteor(Matrix2D *M)
+{
+    int i, j;
+    for (i = 0; i < M->capacity; i++)
+    {
+        for (j = 0; j < M->capacity; j++)
+        {
+            if (M->MI[i][j] == 'M')
+                M->MI[i][j] = '0';
+        }
+    }
+}
+
+void updateSnake(Matrix2D *M, List L)
+{
+    address P = First(L);
+    while (P != Nil)
+    {
+        M->MI[X(P)][Y(P)] = Info(P);
+        P = Next(P);
+    }
+}
+
 void moveSnake(Matrix2D *M, List *L)
 {
     char inp;
@@ -23,16 +48,6 @@ void moveSnake(Matrix2D *M, List *L)
     }
     else
     {
-        // printf("%c %d %d\n%d %d %d %d %d %d %d %d %d\n", Info(P), X(P), Y(P),
-        //        SearchList(*L, X(P), Y(P)) != Nil,
-        //        SearchList(*L, X(P) - 1, Y(P)) != Nil,
-        //        SearchList(*L, X(P), Y(P) - 1) != Nil,
-        //        SearchList(*L, X(P) + 1, Y(P)) != Nil,
-        //        SearchList(*L, X(P), Y(P) + 1) != Nil,
-        //        SearchList(*L, X(P) - 1, Y(P) + 1) != Nil,
-        //        SearchList(*L, X(P) - 1, Y(P) - 1) != Nil,
-        //        SearchList(*L, X(P) + 1, Y(P) - 1) != Nil,
-        //        SearchList(*L, X(P) + 1, Y(P) + 1) != Nil);
         P = Last(*L);
         M->MI[X(P)][Y(P)] = '0';
         while (P != First(*L))
@@ -87,20 +102,31 @@ void summonFood(Matrix2D *M)
     M->MI[x][y] = 'o';
 }
 
-void summonMeteor(Matrix2D *M)
+void summonMeteor(Matrix2D *M, List *L)
 {
     int x = rand() % 4, y = rand() % 4;
-    while (M->MI[x][y] != '0')
+    address P = SearchList(*L, x, y);
+    if (P != Nil)
     {
-        x++;
-        if (x == 5)
+        if (Info(P) == 'H')
         {
-            x = 0;
-            y++;
+            printf("Kepala snake terkena meteor!\n");
+            // gameover
         }
-        if (y == 5)
-            y = 0;
+        else
+        {
+            printf("Anda terkena meteor!\n");
+            P = Next(P);
+            DelPList(L, Info(Prev(P)), x, y);
+            while (P != Nil)
+            {
+                Info(P) -= 1;
+                P = Next(P);
+            }
+        }
     }
+    updateSnake(M, *L);
+    clearMeteor(M);
     M->MI[x][y] = 'M';
 }
 
@@ -135,11 +161,7 @@ void summonSnake(Matrix2D *M, List *L)
         else
             InsVLastList(L, '2', x - 3, y);
     }
-    while (P != Nil)
-    {
-        M->MI[X(P)][Y(P)] = Info(P);
-        P = Next(P);
-    }
+    updateSnake(M, *L);
 }
 
 void snakeOnMeteor()
@@ -150,11 +172,12 @@ void snakeOnMeteor()
     int i;
     CreateMtx(&M, 5), CreateEmptyList(&L);
     summonSnake(&M, &L);
-    // summonFood(&M), summonMeteor(&M);
+    // summonFood(&M);
     PrintMtx(M, 0, '.');
     while (true)
     {
         moveSnake(&M, &L);
+        summonMeteor(&M, &L);
         PrintMtx(M, 0, '.');
     }
 }

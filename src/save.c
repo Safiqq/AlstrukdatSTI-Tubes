@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "./ADT/array/array.h"
-#include "./ADT/stack/stack.h"
+#include "./ADT/stackH/stack.h"
 #include "./ADT/mapscoreboard/map.h"
 //r
 char* intToString(int val){
@@ -46,7 +46,7 @@ void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner
   }
 
   fprintf(txt,"%s\n",intToString(nbelmtStack(riwayat)));
-   for (i = nbelmtStack(riwayat); i > 0; i--)
+   for (i = 1; i <=nbelmtStack(riwayat) ; i++)
   {
     fprintf(txt, "%s\n", games.TI[riwayat.Tab[i - 1]]);
   }

@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
+#include "./ADT/stackH/stack.h"
+#include "./ADT/mapscoreboard/map.h"
 
-void load(char *namafile, TabStr *games)
+void load(char *namafile, TabStr *games, Stack *history, MapSB *sbTOH,MapSB *sbDiner,MapSB *sbSOM,MapSB *sbRNG,MapSB *sbHangman, MapSB *sbGameTambahan,MapSB *sbTTT, MapSB *sbsudoku)
 {
     int i = 8, j, len;
-    char *temp;
+    char *temp, *hist;
     char path[100] = "../data/";
 
     while (*namafile != '\0')
@@ -18,7 +20,8 @@ void load(char *namafile, TabStr *games)
 
     if (pitaFile != NULL)
     {
-        CreateArray(games);
+        //Membaca LISTGAME
+        //CreateArray(games);
         len = atoi(currentWord.TabWord);
         for (i = 0; i < len; i++)
         {
@@ -32,6 +35,30 @@ void load(char *namafile, TabStr *games)
             }
             temp[j] = '\0';
             SetArray(games, i, temp);
+        }
+        //Membaca HISTORY
+        //CreateEmptyStack(history);
+        ADVLINE();
+        len = atoi(currentWord.TabWord);
+        for (i = 0; i < len; i++)
+        {
+            ADVLINE();
+            hist = (char *)malloc(sizeof(char *) * (CAPACITY));
+            j = 0;
+            while (currentWord.TabWord[j] != '\0')
+            {
+                hist[j] = currentWord.TabWord[j];
+                j++;
+            }
+            hist[j] = '\0';
+            int num, k=0;
+            while (k<LengthArray(*games)){
+                if (*hist==*games->TI[k]){
+                    num=k;
+                }
+                k++;
+            }
+            push(history,num);
         }
         printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
     }
