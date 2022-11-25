@@ -1,10 +1,11 @@
 #include "./ADT/array/array.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/stackH/stack.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 // #include "playgame.h"
 
-void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,MapSB *sbDiner,MapSB *sbSOM,MapSB *sbRNG,MapSB *sbHangman, MapSB *sbGameTambahan, MapSB *sbTTT, MapSB * sbsudoku)
+void playGame(TabStr *games, Queue *antriangames, Stack *history, TabMap * arraySB)
 {
     int i;
     ElTypeQue play;
@@ -19,11 +20,11 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,M
         printf("Loading %s\n", games->TI[play]);
         if (play == 0)
         {
-            rng();
+            rng(arraySB);
         }
         else if (play == 1)
         {
-            dinerdash();
+            dinerdash(arraySB);
         }
         else if (play == 2)
         {
@@ -39,15 +40,15 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, MapSB *sbTOH,M
         }
         else if (play == 5)
         {
-            tictactoe(sbTTT);
+            tictactoe(arraySB);
         }
         else if (play == 6)
         {
-            sudoku();
+            sudoku(arraySB);
         }
         else if (play >= 7 && play <= (*games).Neff)
         {
-            gameTambahan(sbGameTambahan);
+            gameTambahan(arraySB,play);
         }
         infotype hist;
         hist=games->TI[play];

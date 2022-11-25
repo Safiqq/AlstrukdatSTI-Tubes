@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 #include "./ADT/mesinkata/mesinkata.h"
 
 // RNG_MAX = RAND_MAX (32767) * 3 = 98301
@@ -16,7 +18,7 @@ int randomNum(int min, int max)
     return res > 0 ? res : res * (-1);
 }
 
-void rng()
+void rng(TabMap *arrSB)
 {
     // Jumlah percobaan maks 10
     // Angka random dari 1-100 inklusif
@@ -44,9 +46,12 @@ void rng()
         inpNum = 0;
         i++;
     }
+    printf("=========================================\n");
     if (isTrue)
         printf("\nYa, X adalah %d.\n", answer);
     else
         printf("\nTebakan Anda salah semua, X adalah %d.\n", answer);
-    printf("Skor kamu %d\n", 100 - (10 * i));
+    int skor =  100 - (10 * i);
+    insertSB(&arrSB->TIMap[0],skor);
+     printf("=========================================\n\n");
 }

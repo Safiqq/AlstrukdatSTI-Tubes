@@ -2,7 +2,8 @@
 #include "ADT/map/map.h"
 #include "ADT/queueDS/queue.h"
 #include "ADT/mesinkata/mesinkata.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
 // FUNGSI DAN PROSEDUR UNTUK DINERDASH
 
@@ -154,7 +155,7 @@ boolean isSorted(Map M, int n)
     return isSorted(M, n - 1);
 }
 
-void dinerdash()
+void dinerdash(TabMap * arrSB)
 {
     // Deklarasi Variabel bertipe integer
     int saldo = 0;
@@ -342,6 +343,7 @@ void dinerdash()
 
         printf("==========================================================\n");
     }
+    insertSB(&arrSB->TIMap[1],saldo);
     printf("Game berakhir dan score Anda : %d\n", saldo);
     printf("==========================================================\n\n");
 }

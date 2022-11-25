@@ -1,8 +1,33 @@
-#include "map.h"
+#include "mapsb.h"
 #include "../mesinkata/mesinkata.h"
+#include "../arrayOfMap/arraymap.h"
+
+// void insertSB(TabMap *arrSB,int skor){
+//     char *str=malloc(sizeof(char)*13);
+//     // printf("Masukkan nama anda: ");
+//     // STARTWORD("", "");
+//     // str = currentWord.TabWord;
+//     printf("Masukkan nama anda: ");
+//     scanf("%s", str);
+//     while(!(!IsMemberMapSB(*arrSB->TIMap,str)&& StringLength(str)<13)){
+//         printf("Nama tidak boleh sama dan panjang kurang dari 13\n");
+//         printf("Masukkan nama anda: ");
+//         scanf("%s", str);
+//     }
+//     InsertMapSB(SB,str,skor);
+//     printf("\nOke, nama akan dimasukkan ke scoreboard\n");
+
+//     printf("Skor akhir : %d\n", skor);
+//     printf("Nama       : %s\n", str);
+// }
+
 
 void insertSB(MapSB *SB,int skor){
     char *str=malloc(sizeof(char)*13);
+
+    // printf("Masukkan nama anda: ");
+    // STARTWORD("", "");
+    // str = currentWord.TabWord;
     printf("Masukkan nama anda: ");
     scanf("%s", str);
     while(!(!IsMemberMapSB(*SB,str)&& StringLength(str)<13)){
@@ -48,7 +73,7 @@ boolean IsFullMapSB(MapSB M)
     return M.Count == MaxEle;
 }
 
-void InsertMapSB(MapSB *M, keytype k, valuetype v)
+void InsertMapSB(MapSB *M, keytypesb k, valuetype v)
 {
     if (!IsFullMap(*M))
     {
@@ -60,7 +85,7 @@ void InsertMapSB(MapSB *M, keytype k, valuetype v)
     }
 }
 
-void DeleteMapSB(MapSB *M, keytype k)
+void DeleteMapSB(MapSB *M, keytypesb k)
 {
     if (M->Count == 1)
         M->Count = Nill;
@@ -81,7 +106,7 @@ void DeleteMapSB(MapSB *M, keytype k)
         }
     }
 }
-boolean IsMemberMapSB(MapSB M, keytype k)
+boolean IsMemberMapSB(MapSB M, keytypesb k)
 {
     int i = 0;
     while (i < M.Count)
@@ -95,7 +120,7 @@ boolean IsMemberMapSB(MapSB M, keytype k)
 
 
 
-valuetype Value(MapSB M, keytype k){
+valuetype Value(MapSB M, keytypesb k){
     if(IsMemberMap(M,k)){
         int i = 0;
         boolean found=false;

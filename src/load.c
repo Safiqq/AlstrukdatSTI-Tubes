@@ -2,7 +2,7 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/array/array.h"
 #include "./ADT/stackH/stack.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
 
 void load(char *namafile, TabStr *games, Stack *history, MapSB *sbTOH,MapSB *sbDiner,MapSB *sbSOM,MapSB *sbRNG,MapSB *sbHangman, MapSB *sbGameTambahan,MapSB *sbTTT, MapSB *sbsudoku)
 {

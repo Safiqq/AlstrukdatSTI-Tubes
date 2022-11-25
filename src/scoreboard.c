@@ -1,6 +1,8 @@
 #include <stdio.h>
-#include "ADT/mapscoreboard/map.h"
+#include "ADT/mapscoreboard/mapsb.h"
 #include "ADT/mesinkata/mesinkata.h"
+#include "ADT/arrayOfMap/arraymap.h"
+#include "ADT/array/array.h"
 
 int iMax(MapSB M){
     int max =M.Elements[0].Value;
@@ -31,7 +33,7 @@ boolean stringEq(char *a,char*b){
     }
 }
 
-valuetype Val(MapSB M, keytype k){
+valuetype Val(MapSB M, keytypesb k){
     if(IsMemberMap(M,k)){
         int i = 0;
         boolean found=false;
@@ -68,13 +70,9 @@ void printScoreboard(MapSB sb,char * nama){
     printf("\n");
 }
 
-void scoreboard(MapSB sbTOH,MapSB sbDiner, MapSB sbSOM, MapSB sbRNG,MapSB sbHangman, MapSB sbGameT, MapSB sbTTT, MapSB sbsudoku){
-    printScoreboard(sbRNG,  "RNG");
-    printScoreboard(sbDiner, "DINER DASH");
-    printScoreboard(sbHangman, "HANGMAN");
-    printScoreboard(sbTOH, "TOWER OF HANOI");
-    printScoreboard(sbRNG,  "SNAKE ON METEOR");
-    printScoreboard(sbTTT,  "TicTacToe");
-    printScoreboard(sbsudoku,  "Sudoku");
-    printScoreboard(sbGameT,  "TAMBAHAN");
+void scoreboard(TabMap arrSB, TabStr games){
+    int i;
+    for(i=0;i<NbElmtArrMap(arrSB);i++){
+        printScoreboard(arrSB.TIMap[i],  games.TI[i]);
+    }
 }

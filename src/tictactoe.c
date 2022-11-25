@@ -1,7 +1,11 @@
 #include <stdlib.h>
+// #include "./ADT/arrayOfMap/arraymap.h"
 #include "./ADT/arrayOfChar/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
+
+
 
 // FUNGSI / PROSEDUR PRIMITIF
 
@@ -205,7 +209,7 @@ boolean suit(char player, char bot)
 
 
 // Program Utama
-void tictactoe(MapSB * sbTTT)
+void tictactoe(TabMap * arrSB)
 {
     int i;
     // Membuat table kosong
@@ -354,6 +358,6 @@ void tictactoe(MapSB * sbTTT)
         printf("Masa Seri sama bot :V\n");
         skor=50;
     }
-    insertSB(sbTTT,skor);
+    insertSB(&arrSB->TIMap[5],skor);
     printf("=========================================\n\n");
 }

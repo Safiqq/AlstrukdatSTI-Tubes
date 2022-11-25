@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include "./ADT/array/array.h"
 #include "./ADT/stackH/stack.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 //r
 char* intToString(int val){
     if(val==0){
@@ -26,7 +27,7 @@ void saveSB(MapSB sb,FILE * txt){
     }
 }
 
-void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner,MapSB sbSOM,MapSB sbRNG,MapSB sbHangman, MapSB sbGameTambahan,MapSB sbTTT, MapSB sbsudoku)
+void save(char *namafile, TabStr games, Stack riwayat,TabMap arrSB)
 {
   FILE *txt;
   char path[100] = "../data/";
@@ -51,14 +52,18 @@ void save(char *namafile, TabStr games, Stack riwayat, MapSB sbTOH,MapSB sbDiner
     fprintf(txt, "%s\n", riwayat.Tab[i - 1]);
   }
 
-  saveSB(sbRNG,txt);
-  saveSB(sbDiner,txt);
-  saveSB(sbHangman,txt);
-  saveSB(sbTOH,txt);
-  saveSB(sbSOM,txt);
-  saveSB(sbTTT,txt);
-  saveSB(sbsudoku,txt);
-  saveSB(sbGameTambahan,txt);
+  for(i=0;i<NbElmtArrMap(arrSB);i++){
+    saveSB(arrSB.TIMap[i],txt);
+  }
+
+  // saveSB(sbRNG,txt);
+  // saveSB(sbDiner,txt);
+  // saveSB(sbHangman,txt);
+  // saveSB(sbTOH,txt);
+  // saveSB(sbSOM,txt);
+  // saveSB(sbTTT,txt);
+  // saveSB(sbsudoku,txt);
+  // saveSB(sbGameTambahan,txt);
 
   fclose(txt);
   printf("Save file berhasil disimpan.\n");

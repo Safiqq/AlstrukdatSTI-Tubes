@@ -1,8 +1,8 @@
 /* File: map.h */
 /* Definisi ADT Map */
 
-#ifndef __MAP_H__
-#define __MAP_H__
+#ifndef __MAPSB_H__
+#define __MAPSB_H__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,12 +16,12 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define MaxEle 10
 #define Undefined -999
 
-typedef char *keytype;
+typedef char *keytypesb;
 typedef int valuetype;
 
 typedef struct
 {
-	keytype Key;
+	keytypesb Key;
 	valuetype Value;
 } infotypem;
 
@@ -53,22 +53,22 @@ extern boolean IsFullMapSB(MapSB M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
-extern void InsertMapSB(MapSB *M, keytype k, valuetype v);
+extern void InsertMapSB(MapSB *M, keytypesb k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
 		M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-extern void DeleteMap(MapSB *M, keytype k);
+extern void DeleteMapSB(MapSB *M, keytypesb k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
 		element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-extern boolean IsMemberMapSB(MapSB M, keytype k);
+extern boolean IsMemberMapSB(MapSB M, keytypesb k);
 /* Mengembalikan true jika k adalah member dari M */
 
-extern valuetype Value(MapSB M, keytype k);
+extern valuetype Value(MapSB M, keytypesb k);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 

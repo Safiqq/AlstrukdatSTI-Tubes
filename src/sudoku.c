@@ -1,5 +1,7 @@
 #include "./ADT/matriks/matriks.h"
 #include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
 char template1[9][9] = {
     {'5', '8', '7', '2', '1', '0', '0', '9', '4'},
@@ -110,7 +112,7 @@ void createSudoku(Matrix2D *M)
     }
 }
 
-void sudoku()
+void sudoku(TabMap *arrSB)
 {
     // Jumlah percobaan maks 10
     // Tersedia 3 template papan yg akan dirandom
@@ -164,6 +166,7 @@ void sudoku()
                     printf("\nDahlah gabisa main, nyawa kamu sisa %d\n", 10 - counter);
                 else
                 {
+                    printf("=========================================\n");
                     printf("Game over! Noob\n");
                     isDone = true;
                 }
@@ -171,5 +174,7 @@ void sudoku()
             x = 0, y = 0, num = 0;
         }
     }
-    printf("Skor kamu %d\n", 100 - (10 * counter));
+    int skor= 100 - (10 * counter);
+    insertSB(&arrSB->TIMap[6],skor);
+    printf("=========================================\n\n");
 }

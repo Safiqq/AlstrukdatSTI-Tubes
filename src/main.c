@@ -2,7 +2,8 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/queue.h"
 #include "./ADT/stackH/stack.h"
-#include "./ADT/mapscoreboard/map.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
 #define MAX_LENGTH 100
 
@@ -13,26 +14,12 @@ int main()
     TabStr games;
     Queue antriangames;
     Stack riwayat;
-    MapSB sbTOH;
-    MapSB sbDiner;
-    MapSB sbSOM;
-    MapSB sbRNG;
-    MapSB sbHangman;
-    MapSB sbGameTambahan;
-    MapSB sbTTT;
-    MapSB sbsudoku;
+    TabMap arraySB;
 
     CreateArray(&games);
     CreateQueue(&antriangames);
     CreateEmptyStack(&riwayat);
-    CreateMapSB(&sbTOH);
-    CreateMapSB(&sbDiner);
-    CreateMapSB(&sbSOM);
-    CreateMapSB(&sbRNG);
-    CreateMapSB(&sbHangman);
-    CreateMapSB(&sbGameTambahan);
-    CreateMapSB(&sbTTT);
-    CreateMapSB(&sbsudoku);
+    CreateEmptyArrMap(&arraySB);
     mainMenu();
     while (true)
     {
@@ -47,14 +34,14 @@ int main()
         else if (isEqual(currentWord, "LOAD"))
         {
             ADVWORD();
-            load(currentWord.TabWord, &games, &riwayat, &sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT,&sbsudoku);
+            load(currentWord.TabWord, &games, &riwayat);
             isLogged = true;
         }
         else if (isEqual(currentWord, "SAVE"))
         {
             ADVWORD();
             if (isLogged)
-                save(currentWord.TabWord, games, riwayat, sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT,sbsudoku);
+                save(currentWord.TabWord,games,riwayat, arraySB);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
@@ -64,7 +51,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    createGame(currentWord.TabWord, &games);
+                    createGame(currentWord.TabWord, &games,&arraySB);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
@@ -116,7 +103,7 @@ int main()
             if (isEqual(currentWord, "GAME"))
             {
                 if (isLogged)
-                    playGame(&games, &antriangames, &riwayat,&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT,&sbsudoku);
+                    playGame(&games, &antriangames, &riwayat,&arraySB);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
@@ -153,20 +140,20 @@ int main()
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
+            else if (isEqual(currentWord, "SCOREBOARD"))
+            {
+                if (isLogged)
+                    resetScoreboard(&arraySB,games);
+                else
+                    printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
+            }
             else
                 commandLain();
         }
         else if (isEqual(currentWord, "SCOREBOARD"))
         {
             if (isLogged)
-                scoreboard(sbTOH,sbDiner,sbSOM,sbRNG,sbHangman, sbGameTambahan,sbTTT,sbsudoku);
-            else
-                printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
-        }
-        else if (isEqual(currentWord, "RESE"))
-        {
-            if (isLogged)
-                resetScoreboard(&sbTOH,&sbDiner,&sbSOM,&sbRNG,&sbHangman, &sbGameTambahan,&sbTTT, &sbsudoku);
+                scoreboard(arraySB,games);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
