@@ -5,8 +5,9 @@
 #include "./ADT/array/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/stackH/stack.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
-void deleteGame(TabStr *games, Queue *antriangames, Stack *history)
+void deleteGame(TabStr *games, Queue *antriangames, Stack *history, TabMap * arrSB)
 {
     int i;
     ElTypeQue hapus;
@@ -68,6 +69,7 @@ void deleteGame(TabStr *games, Queue *antriangames, Stack *history)
                     val--;
                 Enqueue(antriangames, val);
             }
+            DeleteAt(arrSB,hapus-1);
             printf("Game berhasil dihapus.\n");
         }
     }
