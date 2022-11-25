@@ -3,6 +3,7 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include <stdlib.h>
 
+// Fungsi untuk membuat char menjadi huruf kecil
 char toLower(char huruf)
 {
     if((int)huruf >= 65 && (int)huruf <= 90)
@@ -12,6 +13,7 @@ char toLower(char huruf)
     return huruf;
 }
 
+// Fungsi untuk membuat char menjadi huruf kapital
 char toUpper(char huruf)
 {
     if((int)huruf >= 97 && (int)huruf <= 122)
@@ -21,6 +23,7 @@ char toUpper(char huruf)
     return huruf;
 }
 
+// Fungsi untuk menghasilkan panjang string
 int lengthStr(char str[])
 {
     int count;     
@@ -28,6 +31,7 @@ int lengthStr(char str[])
     return count; 
 }
 
+// Prosedur untuk display main menu
 void mainmenu()
 {
     printf("\t __________\n"
@@ -40,6 +44,7 @@ void mainmenu()
            "========================");
 }
 
+// Prosedur untuk display hangman
 void displayHangman(int mistakes, char* body) {
 	switch(mistakes) 
     {
@@ -66,6 +71,7 @@ void displayHangman(int mistakes, char* body) {
 	       body[4], body[5], body[6], body[7], body[8], body[9]);
 }
 
+// Fungsi untuk mereturn kata tebakan
 TabChr createBlankKata(TabChr kamus)
 {
     TabChr blank;
@@ -78,6 +84,7 @@ TabChr createBlankKata(TabChr kamus)
     return blank;
 }
 
+// Fungsi untuk mereturn huruf yang telah ditebak
 TabChr createHistory()
 {
     TabChr history;
@@ -85,6 +92,7 @@ TabChr createHistory()
     return history;
 }
 
+// Prosedur untuk menampilkan huruf yang telah ditebak
 void displayHistory(TabChr history)
 {
     printf("Tebakan sebelumnya: ");
@@ -103,6 +111,7 @@ void displayHistory(TabChr history)
     printf("\n");
 }
 
+// Prosedur untuk menampilkan kata tebakan
 void displayTebak(TabChr kata)
 {
     printf("Kata: ");
@@ -114,6 +123,7 @@ void displayTebak(TabChr kata)
     printf("\n");
 }
 
+// Prosedur untuk memproses tebakan yang diinput oleh user
 void prosesKata(TabChr*kata, TabChr kamus, char huruf, int*chance)
 {
     boolean flag = false;
@@ -132,6 +142,7 @@ void prosesKata(TabChr*kata, TabChr kamus, char huruf, int*chance)
     }
 }
 
+// Prosedur untuk menambahkan kata yang telah ditebak
 void setHistory(TabChr*history, char huruf)
 {
     int i = 0;
@@ -150,6 +161,7 @@ void setHistory(TabChr*history, char huruf)
     }
 }
 
+// Fungsi untuk check apakah array sama
 boolean isSameArr(TabChr kata1, TabChr kata2)
 {
     if(kata1.Neff != kata2.Neff)
@@ -172,6 +184,7 @@ boolean isSameArr(TabChr kata1, TabChr kata2)
     }
 }
 
+// Fungsi untuk check apakah char di dalam suatu array
 boolean isCharInArr(TabChr kata, char huruf)
 {
     int i = 0;
@@ -186,12 +199,31 @@ boolean isCharInArr(TabChr kata, char huruf)
     return false;
 }
 
+// Prosedur untuk memulai hangman (membaca dari file txt dengan mesin kata)
+void startHangman(TabChr* tebak, TabChr* history, TabChr* kamus)
+{
+    CreateArr(kamus);
+    STARTWORD("../data/hangman.txt", "r");
+    int i = 0;
+    for(i; i < currentWord.Length; i++)
+    {
+        SetArr(kamus, i, currentWord.TabWord[i]);
+    }
+    *tebak = createBlankKata(*kamus);
+    *history = createHistory();
+}
+
+// Program utama
 void hangman()
 {
+    // Menampilkan main menu
     mainmenu();
     printf("\n\n");
+
+    // Deklarasi dan inisialisasi variabel boolean untuk logika looping
     boolean isNewKamus = false;
     boolean bukaKamus = false;
+    // Untuk menambahkan jika user ingin membuat kamus baru
     while(!isNewKamus)
     {
         char cmd[10];
@@ -225,23 +257,20 @@ void hangman()
         }
     }
 
+    // Deklarasi dan inisialisasi variabel
     TabChr history, tebak, kamus;
-    CreateArr(&kamus);
-    STARTWORD("../data/hangman.txt", "r");
-    int i = 0;
-    for(i; i < currentWord.Length; i++)
-    {
-        SetArr(&kamus, i, currentWord.TabWord[i]);
-    }
     int poin = 0;
     int chance = 10;
     char body[11] = "          ";
-    tebak = createBlankKata(kamus);
-    history = createHistory();
+
+    // Memulai hangman 
+    startHangman(&tebak, &history, &kamus);
     while (chance != 0)
     {
+        // Deklarasi variabel untuk tebakan
         char maxHuruf[10];
         char huruf;
+
         // Display
         displayHangman(10-chance, body);
         printf("\n");
@@ -272,10 +301,13 @@ void hangman()
                 }
             }
         }
+
+        // Memproses hangman
         setHistory(&history, huruf);
         prosesKata(&tebak, kamus, huruf, &chance);
         printf("\n");
 
+        // Jika suatu kata berhasil ditebak
         if(isSameArr(tebak, kamus))
         {
             printf("Berhasil menebak kata ");
@@ -298,19 +330,14 @@ void hangman()
             tebak = createBlankKata(kamus);
             history = createHistory();
         }
+        // Jika kamus telah selesai ditebak semua, maka ulangi dari awal
         if(IsEmptyArr(tebak))
         {
-            STARTWORD("../data/hangman.txt", "r");
-            int i = 0;
-            for(i; i < currentWord.Length; i++)
-            {
-                SetArr(&kamus, i, currentWord.TabWord[i]);
-            }
-            tebak = createBlankKata(kamus);
-            history = createHistory();
+            startHangman(&tebak, &history, &kamus);
         }
     }
 
+    // Game berakhir
     printf("=================================\n"
            "GAME BERAKHIR. SCORE ANDA : %d\n"
            "=================================\n", poin);
