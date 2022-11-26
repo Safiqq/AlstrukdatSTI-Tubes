@@ -1,11 +1,11 @@
 /* File: mesinkarakter.h */
 /* Definisi Mesin Karakter */
 
-#ifndef __MESIN_KAR_H_
-#define __MESIN_KAR_H_
+#ifndef __MESINKARAKTER_H_
+#define __MESINKARAKTER_H_
 
 #include <stdio.h>
-#include "../../boolean.h"
+#include "../../header/boolean.h"
 
 #define MARK '\n'
 #define NEWLINE '\n'

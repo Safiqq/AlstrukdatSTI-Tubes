@@ -19,12 +19,10 @@ typedef struct
 extern boolean EndWord;
 extern Word currentWord;
 
-extern int StringLength(char *str);
+extern int stringLength(char *str);
 /*
    I.S. : str sembarang
    F.S. : Mengembalikan panjang dari str */
-
-extern boolean wordEqual(Word str1, Word str2);
 
 extern boolean isEqual(Word str1, char *str2);
 /* Mengecek apakah isi dari str1 = str2
