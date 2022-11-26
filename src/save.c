@@ -52,7 +52,7 @@ void save(char *namafile, TabStr games, Stack riwayat,TabMap arrSB)
     fprintf(txt, "%s\n", riwayat.Tab[i - 1]);
   }
 
-  for(i=0;i<NbElmtArrMap(arrSB);i++){
+  for(i=0;i<NbElmtArrMap(arrSB)-1;i++){
     saveSB(arrSB.TIMap[i],txt);
     fprintf(txt,"\n");
   }

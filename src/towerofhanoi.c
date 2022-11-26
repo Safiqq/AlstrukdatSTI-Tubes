@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "./ADT/stackTOH/stack.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 #include <math.h>
 
 // Menampilkan Status Tower of Hanoi ke layar
@@ -402,7 +404,7 @@ boolean legalMove(char asal, char tujuan, Stack S1, Stack S2, Stack S3)
 }
 
 // Program utama
-void towerofhanoi()
+void towerofhanoi(TabMap *arrSB)
 {
     // Inisialisasi dan membuat tiang kosongyang mengimplementasikan ADT Stack
     Stack S1, S2, S3;
@@ -593,6 +595,6 @@ void towerofhanoi()
         printf("Kamu Berhasil! Dengan turn sebanyak : %d\n", countTurn);
         score = 10 -1 -(countTurn - minTurn)/5;
     }
-    printf("Skor didapatkan : %d\n", score);
+    insertSB(&arrSB->TIMap[3],score);
     printf("=====================================\n");
 }

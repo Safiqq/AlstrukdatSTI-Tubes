@@ -28,15 +28,15 @@ void playGame(TabStr *games, Queue *antriangames, Stack *history, TabMap * array
         }
         else if (play == 2)
         {
-            hangman();
+            hangman(arraySB);
         }
         else if (play == 3)
         {
-            towerofhanoi();
+            towerofhanoi(arraySB);
         }
         else if (play == 4)
         {
-            snakeOnMeteor();
+            snakeOnMeteor(arraySB);
         }
         else if (play == 5)
         {

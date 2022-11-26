@@ -22,7 +22,12 @@ void resetScoreboard(TabMap *arrSB, TabStr games){
     printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD %s (YA/TIDAK)? ",games.TI[n-1]);
     }
     STARTWORD("", "");
-
+    while (!(isEqual(currentWord,"YA")||isEqual(currentWord,"TIDAK")))
+    {
+        printf("INPUT TIDAK VALID, APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD %s (YA/TIDAK)? ",games.TI[n-1]);
+        STARTWORD("", "");
+    }
+    
     if(isEqual(currentWord,"YA")){
         if(n==0){
              for(i=0;i<NbElmtArrMap(*arrSB);i++){

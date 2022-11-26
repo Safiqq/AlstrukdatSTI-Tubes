@@ -3,6 +3,8 @@
 #include "./ADT/matriks/matriks.h"
 #include "./ADT/listlinier/listlinier.h"
 #include "./ADT/mesinkata/mesinkata.h"
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
 // int meteorX, meteorY, foodX, foodY;
 
@@ -164,7 +166,7 @@ void summonSnake(Matrix2D *M, List *L)
     updateSnake(M, *L);
 }
 
-void snakeOnMeteor()
+void snakeOnMeteor(TabMap *arrSB)
 {
     srand(time(NULL));
     Matrix2D M;

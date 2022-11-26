@@ -2,6 +2,8 @@
 #include "./ADT/arrayOfChar/array.h"
 #include "./ADT/mesinkata/mesinkata.h"
 #include <stdlib.h>
+#include "./ADT/mapscoreboard/mapsb.h"
+#include "./ADT/arrayOfMap/arraymap.h"
 
 // Fungsi untuk membuat char menjadi huruf kecil
 char toLower(char huruf)
@@ -214,7 +216,7 @@ void startHangman(TabChr* tebak, TabChr* history, TabChr* kamus)
 }
 
 // Program utama
-void hangman()
+void hangman(TabMap *arrSB)
 {
     // Menampilkan main menu
     mainmenu();
@@ -338,7 +340,8 @@ void hangman()
     }
 
     // Game berakhir
-    printf("=================================\n"
-           "GAME BERAKHIR. SCORE ANDA : %d\n"
-           "=================================\n", poin);
+    printf("=================================\n");
+    printf("GAME BERAKHIR.\n");
+    insertSB(&arrSB->TIMap[2],poin);
+    printf("=================================\n");
 }
