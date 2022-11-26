@@ -18,11 +18,11 @@ char* intToString(int val){
 }
 
 void saveSB(MapSB sb,FILE * txt){
-    fprintf(txt,"%s\n",intToString(sb.Count));
+    fprintf(txt,"%s",intToString(sb.Count));
     MapSB temp = sb;
     int i=0;
     for(i;i<sb.Count;i++){
-        fprintf(txt,"%s %s\n",temp.Elements[iMax(temp)].Key,intToString(Val(temp,temp.Elements[iMax(temp)].Key)));
+        fprintf(txt,"\n%s %s",temp.Elements[iMax(temp)].Key,intToString(Val(temp,temp.Elements[iMax(temp)].Key)));
         DeleteMap(&temp,temp.Elements[iMax(temp)].Key);
     }
 }
@@ -54,16 +54,9 @@ void save(char *namafile, TabStr games, Stack riwayat,TabMap arrSB)
 
   for(i=0;i<NbElmtArrMap(arrSB);i++){
     saveSB(arrSB.TIMap[i],txt);
+    fprintf(txt,"\n");
   }
-
-  // saveSB(sbRNG,txt);
-  // saveSB(sbDiner,txt);
-  // saveSB(sbHangman,txt);
-  // saveSB(sbTOH,txt);
-  // saveSB(sbSOM,txt);
-  // saveSB(sbTTT,txt);
-  // saveSB(sbsudoku,txt);
-  // saveSB(sbGameTambahan,txt);
+  saveSB(arrSB.TIMap[i],txt);
 
   fclose(txt);
   printf("Save file berhasil disimpan.\n");
