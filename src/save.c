@@ -22,7 +22,7 @@ void saveSB(MapSB sb,FILE * txt){
     MapSB temp = sb;
     int i=0;
     for(i;i<sb.Count;i++){
-        fprintf(txt,"\n%s %s",temp.Elements[iMax(temp)].Key,intToString(Val(temp,temp.Elements[iMax(temp)].Key)));
+        fprintf(txt,"\n%s %s",temp.Elements[iMax(temp)].Key,intToString(Value(temp,temp.Elements[iMax(temp)].Key)));
         DeleteMap(&temp,temp.Elements[iMax(temp)].Key);
     }
 }

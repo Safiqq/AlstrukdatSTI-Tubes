@@ -2,26 +2,6 @@
 #include "../mesinkata/mesinkata.h"
 #include "../arrayOfMap/arraymap.h"
 
-// void insertSB(TabMap *arrSB,int skor){
-//     char *str=malloc(sizeof(char)*13);
-//     // printf("Masukkan nama anda: ");
-//     // STARTWORD("", "");
-//     // str = currentWord.TabWord;
-//     printf("Masukkan nama anda: ");
-//     scanf("%s", str);
-//     while(!(!IsMemberMapSB(*arrSB->TIMap,str)&& StringLength(str)<13)){
-//         printf("Nama tidak boleh sama dan panjang kurang dari 13\n");
-//         printf("Masukkan nama anda: ");
-//         scanf("%s", str);
-//     }
-//     InsertMapSB(SB,str,skor);
-//     printf("\nOke, nama akan dimasukkan ke scoreboard\n");
-
-//     printf("Skor akhir : %d\n", skor);
-//     printf("Nama       : %s\n", str);
-// }
-
-
 void insertSB(MapSB *SB,int skor){
     char *str=malloc(sizeof(char)*13);
 

@@ -16,43 +16,6 @@ int iMax(MapSB M){
     return j;
 }
 
-boolean stringEq(char *a,char*b){
-    boolean beda=false;
-    if(StringLength(a)==StringLength(b)){
-        while(*a!='\0' && !beda){
-            if(*a!=*b){
-                beda = true;
-            }
-            *a++;
-            *b++;
-        }
-        return !beda;
-    }
-    else{
-        return beda;
-    }
-}
-
-valuetype Val(MapSB M, keytypesb k){
-    if(IsMemberMap(M,k)){
-        int i = 0;
-        boolean found=false;
-        while(i<M.Count && !found){
-            if(stringEq(M.Elements[i].Key,k)){
-
-                found = true;
-            }
-            else{
-                i++;
-            }
-        }
-        return M.Elements[i].Value;
-    }
-    else{
-        return Undefined;
-    }  
-}
-
 void printScoreboard(MapSB sb,char * nama){
     MapSB temp = sb;
     printf("**** SCOREBOARD GAME %s ****\n",nama);
@@ -64,7 +27,7 @@ void printScoreboard(MapSB sb,char * nama){
         if(StringLength(temp.Elements[iMax(temp)].Key)<6){
             printf("\t");
         }
-        printf("| %d\t\t|\n",Val(temp,temp.Elements[iMax(temp)].Key));
+        printf("| %d\t\t|\n",Value(temp,temp.Elements[iMax(temp)].Key));
         DeleteMap(&temp,temp.Elements[iMax(temp)].Key);
     }
     printf("\n");
