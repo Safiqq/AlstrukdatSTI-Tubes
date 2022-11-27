@@ -5,7 +5,12 @@ void printScoreboard(MapStr sb, char *nama)
     MapStr temp = sb;
     printf("**** SCOREBOARD GAME %s ****\n", nama);
     printf("| NAMA\t\t| SKOR\t\t|\n");
-    printf("|-------------------------------|\n");
+    if(IsEmptyMS(sb)){
+        printf("|-------SCOREBOARD KOSONG-------|\n");
+    }
+    else{
+        printf("|-------------------------------|\n");
+    }
     int i = 0;
     for (i; i < sb.Count; i++)
     {
