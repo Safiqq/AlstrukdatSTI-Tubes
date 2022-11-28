@@ -245,10 +245,10 @@ void hangman(ArrayMap *arrSB)
     // Untuk menambahkan jika user ingin membuat kamus baru
     while (!isNewKamus)
     {
-        char cmd[10];
+        //char cmd[10];
         printf("Apakah kamu mau membuat kamus baru? (Y/N) : ");
-        scanf(" %s", &cmd);
-        if (lengthStr(cmd) > 1)
+        STARTWORD("","");
+        if (lengthStr(currentWord.TabWord) > 1)
         {
             printf("Input salah, Silahkan ulangi!\n");
         }
@@ -261,14 +261,21 @@ void hangman(ArrayMap *arrSB)
                 bukaKamus = true;
             }
 
-            if (cmd[0] == 'Y')
+            if (currentWord.TabWord[0] == 'Y')
             {
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
-                scanf("%s", &newKamus);
+                STARTWORD("","");
+                int i = 0;
+                while (currentWord.TabWord[i] != '\0')
+                {
+                    newKamus[i] = currentWord.TabWord[i];
+                    i++;
+                }
+                newKamus[i] = '\0';
                 fprintf(txt, "\n%s", newKamus);
             }
-            if (cmd[0] == 'N')
+            if (currentWord.TabWord[0] == 'N')
             {
                 fclose(txt);
                 isNewKamus = true;
@@ -284,6 +291,8 @@ void hangman(ArrayMap *arrSB)
 
     // Memulai hangman
     startHangman(&tebak, &history, &kamus);
+    //Inisialisasi Variabel baris kamus di file txt
+    int line=1;
     while (chance != 0)
     {
         // Deklarasi variabel untuk tebakan
@@ -302,7 +311,14 @@ void hangman(ArrayMap *arrSB)
         while (!isValid)
         {
             printf("Masukkan tebakan: ");
-            scanf(" %s", &maxHuruf);
+            STARTWORD("","");
+            int i = 0;
+            while (currentWord.TabWord[i] != '\0')
+            {
+                maxHuruf[i] = currentWord.TabWord[i];
+                i++;
+            }
+            maxHuruf[i] = '\0';
             if (lengthStr(maxHuruf) > 1)
             {
                 printf("Silahkan input huruf bertipe char (1 huruf)!\n");
@@ -337,8 +353,15 @@ void hangman(ArrayMap *arrSB)
             }
             printf(". Kamu mendapatkan %d poin!\n", kamus.Neff);
             poin = poin + kamus.Neff;
-            ADVLINE();
+            STARTWORD("../data/hangman.txt", "r");
+            int num=1;
+            while (num<=line)
+            {
+                ADVLINE();
+                num++;
+            }
             CreateAC(&kamus);
+            line++;
             int i = 0;
             for (i; i < currentWord.Length; i++)
             {
