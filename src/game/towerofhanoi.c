@@ -414,7 +414,6 @@ void towerofhanoi(ArrayMap *arrSB)
     while (!isValidMax)
     {
         printf("Silahkan masukkan banyaknya piringan : ");
-        //scanf("%s", &strMax);
         STARTWORD("","");
         max = atoi(currentWord.TabWord);
         if (max >= 1 && max <= 9)
@@ -460,7 +459,6 @@ void towerofhanoi(ArrayMap *arrSB)
             while (!isValidAsal)
             {
                 printf("TIANG ASAL : ");
-                //scanf("\n%c", &asal);
                 STARTWORD("","");
                 asal = *currentWord.TabWord;
                 if (asal == 'A')
@@ -506,7 +504,6 @@ void towerofhanoi(ArrayMap *arrSB)
             while (!isValidTujuan)
             {
                 printf("TIANG TUJUAN : ");
-                //scanf("\n%c", &tujuan);
                 STARTWORD("","");
                 tujuan = *currentWord.TabWord;
                 if (tujuan == 'A')
