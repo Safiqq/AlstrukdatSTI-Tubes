@@ -3,18 +3,21 @@
 void InsertSB(MapStr *SB, int skor)
 {
     char *str = malloc(sizeof(char) * 13);
-
-    // printf("Masukkan nama anda: ");
-    // STARTWORD("", "");
-    // str = currentWord.TabWord;
     printf("Masukkan nama anda: ");
-    scanf("%s", str);
-    while (!(!IsMemberMS(*SB, str) && stringLength(str) < 13))
+    STARTWORD("", "");
+    while (!(!IsMemberMS(*SB, currentWord.TabWord) && stringLength(currentWord.TabWord) < 13))
     {
         printf("Nama tidak boleh sama dan panjang kurang dari 13\n");
         printf("Masukkan nama anda: ");
-        scanf("%s", str);
+        STARTWORD("","");
     }
+    int i = 0;
+    while (currentWord.TabWord[i] != '\0')
+    {
+        str[i] = currentWord.TabWord[i];
+        i++;
+    }
+    str[i] = '\0';
     InsertMS(SB, str, skor);
     printf("\nOke, nama akan dimasukkan ke scoreboard\n");
 
