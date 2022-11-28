@@ -461,7 +461,7 @@ void towerofhanoi(ArrayMap *arrSB)
                 printf("TIANG ASAL : ");
                 STARTWORD("","");
                 asal = *currentWord.TabWord;
-                if (asal == 'A')
+                if (asal == 'A' && currentWord.Length == 1)
                 {
                     if (IsEmptySI(S1))
                     {
@@ -472,7 +472,7 @@ void towerofhanoi(ArrayMap *arrSB)
                         isValidAsal = true;
                     }
                 }
-                else if (asal == 'B')
+                else if (asal == 'B' && currentWord.Length == 1)
                 {
                     if (IsEmptySI(S2))
                     {
@@ -483,7 +483,7 @@ void towerofhanoi(ArrayMap *arrSB)
                         isValidAsal = true;
                     }
                 }
-                else if (asal == 'C')
+                else if (asal == 'C' && currentWord.Length == 1)
                 {
                     if (IsEmptySI(S3))
                     {
@@ -496,7 +496,7 @@ void towerofhanoi(ArrayMap *arrSB)
                 }
                 else
                 {
-                    printf("Tidak ada Tower %c, silahkan ulangi!\n", asal);
+                    printf("Input salah silahkan ulangi!\n");
                 }
             }
 
@@ -506,7 +506,7 @@ void towerofhanoi(ArrayMap *arrSB)
                 printf("TIANG TUJUAN : ");
                 STARTWORD("","");
                 tujuan = *currentWord.TabWord;
-                if (tujuan == 'A')
+                if (tujuan == 'A' && currentWord.Length == 1)
                 {
                     if (asal == 'A')
                     {
@@ -521,7 +521,7 @@ void towerofhanoi(ArrayMap *arrSB)
                         isValidTujuan = true;
                     }
                 }
-                else if (tujuan == 'B')
+                else if (tujuan == 'B' && currentWord.Length == 1)
                 {
                     if (asal == 'B')
                     {
@@ -536,7 +536,7 @@ void towerofhanoi(ArrayMap *arrSB)
                         isValidTujuan = true;
                     }
                 }
-                else if (tujuan == 'C')
+                else if (tujuan == 'C' && currentWord.Length == 1)
                 {
                     if (asal == 'C')
                     {
