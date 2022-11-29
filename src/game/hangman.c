@@ -261,7 +261,7 @@ void hangman(ArrayMap *arrSB)
                 bukaKamus = true;
             }
 
-            if (currentWord.TabWord[0] == 'Y')
+            if (currentWord.TabWord[0] == 'Y' || currentWord.TabWord[0] == 'y')
             {
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
@@ -276,7 +276,7 @@ void hangman(ArrayMap *arrSB)
                 fprintf(txt, "\n%s", newKamus);
                 printf("Berhasil menambah kamus baru!\n");
             }
-            if (currentWord.TabWord[0] == 'N')
+            if (currentWord.TabWord[0] == 'N' || currentWord.TabWord[0] == 'n')
             {
                 fclose(txt);
                 isNewKamus = true;
