@@ -42,8 +42,6 @@ void CreateSS(StackStr *S);
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmptySS(StackStr S);
 /* Mengirim true jika StackStr kosong: lihat definisi di atas */
-boolean IsFullSS(StackStr S);
-/* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke StackStr ************ */
 void PushSS(StackStr *S, infotypeSS X);

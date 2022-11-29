@@ -149,7 +149,7 @@ void prosesKata(ArrayChar *kata, ArrayChar kamus, char huruf, int *chance)
     int i = 0;
     for (i; i < kamus.Neff; i++)
     {
-        if (kamus.TI[i] == toUpper(huruf))
+        if (kamus.TI[i] == toUpper(huruf) || kamus.TI[i] == toLower(huruf))
         {
             kata->TI[i] = toUpper(huruf);
             flag = true;
@@ -261,7 +261,7 @@ void hangman(ArrayMap *arrSB)
                 bukaKamus = true;
             }
 
-            if (currentWord.TabWord[0] == 'Y')
+            if (currentWord.TabWord[0] == 'Y' || currentWord.TabWord[0] == 'y')
             {
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
@@ -274,8 +274,9 @@ void hangman(ArrayMap *arrSB)
                 }
                 newKamus[i] = '\0';
                 fprintf(txt, "\n%s", newKamus);
+                printf("Berhasil menambah kamus baru!\n");
             }
-            if (currentWord.TabWord[0] == 'N')
+            if (currentWord.TabWord[0] == 'N' || currentWord.TabWord[0] == 'n')
             {
                 fclose(txt);
                 isNewKamus = true;
