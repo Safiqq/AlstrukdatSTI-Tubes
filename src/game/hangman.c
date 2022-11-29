@@ -274,6 +274,7 @@ void hangman(ArrayMap *arrSB)
                 }
                 newKamus[i] = '\0';
                 fprintf(txt, "\n%s", newKamus);
+                printf("Berhasil menambah kamus baru!\n");
             }
             if (currentWord.TabWord[0] == 'N')
             {
