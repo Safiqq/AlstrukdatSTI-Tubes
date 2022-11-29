@@ -337,7 +337,7 @@ void dinerdash(ArrayMap *arrSB)
 
         printf("==========================================================\n");
     }
-    InsertSB(&arrSB->TIMap[1], saldo);
     printf("Game berakhir dan score Anda : %d\n", saldo);
+    InsertSB(&arrSB->TIMap[1], saldo);
     printf("==========================================================\n\n");
 }
