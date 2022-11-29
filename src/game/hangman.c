@@ -149,7 +149,7 @@ void prosesKata(ArrayChar *kata, ArrayChar kamus, char huruf, int *chance)
     int i = 0;
     for (i; i < kamus.Neff; i++)
     {
-        if (kamus.TI[i] == toUpper(huruf))
+        if (kamus.TI[i] == toUpper(huruf) || kamus.TI[i] == toLower(huruf))
         {
             kata->TI[i] = toUpper(huruf);
             flag = true;
