@@ -242,6 +242,7 @@ void hangman(ArrayMap *arrSB)
     // Deklarasi dan inisialisasi variabel boolean untuk logika looping
     boolean isNewKamus = false;
     boolean bukaKamus = false;
+    boolean isDigit = false;
     // Untuk menambahkan jika user ingin membuat kamus baru
     while (!isNewKamus)
     {
@@ -267,16 +268,31 @@ void hangman(ArrayMap *arrSB)
                 printf("Silahkan masukkan kamus baru : ");
                 STARTWORD("","");
                 int i = 0;
-                while (currentWord.TabWord[i] != '\0')
+                while (currentWord.TabWord[i] != '\0' && !isDigit)
                 {
-                    newKamus[i] = currentWord.TabWord[i];
-                    i++;
+                    if(currentWord.TabWord[i] - '0' >= 0 &&  currentWord.TabWord[i] - '0' <= 9)
+                    {
+                        isDigit = true;
+                    }
+                    else
+                    {
+                        newKamus[i] = currentWord.TabWord[i];
+                        i++;
+                    }
                 }
-                newKamus[i] = '\0';
-                fprintf(txt, "\n%s", newKamus);
-                printf("Berhasil menambah kamus baru!\n");
+                if(!isDigit)
+                {
+                    newKamus[i] = '\0';
+                    fprintf(txt, "\n%s", newKamus);
+                    printf("Berhasil menambah kamus baru!\n");
+                }
+                else
+                {
+                    printf("Hanya boleh memasukkan kamus berupa alfabet!\n");
+                    isDigit = false;
+                }
             }
-            if (currentWord.TabWord[0] == 'N' || currentWord.TabWord[0] == 'n')
+            if ((currentWord.TabWord[0] == 'N' || currentWord.TabWord[0] == 'n') && currentWord.Length == 1)
             {
                 fclose(txt);
                 isNewKamus = true;
