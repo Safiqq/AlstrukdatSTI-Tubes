@@ -1,5 +1,17 @@
 #include "listdp.h"
 
+boolean LengthLDP(ListDP L)
+{
+    addressLDP P = First(L);
+    int count = 0;
+    while (P != NilLDP)
+    {
+        count++;
+        P = Next(P);
+    }
+    return count;
+}
+
 boolean IsEmptyLDP(ListDP L)
 {
     return First(L) == NilLDP && Last(L) == NilLDP;
@@ -53,7 +65,7 @@ addressLDP SearchLDP(ListDP L, int x, int y)
             else
                 P = Next(P);
         }
-        return isFound ? P : NilLDP;
+        return ((X(P) == x && Y(P) == y) || isFound) ? P : NilLDP;
     }
     return NilLDP;
 }

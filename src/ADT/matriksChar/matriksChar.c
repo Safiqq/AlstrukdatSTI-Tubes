@@ -3,7 +3,7 @@
 void CreateMC(Matrix2D *M, int cap)
 {
     int i, j;
-    M->MI = (ElTypeMatrix **)malloc(sizeof(int) * cap);
+    M->MI = (ElTypeMatrix **)malloc(sizeof(int) * cap * cap);
     for (i = 0; i < cap; i++)
     {
         M->MI[i] = (ElTypeMatrix *)malloc(sizeof(int) * cap);

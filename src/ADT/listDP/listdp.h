@@ -48,6 +48,7 @@ typedef struct
 #define Last(L) ((L).Last)
 
 /* PROTOTYPE */
+boolean LengthLDP(ListDP L);
 /****************** TEST ListDP KOSONG ******************/
 boolean IsEmptyLDP(ListDP L);
 /* Mengirim true jika list kosong. Lihat definisi di atas. */
