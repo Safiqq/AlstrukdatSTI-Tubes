@@ -18,11 +18,6 @@ boolean IsEmptySS(StackStr S)
 };
 
 /* Mengirim true jika StackStr kosong: lihat definisi di atas */
-boolean IsFullSS(StackStr S)
-{
-    return (Top(S) == MaxElSS - 1);
-};
-/* Mengirim true jika tabel penampung NilSSai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke StackStr ************ */
 void PushSS(StackStr *S, infotypeSS X)
