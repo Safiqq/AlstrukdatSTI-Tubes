@@ -553,7 +553,7 @@ void towerofhanoi(ArrayMap *arrSB)
                 }
                 else
                 {
-                    printf("Tidak ada Tower %c, silahkan ulangi!\n", tujuan);
+                    printf("Input salah silahkan ulangi!\n");
                 }
             }
 
