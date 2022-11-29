@@ -200,5 +200,7 @@ void snakeOnMeteor(ArrayMap *arrSB)
         summonMeteor(&M, &L);
         PrintMC(M, 0, '.');
     }
-    printf("Game berakhir. Skor: %d\n", (LengthLDP(L) - isHeadOnMeteor(M, L)) * 2);
+    int score=(LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;
+    printf("Game berakhir. Skor: %d\n", score);
+    InsertSB(&arrSB->TIMap[4], score);
 }
