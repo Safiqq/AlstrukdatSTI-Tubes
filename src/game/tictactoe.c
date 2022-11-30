@@ -224,17 +224,17 @@ void tictactoe(ArrayMap *arrSB)
     {
         printf("Silahkan input (Batu/Gunting/Kertas) untuk menentukan giliran pertama : ");
         STARTWORD("", "");
-        if (isEqual(currentWord, "BATU") || isEqual(currentWord, "Batu") || isEqual(currentWord, "batu"))
+        if (IsEqual(currentWord, "BATU") || IsEqual(currentWord, "Batu") || IsEqual(currentWord, "batu"))
         {
             p = 'B';
             flagp = true;
         }
-        else if (isEqual(currentWord, "GUNTING") || isEqual(currentWord, "Gunting") || isEqual(currentWord, "gunting"))
+        else if (IsEqual(currentWord, "GUNTING") || IsEqual(currentWord, "Gunting") || IsEqual(currentWord, "gunting"))
         {
             p = 'G';
             flagp = true;
         }
-        else if (isEqual(currentWord, "KERTAS") || isEqual(currentWord, "Kertas") || isEqual(currentWord, "kertas"))
+        else if (IsEqual(currentWord, "KERTAS") || IsEqual(currentWord, "Kertas") || IsEqual(currentWord, "kertas"))
         {
             p = 'K';
             flagp = true;

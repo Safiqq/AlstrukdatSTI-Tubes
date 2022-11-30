@@ -6,12 +6,12 @@ void resetHistory(StackStr *history, ArrayStr games)
     {
         printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET HISTORY? (YA/TIDAK) ");
         STARTWORD("", "");
-        while (!isEqual(currentWord, "YA") && !isEqual(currentWord, "TIDAK"))
+        while (!IsEqual(currentWord, "YA") && !IsEqual(currentWord, "TIDAK"))
         {
             printf("MASUKAN SALAH! SILAKAN ULANGI. (YA/TIDAK) ");
             STARTWORD("", "");
         }
-        if (isEqual(currentWord, "YA"))
+        if (IsEqual(currentWord, "YA"))
         {
             while (!IsEmptySS(*history))
             {

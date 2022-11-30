@@ -1,10 +1,15 @@
 #include "mesinkata.h"
 
-// char currentChar;
 boolean EndWord;
 Word currentWord;
 
-boolean isEqual(Word str1, char *str2)
+void ClearCurrentWord()
+{
+    currentWord.TabWord[0] = '\0';
+    currentWord.Length = 0;
+}
+
+boolean IsEqual(Word str1, char *str2)
 {
     int i = 0;
     boolean checker = (str1.Length == stringLength(str2));

@@ -5,6 +5,7 @@
 #define __MESINKATA_H__
 
 #include "../mesinkarakter/mesinkarakter.h"
+#include "../../lib.h"
 
 #define NMax 50
 #define BLANK ' '
@@ -19,12 +20,9 @@ typedef struct
 extern boolean EndWord;
 extern Word currentWord;
 
-extern int stringLength(char *str);
-/*
-   I.S. : str sembarang
-   F.S. : Mengembalikan panjang dari str */
+extern void ClearCurrentWord();
 
-extern boolean isEqual(Word str1, char *str2);
+extern boolean IsEqual(Word str1, char *str2);
 /* Mengecek apakah isi dari str1 = str2
    I.S. : str1 tidak kosong (str1.TabWord ada dan str1.Length > 0);
           str2 tidak kosong

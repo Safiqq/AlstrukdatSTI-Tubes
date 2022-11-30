@@ -205,7 +205,7 @@ void dinerdash(ArrayMap *arrSB)
         {
             printf("MASUKKAN COMMAND: ");
             STARTWORD("", "");
-            if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
+            if (IsEqual(currentWord, "COOK") || IsEqual(currentWord, "cook"))
             {
                 inp = (char *)malloc(sizeof(char) * 10);
                 inp[0] = 'C';
@@ -223,7 +223,7 @@ void dinerdash(ArrayMap *arrSB)
                     printf("M%d tidak ada pada daftar! Silahkan ulangi\n", strToInt(currentWord.TabWord));
                 }
             }
-            else if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
+            else if (IsEqual(currentWord, "SERVE") || IsEqual(currentWord, "serve"))
             {
                 inp = (char *)malloc(sizeof(char) * 10);
                 inp[0] = 'S';
@@ -246,7 +246,7 @@ void dinerdash(ArrayMap *arrSB)
                     printf("M%d belum dapat disajikan! Silahkan ulangi\n", strToInt(currentWord.TabWord));
                 }
             }
-            else if (isEqual(currentWord, "SKIP") || isEqual(currentWord, "skip"))
+            else if (IsEqual(currentWord, "SKIP") || IsEqual(currentWord, "skip"))
             {
                 isValid = true;
                 isSkip = true;
@@ -281,7 +281,7 @@ void dinerdash(ArrayMap *arrSB)
         {
             // Jika command = "COOK" maka akan memasak makanan dengan id dari input user
             if (inp[0] == 'C' || inp[0] == 'c')
-            // if (isEqual(currentWord, "COOK") || isEqual(currentWord, "cook"))
+            // if (IsEqual(currentWord, "COOK") || IsEqual(currentWord, "cook"))
             {
                 keytype k = strToInt(currentWord.TabWord);
                 valuetype v = Q.buffer[k].timeC;
@@ -290,7 +290,7 @@ void dinerdash(ArrayMap *arrSB)
             }
             // Jika command = "SERVE" maka akan menyajikan makanan dengan id dari input user
             if (inp[0] == 'S' || inp[0] == 's' && (inp[1] == 'E' || inp[1] == 'e'))
-            // if (isEqual(currentWord, "SERVE") || isEqual(currentWord, "serve"))
+            // if (IsEqual(currentWord, "SERVE") || IsEqual(currentWord, "serve"))
             {
                 // Check apakah makanan yang akan disajikan merupakan IDX_HEAD dari Queue order
                 if (strToInt(currentWord.TabWord) == IDX_HEAD(Q))

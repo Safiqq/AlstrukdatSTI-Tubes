@@ -19,18 +19,18 @@ int main()
         printf("ENTER COMMAND: ");
         STARTWORD("", "");
 
-        if (isEqual(currentWord, "START"))
+        if (IsEqual(currentWord, "START"))
         {
             start(&games);
             isLogged = true;
         }
-        else if (isEqual(currentWord, "LOAD"))
+        else if (IsEqual(currentWord, "LOAD"))
         {
             ADVWORD();
             load(currentWord.TabWord, &games, &riwayat, &arraySB);
             isLogged = true;
         }
-        else if (isEqual(currentWord, "SAVE"))
+        else if (IsEqual(currentWord, "SAVE"))
         {
             ADVWORD();
             if (isLogged)
@@ -38,10 +38,10 @@ int main()
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
-        else if (isEqual(currentWord, "CREATE"))
+        else if (IsEqual(currentWord, "CREATE"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     createGame(currentWord.TabWord, &games, &arraySB);
@@ -51,10 +51,10 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "LIST"))
+        else if (IsEqual(currentWord, "LIST"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     listGame(games);
@@ -64,10 +64,10 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "DELETE"))
+        else if (IsEqual(currentWord, "DELETE"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     deleteGame(&games, &antriangames, &riwayat, &arraySB);
@@ -77,10 +77,10 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "QUEUE"))
+        else if (IsEqual(currentWord, "QUEUE"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     queueGame(&games, &antriangames);
@@ -90,10 +90,10 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "PLAY"))
+        else if (IsEqual(currentWord, "PLAY"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     playGame(&games, &antriangames, &riwayat, &arraySB);
@@ -103,10 +103,10 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "SKIP"))
+        else if (IsEqual(currentWord, "SKIP"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "GAME"))
+            if (IsEqual(currentWord, "GAME"))
             {
                 if (isLogged)
                     skipGame(currentWord, &games, &antriangames, &riwayat, &arraySB);
@@ -116,24 +116,24 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "HISTORY"))
+        else if (IsEqual(currentWord, "HISTORY"))
         {
             if (isLogged)
                 history(&riwayat, games);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
-        else if (isEqual(currentWord, "RESET"))
+        else if (IsEqual(currentWord, "RESET"))
         {
             ADVWORD();
-            if (isEqual(currentWord, "HISTORY"))
+            if (IsEqual(currentWord, "HISTORY"))
             {
                 if (isLogged)
                     resetHistory(&riwayat, games);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
-            else if (isEqual(currentWord, "SCOREBOARD"))
+            else if (IsEqual(currentWord, "SCOREBOARD"))
             {
                 if (isLogged)
                     resetScoreboard(&arraySB, games);
@@ -143,22 +143,20 @@ int main()
             else
                 commandLain();
         }
-        else if (isEqual(currentWord, "SCOREBOARD"))
+        else if (IsEqual(currentWord, "SCOREBOARD"))
         {
             if (isLogged)
                 scoreboard(arraySB, games);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
-        else if (isEqual(currentWord, "QUIT"))
+        else if (IsEqual(currentWord, "QUIT"))
             quit();
-        else if (isEqual(currentWord, "HELP"))
+        else if (IsEqual(currentWord, "HELP"))
             help(isLogged);
         else
             commandLain();
-        // Reset currentWord
-        currentWord.TabWord[0] = '\0';
-        currentWord.Length = 0;
+        ClearCurrentWord();
     }
     return 0;
 }
