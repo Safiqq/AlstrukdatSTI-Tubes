@@ -3,7 +3,7 @@
 
 #include "../ADT/arrayMap/arrayMap.h"
 #include "../ADT/mapStr/mapStr.h"
-#include "../ADT/matriksChar/matriksChar.h"
+#include "../ADT/matrixInt/matrixInt.h"
 #include "../ADT/mesinkata/mesinkata.h"
 
 #endif

@@ -12,7 +12,7 @@
 #include "../ADT/listdp/listdp.h"
 #include "../ADT/mapInt/mapInt.h"
 #include "../ADT/mapStr/mapStr.h"
-#include "../ADT/matriksChar/matriksChar.h"
+#include "../ADT/matrixInt/matrixInt.h"
 #include "../ADT/mesinkarakter/mesinkarakter.h"
 #include "../ADT/mesinkata/mesinkata.h"
 #include "../ADT/queueInt/queueInt.h"

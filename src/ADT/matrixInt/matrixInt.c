@@ -1,21 +1,21 @@
-#include "matriksChar.h"
+#include "matrixInt.h"
 
-void CreateMC(Matrix2D *M, int cap)
+void CreateMxI(Matrix2D *M, int cap)
 {
     int i, j;
-    M->MI = (ElTypeMatrix **)malloc(sizeof(int) * cap * cap);
+    M->MI = (ElTypeMxI **)malloc(sizeof(int) * cap * cap);
     for (i = 0; i < cap; i++)
     {
-        M->MI[i] = (ElTypeMatrix *)malloc(sizeof(int) * cap);
+        M->MI[i] = (ElTypeMxI *)malloc(sizeof(int) * cap);
         for (j = 0; j < cap; j++)
         {
-            M->MI[i][j] = '0';
+            M->MI[i][j] = 0;
         }
     }
     M->capacity = cap;
 }
 
-boolean IsFullMC(Matrix2D M)
+boolean IsFullMxI(Matrix2D M)
 {
     int i = 0, j;
     boolean IsFullSI = true;
@@ -24,7 +24,7 @@ boolean IsFullMC(Matrix2D M)
         j = 0;
         while (j < M.capacity && IsFullSI)
         {
-            if (M.MI[i][j] == '0')
+            if (M.MI[i][j] == 0)
                 IsFullSI = false;
             j++;
         }
@@ -33,7 +33,7 @@ boolean IsFullMC(Matrix2D M)
     return IsFullSI;
 }
 
-void PrintMC(Matrix2D M, int sub, char zero)
+void PrintMxI(Matrix2D M, int sub, char zero)
 {
     int i, j, k;
     printf(" ");
@@ -51,7 +51,7 @@ void PrintMC(Matrix2D M, int sub, char zero)
             else if (sub > 0)
                 if (j % sub == 0)
                     printf("| ");
-            printf("%c", M.MI[i][j] == '0' ? zero : M.MI[i][j]);
+            printf("%c", M.MI[i][j] == 0 ? zero : M.MI[i][j]);
             if (j != M.capacity - 1)
                 printf(" ");
             else

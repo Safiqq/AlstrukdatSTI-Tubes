@@ -21,10 +21,10 @@ void checkSnake(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
     int i = X(P), j = Y(P);
-    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == '0' && M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == '0' && M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == '0' && M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == '0')
+    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == 0 && M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == 0 && M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == 0 && M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == 0)
         snakeGameOver = true;
     else
-        snakeGameOver = IsFullMC(M) || isHeadOnMeteor(M, L);
+        snakeGameOver = IsFullMxI(M) || isHeadOnMeteor(M, L);
 }
 
 void clearMeteor(Matrix2D *M)
@@ -35,7 +35,7 @@ void clearMeteor(Matrix2D *M)
         for (j = 0; j < M->capacity; j++)
         {
             if (M->MI[i][j] == 'M')
-                M->MI[i][j] = '0';
+                M->MI[i][j] = 0;
         }
     }
 }
@@ -48,7 +48,7 @@ void clearFood(Matrix2D *M)
         for (j = 0; j < M->capacity; j++)
         {
             if (M->MI[i][j] == 'M')
-                M->MI[i][j] = '0';
+                M->MI[i][j] = 0;
         }
     }
 }
@@ -56,13 +56,13 @@ void clearFood(Matrix2D *M)
 void addSnakeTail(Matrix2D M, ListDP *L)
 {
     addressLDP P = Last(*L);
-    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == '0')
+    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
-    else if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == '0')
+    else if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1);
-    else if (M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == '0')
+    else if (M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P));
-    else if (M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == '0')
+    else if (M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
     else
         snakeGameOver = true;
@@ -80,27 +80,42 @@ void updateSnake(Matrix2D *M, ListDP L)
 
 void moveSnake(Matrix2D *M, ListDP *L)
 {
-    char inp;
-    addressLDP P = First(*L);
+    addressLDP P = First(*L),
+               PW = SearchLDP(*L, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P)),
+               PA = SearchLDP(*L, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1),
+               PS = SearchLDP(*L, X(P) + 1 < 0 ? 4 : X(P) + 1, Y(P)),
+               PD = SearchLDP(*L, X(P), Y(P) + 1 < 0 ? 4 : Y(P) + 1);
+    char inp,
+        W = M->MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)],
+        A = M->MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
+        S = M->MI[X(P) + 1 < 0 ? 4 : X(P) + 1][Y(P)],
+        D = M->MI[X(P)][Y(P) + 1 < 0 ? 4 : Y(P) + 1];
     STARTWORD("", "");
     while (!isEqual(currentWord, "W") && !isEqual(currentWord, "A") && !isEqual(currentWord, "S") && !isEqual(currentWord, "D"))
     {
         printf("Input salah!\n");
         STARTWORD("", "");
     }
-    if ((SearchLDP(*L, X(P) - 1, Y(P)) != NilLDP && isEqual(currentWord, "W")) ||
-        (SearchLDP(*L, X(P), Y(P) - 1) != NilLDP && isEqual(currentWord, "A")) ||
-        (SearchLDP(*L, X(P) + 1, Y(P)) != NilLDP && isEqual(currentWord, "S")) ||
-        (SearchLDP(*L, X(P), Y(P) + 1) != NilLDP && isEqual(currentWord, "D")))
+    if ((PW != NilLDP && isEqual(currentWord, "W")) ||
+        (PA != NilLDP && isEqual(currentWord, "A")) ||
+        (PS != NilLDP && isEqual(currentWord, "S")) ||
+        (PD != NilLDP && isEqual(currentWord, "D")))
     {
         printf("Menabrak body\n");
     }
+    else if ((W == 'M' && isEqual(currentWord, "W")) ||
+             (A == 'M' && isEqual(currentWord, "A")) ||
+             (S == 'M' && isEqual(currentWord, "S")) ||
+             (D == 'M' && isEqual(currentWord, "D")))
+    {
+        printf("Menabrak meteor\n");
+    }
     else
     {
-        if ((M->MI[X(P) - 1][Y(P)] == 'o' && isEqual(currentWord, "W")) ||
-            (M->MI[X(P)][Y(P) - 1] == 'o' && isEqual(currentWord, "A")) ||
-            (M->MI[X(P) + 1][Y(P)] == 'o' && isEqual(currentWord, "S")) ||
-            (M->MI[X(P)][Y(P) + 1] == 'o' && isEqual(currentWord, "D")))
+        if ((W == 'o' && isEqual(currentWord, "W")) ||
+            (A == 'o' && isEqual(currentWord, "A")) ||
+            (S == 'o' && isEqual(currentWord, "S")) ||
+            (D == 'o' && isEqual(currentWord, "D")))
         {
             printf("Berhasil memakan!\n");
             addSnakeTail(*M, L);
@@ -108,7 +123,7 @@ void moveSnake(Matrix2D *M, ListDP *L)
             summonFood(M);
         }
         P = Last(*L);
-        M->MI[X(P)][Y(P)] = '0';
+        M->MI[X(P)][Y(P)] = 0;
         while (P != First(*L))
         {
             X(P) = X(Prev(P));
@@ -152,7 +167,7 @@ void summonFood(Matrix2D *M)
     int x = rand() % 4, y = rand() % 4;
     clearFood(M);
     // Open addressing
-    while (M->MI[x][y] != '0')
+    while (M->MI[x][y] != 0)
     {
         x++;
         if (x > 4)
@@ -238,15 +253,15 @@ void snakeOnMeteor(ArrayMap *arrSB)
     Matrix2D M;
     ListDP L;
     int i;
-    CreateMC(&M, 5), CreateLDP(&L);
+    CreateMxI(&M, 5), CreateLDP(&L);
     summonSnake(&M, &L), summonFood(&M);
-    PrintMC(M, 0, '.');
+    PrintMxI(M, 0, '.');
     while (!snakeGameOver)
     {
         moveSnake(&M, &L);
         if (!snakeGameOver)
             summonMeteor(&M, &L);
-        PrintMC(M, 0, '.');
+        PrintMxI(M, 0, '.');
         checkSnake(M, L);
     }
     int score = (LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;

@@ -1,8 +1,8 @@
-/* File: matriksChar.h */
-/* Definisi ADT Matriks of Char */
+/* File: matrixInt.h */
+/* Definisi ADT Matrix of Int */
 
-#ifndef __MATRIKSCHAR_H__
-#define __MATRIKSCHAR_H__
+#ifndef __MATRIXINT_H__
+#define __MATRIXINT_H__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,11 +10,11 @@
 #include "../../header/boolean.h"
 
 /* Definisi elemen dan koleksi objek */
-typedef char ElTypeMatrix;
+typedef int ElTypeMxI;
 
 typedef struct
 {
-   ElTypeMatrix **MI; /* memori tempat penyimpan elemen (container) */
+   ElTypeMxI **MI; /* memori tempat penyimpan elemen (container) */
    int capacity;      /* kapasitas matriks */
    int Neff;          /* banyaknya elemen efektif */
 } Matrix2D;
@@ -33,17 +33,17 @@ typedef struct
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong */
-extern void CreateMC(Matrix2D *M, int cap);
+extern void CreateMxI(Matrix2D *M, int cap);
 /* I.S. sembarang
    F.S. Terbentuk matriks M berisi template dengan ukuran capxcap
 */
 
-extern void PrintMC(Matrix2D M, int sub, char zero);
+extern void PrintMxI(Matrix2D M, int sub, char zero);
 /* I.S. sembarang
    F.S. Menampilkan matriks sesuai format
 */
 
-extern boolean IsFullMC(Matrix2D M);
+extern boolean IsFullMxI(Matrix2D M);
 /* I.S. sembarang
    F.S. Mengembalikan true apabila matriks penuh
 */
