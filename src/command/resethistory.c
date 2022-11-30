@@ -1,6 +1,6 @@
 #include "../header/resethistory.h"
 
-void resetHistory(StackStr *history, ArrayStr games)
+void resetHistory(StackStr *history)
 {
     if (!IsEmptySS(*history))
     {

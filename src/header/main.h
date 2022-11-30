@@ -33,8 +33,8 @@ void deleteGame(ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMa
 void queueGame(ArrayStr *games, Queue *antriangames);
 void playGame(ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMap *arraySB);
 void skipGame(Word skip, ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMap *ArraySB);
-void history(StackStr *history, ArrayStr games);
-void resetHistory(StackStr *history, ArrayStr games);
+void history(StackStr *history);
+void resetHistory(StackStr *history);
 void resetScoreboard(ArrayMap *arrSB, ArrayStr games);
 void scoreboard(ArrayMap arrSB, ArrayStr games);
 void quit();
