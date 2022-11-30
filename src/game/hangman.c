@@ -243,6 +243,7 @@ void hangman(ArrayMap *arrSB)
     boolean isNewKamus = false;
     boolean bukaKamus = false;
     boolean isDigit = false;
+    boolean isNonAlphabet = false;
     // Untuk menambahkan jika user ingin membuat kamus baru
     while (!isNewKamus)
     {
@@ -268,11 +269,15 @@ void hangman(ArrayMap *arrSB)
                 printf("Silahkan masukkan kamus baru : ");
                 STARTWORD("","");
                 int i = 0;
-                while (currentWord.TabWord[i] != '\0' && !isDigit)
+                while (currentWord.TabWord[i] != '\0' && !isDigit && !isNonAlphabet)
                 {
                     if(currentWord.TabWord[i] - '0' >= 0 &&  currentWord.TabWord[i] - '0' <= 9)
                     {
                         isDigit = true;
+                    }
+                    else if((currentWord.TabWord[i] >= 32 && currentWord.TabWord[i] <= 64) || (currentWord.TabWord[i] >= 91 && currentWord.TabWord[i] <=96) || currentWord.TabWord[i] >= 123)
+                    {
+                        isNonAlphabet = true;
                     }
                     else
                     {
@@ -280,7 +285,7 @@ void hangman(ArrayMap *arrSB)
                         i++;
                     }
                 }
-                if(!isDigit)
+                if(!isDigit && !isNonAlphabet)
                 {
                     newKamus[i] = '\0';
                     fprintf(txt, "\n%s", newKamus);
@@ -290,6 +295,7 @@ void hangman(ArrayMap *arrSB)
                 {
                     printf("Hanya boleh memasukkan kamus berupa alfabet!\n");
                     isDigit = false;
+                    isNonAlphabet = false;
                 }
             }
             if ((currentWord.TabWord[0] == 'N' || currentWord.TabWord[0] == 'n') && currentWord.Length == 1)
