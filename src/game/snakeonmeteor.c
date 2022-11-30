@@ -171,15 +171,11 @@ void summonMeteor(Matrix2D *M, ListDP *L)
     int x = rand() % 4, y = rand() % 4;
     clearMeteor(M);
     addressLDP P = SearchLDP(*L, x, y), temp;
-    if (P != NilLDP)
+    if (M->MI[x][y] == 'o') // Meteor can't replace food
     {
-        // Meteor can't replace food
-        if (Info(P) == 'o')
-        {
-            y++;
-            if (y > 4)
-                y = 0;
-        }
+        y++;
+        if (y > 4)
+            y = 0;
     }
     M->MI[x][y] = 'M';
     P = SearchLDP(*L, x, y);
