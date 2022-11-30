@@ -56,12 +56,16 @@ void clearFood(Matrix2D *M)
 void addSnakeTail(Matrix2D M, ListDP *L)
 {
     addressLDP P = Last(*L);
-    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == 0)
-        InsVLastLDP(L, Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
-    else if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == 0)
+    // Cek kiri
+    if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1);
+    // Cek atas
+    else if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == 0)
+        InsVLastLDP(L, Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
+    // Cek bawah
     else if (M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P));
+    // Cek kanan
     else if (M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == 0)
         InsVLastLDP(L, Info(P) + 1, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
     else
@@ -91,31 +95,31 @@ void moveSnake(Matrix2D *M, ListDP *L)
         S = M->MI[X(P) + 1 < 0 ? 4 : X(P) + 1][Y(P)],
         D = M->MI[X(P)][Y(P) + 1 < 0 ? 4 : Y(P) + 1];
     STARTWORD("", "");
-    while (!isEqual(currentWord, "W") && !isEqual(currentWord, "A") && !isEqual(currentWord, "S") && !isEqual(currentWord, "D"))
+    while (!IsEqual(currentWord, "W") && !IsEqual(currentWord, "A") && !IsEqual(currentWord, "S") && !IsEqual(currentWord, "D"))
     {
         printf("Input salah!\n");
         STARTWORD("", "");
     }
-    if ((PW != NilLDP && isEqual(currentWord, "W")) ||
-        (PA != NilLDP && isEqual(currentWord, "A")) ||
-        (PS != NilLDP && isEqual(currentWord, "S")) ||
-        (PD != NilLDP && isEqual(currentWord, "D")))
+    if ((PW != NilLDP && IsEqual(currentWord, "W")) ||
+        (PA != NilLDP && IsEqual(currentWord, "A")) ||
+        (PS != NilLDP && IsEqual(currentWord, "S")) ||
+        (PD != NilLDP && IsEqual(currentWord, "D")))
     {
         printf("Menabrak body\n");
     }
-    else if ((W == 'M' && isEqual(currentWord, "W")) ||
-             (A == 'M' && isEqual(currentWord, "A")) ||
-             (S == 'M' && isEqual(currentWord, "S")) ||
-             (D == 'M' && isEqual(currentWord, "D")))
+    else if ((W == 'M' && IsEqual(currentWord, "W")) ||
+             (A == 'M' && IsEqual(currentWord, "A")) ||
+             (S == 'M' && IsEqual(currentWord, "S")) ||
+             (D == 'M' && IsEqual(currentWord, "D")))
     {
         printf("Menabrak meteor\n");
     }
     else
     {
-        if ((W == 'o' && isEqual(currentWord, "W")) ||
-            (A == 'o' && isEqual(currentWord, "A")) ||
-            (S == 'o' && isEqual(currentWord, "S")) ||
-            (D == 'o' && isEqual(currentWord, "D")))
+        if ((W == 'o' && IsEqual(currentWord, "W")) ||
+            (A == 'o' && IsEqual(currentWord, "A")) ||
+            (S == 'o' && IsEqual(currentWord, "S")) ||
+            (D == 'o' && IsEqual(currentWord, "D")))
         {
             printf("Berhasil memakan!\n");
             addSnakeTail(*M, L);
@@ -131,25 +135,25 @@ void moveSnake(Matrix2D *M, ListDP *L)
             M->MI[X(Prev(P))][Y(Prev(P))] = Info(P);
             P = Prev(P);
         }
-        if (isEqual(currentWord, "W"))
+        if (IsEqual(currentWord, "W"))
         {
             X(P) -= 1;
             if (X(P) < 0)
                 X(P) = 4;
         }
-        else if (isEqual(currentWord, "A"))
+        else if (IsEqual(currentWord, "A"))
         {
             Y(P) -= 1;
             if (Y(P) < 0)
                 Y(P) = 4;
         }
-        else if (isEqual(currentWord, "S"))
+        else if (IsEqual(currentWord, "S"))
         {
             X(P) += 1;
             if (X(P) > 4)
                 X(P) = 0;
         }
-        else if (isEqual(currentWord, "D"))
+        else if (IsEqual(currentWord, "D"))
         {
             Y(P) += 1;
             if (Y(P) > 4)
@@ -157,9 +161,7 @@ void moveSnake(Matrix2D *M, ListDP *L)
         }
         M->MI[X(P)][Y(P)] = 'H';
     }
-    // Reset currentWord
-    currentWord.TabWord[0] = '\0';
-    currentWord.Length = 0;
+    ClearCurrentWord();
 }
 
 void summonFood(Matrix2D *M)
@@ -249,6 +251,7 @@ void summonSnake(Matrix2D *M, ListDP *L)
 
 void snakeOnMeteor(ArrayMap *arrSB)
 {
+    snakeGameOver = false;
     srand(time(NULL));
     Matrix2D M;
     ListDP L;
@@ -267,4 +270,5 @@ void snakeOnMeteor(ArrayMap *arrSB)
     int score = (LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;
     printf("Game berakhir. Skor: %d\n", score);
     InsertSB(&arrSB->TIMap[4], score);
+    ClearCurrentWord();
 }
