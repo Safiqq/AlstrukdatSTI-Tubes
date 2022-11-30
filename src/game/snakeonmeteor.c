@@ -1,5 +1,7 @@
 #include "../header/snakeonmeteor.h"
 
+boolean snakeGameOver = false;
+
 boolean isHeadOnMeteor(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
@@ -15,14 +17,14 @@ boolean isHeadOnMeteor(Matrix2D M, ListDP L)
     return false;
 }
 
-boolean isSnakeDead(Matrix2D M, ListDP L)
+void checkSnake(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
     int i = X(P), j = Y(P);
     if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == '0' && M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == '0' && M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == '0' && M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == '0')
-        return true;
+        snakeGameOver = true;
     else
-        return IsFullMC(M) || isHeadOnMeteor(M, L);
+        snakeGameOver = IsFullMC(M) || isHeadOnMeteor(M, L);
 }
 
 void clearMeteor(Matrix2D *M)
@@ -36,6 +38,34 @@ void clearMeteor(Matrix2D *M)
                 M->MI[i][j] = '0';
         }
     }
+}
+
+void clearFood(Matrix2D *M)
+{
+    int i, j;
+    for (i = 0; i < M->capacity; i++)
+    {
+        for (j = 0; j < M->capacity; j++)
+        {
+            if (M->MI[i][j] == 'M')
+                M->MI[i][j] = '0';
+        }
+    }
+}
+
+void addSnakeTail(Matrix2D M, ListDP *L)
+{
+    addressLDP P = Last(*L);
+    if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == '0')
+        InsVLastLDP(L, Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
+    else if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == '0')
+        InsVLastLDP(L, Info(P) + 1, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1);
+    else if (M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == '0')
+        InsVLastLDP(L, Info(P) + 1, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P));
+    else if (M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == '0')
+        InsVLastLDP(L, Info(P) + 1, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
+    else
+        snakeGameOver = true;
 }
 
 void updateSnake(Matrix2D *M, ListDP L)
@@ -67,6 +97,16 @@ void moveSnake(Matrix2D *M, ListDP *L)
     }
     else
     {
+        if ((M->MI[X(P) - 1][Y(P)] == 'o' && isEqual(currentWord, "W")) ||
+            (M->MI[X(P)][Y(P) - 1] == 'o' && isEqual(currentWord, "A")) ||
+            (M->MI[X(P) + 1][Y(P)] == 'o' && isEqual(currentWord, "S")) ||
+            (M->MI[X(P)][Y(P) + 1] == 'o' && isEqual(currentWord, "D")))
+        {
+            printf("Berhasil memakan!\n");
+            addSnakeTail(*M, L);
+            updateSnake(M, *L);
+            summonFood(M);
+        }
         P = Last(*L);
         M->MI[X(P)][Y(P)] = '0';
         while (P != First(*L))
@@ -102,20 +142,25 @@ void moveSnake(Matrix2D *M, ListDP *L)
         }
         M->MI[X(P)][Y(P)] = 'H';
     }
+    // Reset currentWord
+    currentWord.TabWord[0] = '\0';
+    currentWord.Length = 0;
 }
 
 void summonFood(Matrix2D *M)
 {
     int x = rand() % 4, y = rand() % 4;
+    clearFood(M);
+    // Open addressing
     while (M->MI[x][y] != '0')
     {
         x++;
-        if (x == 5)
+        if (x > 4)
         {
             x = 0;
             y++;
         }
-        if (y == 5)
+        if (y > 4)
             y = 0;
     }
     M->MI[x][y] = 'o';
@@ -125,16 +170,23 @@ void summonMeteor(Matrix2D *M, ListDP *L)
 {
     int x = rand() % 4, y = rand() % 4;
     clearMeteor(M);
-    M->MI[x][y] = 'M';
-    // updateSnake(M, *L);
-    // PrintMC(*M, 0, '.');
     addressLDP P = SearchLDP(*L, x, y), temp;
     if (P != NilLDP)
     {
-        if (Info(P) == 'H')
+        // Meteor can't replace food
+        if (Info(P) == 'o')
         {
-            printf("Kepala snake terkena meteor!\n");
+            y++;
+            if (y > 4)
+                y = 0;
         }
+    }
+    M->MI[x][y] = 'M';
+    P = SearchLDP(*L, x, y);
+    if (P != NilLDP)
+    {
+        if (Info(P) == 'H')
+            printf("Kepala snake terkena meteor!\n");
         else
         {
             printf("Anda terkena meteor!\n");
@@ -191,16 +243,17 @@ void snakeOnMeteor(ArrayMap *arrSB)
     ListDP L;
     int i;
     CreateMC(&M, 5), CreateLDP(&L);
-    summonSnake(&M, &L);
-    // summonFood(&M);
+    summonSnake(&M, &L), summonFood(&M);
     PrintMC(M, 0, '.');
-    while (!isSnakeDead(M, L))
+    while (!snakeGameOver)
     {
         moveSnake(&M, &L);
-        summonMeteor(&M, &L);
+        if (!snakeGameOver)
+            summonMeteor(&M, &L);
         PrintMC(M, 0, '.');
+        checkSnake(M, L);
     }
-    int score=(LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;
+    int score = (LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;
     printf("Game berakhir. Skor: %d\n", score);
     InsertSB(&arrSB->TIMap[4], score);
 }
