@@ -1,6 +1,6 @@
 #include "../header/history.h"
 
-void history(StackStr *history, ArrayStr games)
+void history(StackStr *history)
 {
     ADVWORD();
     int i, num = atoi(currentWord.TabWord);

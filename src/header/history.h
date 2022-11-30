@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 
-#include "../ADT/arrayStr/arrayStr.h"
 #include "../ADT/mesinkata/mesinkata.h"
 #include "../ADT/stackStr/stackStr.h"
 

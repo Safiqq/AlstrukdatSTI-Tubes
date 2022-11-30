@@ -119,7 +119,7 @@ int main()
         else if (IsEqual(currentWord, "HISTORY"))
         {
             if (isLogged)
-                history(&riwayat, games);
+                history(&riwayat);
             else
                 printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
         }
@@ -129,7 +129,7 @@ int main()
             if (IsEqual(currentWord, "HISTORY"))
             {
                 if (isLogged)
-                    resetHistory(&riwayat, games);
+                    resetHistory(&riwayat);
                 else
                     printf("Kamu perlu menjalankan START/LOAD terlebih dahulu.\n");
             }
