@@ -7,7 +7,7 @@ void InsertSB(MapStr *SB, int skor)
     STARTWORD("", "");
     while (!(!IsMemberMS(*SB, currentWord.TabWord) && stringLength(currentWord.TabWord) < 13))
     {
-        printf("Nama tidak boleh sama dan panjang kurang dari 13\n");
+        printf("Nama tidak boleh sama dan panjang nama harus kurang dari 13 karakter\n");
         printf("Masukkan nama anda: ");
         STARTWORD("","");
     }
