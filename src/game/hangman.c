@@ -244,6 +244,7 @@ void hangman(ArrayMap *arrSB)
     boolean bukaKamus = false;
     boolean isDigit = false;
     boolean isNonAlphabet = false;
+    boolean isEmptyKamus = false;
     // Untuk menambahkan jika user ingin membuat kamus baru
     while (!isNewKamus)
     {
@@ -267,29 +268,42 @@ void hangman(ArrayMap *arrSB)
             {
                 char newKamus[21];
                 printf("Silahkan masukkan kamus baru : ");
+                ClearCurrentWord();
                 STARTWORD("","");
                 int i = 0;
-                while (currentWord.TabWord[i] != '\0' && !isDigit && !isNonAlphabet)
+                if(currentWord.TabWord[i] == '\0')
                 {
-                    if(currentWord.TabWord[i] - '0' >= 0 &&  currentWord.TabWord[i] - '0' <= 9)
+                    isEmptyKamus = true;
+                }
+                else
+                {
+                    while (currentWord.TabWord[i] != '\0' && !isDigit && !isNonAlphabet)
                     {
-                        isDigit = true;
-                    }
-                    else if((currentWord.TabWord[i] >= 32 && currentWord.TabWord[i] <= 64) || (currentWord.TabWord[i] >= 91 && currentWord.TabWord[i] <=96) || currentWord.TabWord[i] >= 123)
-                    {
-                        isNonAlphabet = true;
-                    }
-                    else
-                    {
-                        newKamus[i] = currentWord.TabWord[i];
-                        i++;
+                        if(currentWord.TabWord[i] - '0' >= 0 &&  currentWord.TabWord[i] - '0' <= 9)
+                        {
+                            isDigit = true;
+                        }
+                        else if((currentWord.TabWord[i] >= 32 && currentWord.TabWord[i] <= 64) || (currentWord.TabWord[i] >= 91 && currentWord.TabWord[i] <=96) || currentWord.TabWord[i] >= 123)
+                        {
+                            isNonAlphabet = true;
+                        }
+                        else
+                        {
+                            newKamus[i] = currentWord.TabWord[i];
+                            i++;
+                        }
                     }
                 }
-                if(!isDigit && !isNonAlphabet)
+                if(!isDigit && !isNonAlphabet && !isEmptyKamus)
                 {
                     newKamus[i] = '\0';
                     fprintf(txt, "\n%s", newKamus);
                     printf("Berhasil menambah kamus baru!\n");
+                }
+                else if(isEmptyKamus)
+                {
+                    printf("Kata tidak boleh kosong!\n");
+                    isEmptyKamus = false;
                 }
                 else
                 {
