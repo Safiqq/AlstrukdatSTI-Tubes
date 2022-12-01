@@ -17,7 +17,7 @@ typedef struct
 {
 	int x;
 	int y;
-	char info;
+	int info;
 } ElTypeLDP;
 typedef struct tElmtLDP *addressLDP;
 typedef struct tElmtLDP
@@ -59,7 +59,7 @@ void CreateLDP(ListDP *L);
 /* F.S. Terbentuk list kosong. Lihat definisi di atas. */
 
 /****************** Manajemen Memori ******************/
-addressLDP AlokasiLDP(char info, int x, int y);
+addressLDP AlokasiLDP(int info, int x, int y);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil. */
 /* Misalnya: menghasilkan P, maka Info(P)=X, Next(P)=NilLDP, Prev(P)=NilLDP */
@@ -77,11 +77,11 @@ addressLDP SearchLDP(ListDP L, int x, int y);
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirstLDP(ListDP *L, char info, int x, int y);
+void InsVFirstLDP(ListDP *L, int info, int x, int y);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLastLDP(ListDP *L, char info, int x, int y);
+void InsVLastLDP(ListDP *L, int info, int x, int y);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -123,7 +123,7 @@ void DelLastLDP(ListDP *L, addressLDP *P);
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen pertama yg lama, jika ada */
-void DelPLDP(ListDP *L, char X, int x, int y);
+void DelPLDP(ListDP *L, int info, int x, int y);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
 /* maka P dihapus dari list dan didealokasi */

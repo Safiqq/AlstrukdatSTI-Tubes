@@ -33,11 +33,12 @@ boolean IsFullMxI(Matrix2D M)
     return IsFullSI;
 }
 
-void PrintMxI(Matrix2D M, int sub, char zero)
+void PrintMxI(Matrix2D M, int sub, char zero, boolean useTab)
 {
     int i, j, k;
+    printf("Berikut merupakan peta permainan:\n");
     printf(" ");
-    for (k = 0; k < M.capacity * 2 + sub + 1 + (sub > 0); k++)
+    for (k = 0; k < (M.capacity + useTab) * (useTab ? 7 : 2) + (useTab ? M.capacity - 1 : 0) + sub + 1 + (sub > 0); k++)
     {
         printf("-");
     }
@@ -47,15 +48,20 @@ void PrintMxI(Matrix2D M, int sub, char zero)
         for (j = 0; j < M.capacity; j++)
         {
             if (sub == 0 && j == 0)
-                printf("| ");
+                useTab ? printf("|\t") : printf("| ");
             else if (sub > 0)
                 if (j % sub == 0)
-                    printf("| ");
-            printf("%c", M.MI[i][j] == 0 ? zero : M.MI[i][j]);
-            if (j != M.capacity - 1)
-                printf(" ");
+                    useTab ? printf("|\t") : printf("| ");
+            if (M.MI[i][j] == 0)
+                printf("%c", zero);
+            else if (M.MI[i][j] == 'H' || M.MI[i][j] == 'M' || M.MI[i][j] == 'o' || M.MI[i][j] == '#' || M.MI[i][j] == 'X' || M.MI[i][j] == 'O')
+                printf("%c", M.MI[i][j]);
             else
-                printf(" |");
+                printf("%d", M.MI[i][j]);
+            if (j != M.capacity - 1)
+                useTab ? printf("\t") : printf(" ");
+            else
+                useTab ? printf("\t|") : printf(" |");
         }
         if (sub > 0)
             if (i % sub == sub - 1 && i != M.capacity - 1)
@@ -69,7 +75,7 @@ void PrintMxI(Matrix2D M, int sub, char zero)
         printf("\n");
     }
     printf(" ");
-    for (k = 0; k < M.capacity * 2 + sub + 1 + (sub > 0); k++)
+    for (k = 0; k < (M.capacity + useTab) * (useTab ? 7 : 2) + (useTab ? M.capacity - 1 : 0) + sub + 1 + (sub > 0); k++)
     {
         printf("-");
     }

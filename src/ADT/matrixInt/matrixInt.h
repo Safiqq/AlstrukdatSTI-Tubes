@@ -15,8 +15,8 @@ typedef int ElTypeMxI;
 typedef struct
 {
    ElTypeMxI **MI; /* memori tempat penyimpan elemen (container) */
-   int capacity;      /* kapasitas matriks */
-   int Neff;          /* banyaknya elemen efektif */
+   int capacity;   /* kapasitas matriks */
+   int Neff;       /* banyaknya elemen efektif */
 } Matrix2D;
 
 /* Indeks yang digunakan [0..CAPACITY-1][0..CAPACITY-1] */
@@ -38,7 +38,7 @@ extern void CreateMxI(Matrix2D *M, int cap);
    F.S. Terbentuk matriks M berisi template dengan ukuran capxcap
 */
 
-extern void PrintMxI(Matrix2D M, int sub, char zero);
+extern void PrintMxI(Matrix2D M, int sub, char zero, boolean useTab);
 /* I.S. sembarang
    F.S. Menampilkan matriks sesuai format
 */

@@ -23,7 +23,7 @@ void CreateLDP(ListDP *L)
     Last(*L) = NilLDP;
 }
 
-addressLDP AlokasiLDP(char info, int x, int y)
+addressLDP AlokasiLDP(int info, int x, int y)
 {
     ElmtLDP *P = (ElmtLDP *)malloc(sizeof(ElmtLDP));
     if (P != NilLDP)
@@ -70,14 +70,14 @@ addressLDP SearchLDP(ListDP L, int x, int y)
     return NilLDP;
 }
 
-void InsVFirstLDP(ListDP *L, char info, int x, int y)
+void InsVFirstLDP(ListDP *L, int info, int x, int y)
 {
     addressLDP P = AlokasiLDP(info, x, y);
     if (P != NilLDP)
         InsertFirstLDP(L, P);
 }
 
-void InsVLastLDP(ListDP *L, char info, int x, int y)
+void InsVLastLDP(ListDP *L, int info, int x, int y)
 {
     addressLDP P = AlokasiLDP(info, x, y);
     if (P != NilLDP)
@@ -171,7 +171,7 @@ void DelLastLDP(ListDP *L, addressLDP *P)
     }
 }
 
-void DelPLDP(ListDP *L, char info, int x, int y)
+void DelPLDP(ListDP *L, int info, int x, int y)
 {
     addressLDP P = SearchLDP(*L, x, y);
     if (P != NilLDP)

@@ -119,7 +119,7 @@ void sudoku(ArrayMap *arrSB)
     counter = 0;
     while (counter < 10 && !isDone)
     {
-        PrintMxI(M, 3, '.');
+        PrintMxI(M, 3, '.', false);
         if (IsFullMxI(M))
         {
             printf("Selamat, kamu berhasil menamatkan SUDOku!\n");
