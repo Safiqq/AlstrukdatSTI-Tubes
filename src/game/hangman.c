@@ -367,9 +367,14 @@ void hangman(ArrayMap *arrSB)
                 {
                     printf("Tidak boleh menebak huruf yang sama!\n");
                 }
-                else
+                else if ((huruf >= 65 && huruf <= 90) || (huruf >= 97 && huruf <=122))
                 {
                     isValid = true;
+                }
+                
+                else
+                {
+                    printf("Harap masukkan input huruf alphabet!\n");
                 }
             }
         }
