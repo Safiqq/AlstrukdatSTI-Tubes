@@ -393,6 +393,17 @@ boolean legalMove(char asal, char tujuan, StackInt S1, StackInt S2, StackInt S3)
             }
         }
     }
+    else if(asal == 'G')
+    {
+        if(tujuan == 'G')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 // Program utama
@@ -439,9 +450,11 @@ void towerofhanoi(ArrayMap *arrSB)
 
     // Deklarasi boolean untuk validasi input pengguna
     boolean isValid = false;
+    boolean isNyerah = false;
+    boolean isSalahNyerah = false;
 
     // Looping sampai permainan berakhir (tiang C penuh)
-    while (TopSI(S3) != max - 1)
+    while (TopSI(S3) != max - 1 && !isNyerah)
     {
         // Inisiasilasi variabel untuk menampung input asal dan tujuan
         char asal, tujuan;
@@ -493,6 +506,11 @@ void towerofhanoi(ArrayMap *arrSB)
                     {
                         isValidAsal = true;
                     }
+                }
+                else if(asal == 'G' && currentWord.Length == 1)
+                {
+                    printf("Jika Anda ingin menyerah, silahkan input tujuan = 'G'\n");
+                    isValidAsal = true;
                 }
                 else
                 {
@@ -551,6 +569,19 @@ void towerofhanoi(ArrayMap *arrSB)
                         isValidTujuan = true;
                     }
                 }
+                else if(tujuan == 'G' && currentWord.Length == 1)
+                {
+                    if (asal == 'G')
+                    {
+                        isNyerah = true;
+                    }
+                    isValidTujuan = true;
+                }
+                else if(tujuan != 'G' && currentWord.Length == 1 && asal == 'G' && tujuan >= 65 && tujuan <=90) 
+                {
+                    isSalahNyerah = true;
+                    isValidTujuan = true;
+                }
                 else
                 {
                     printf("Input salah silahkan ulangi!\n");
@@ -562,14 +593,22 @@ void towerofhanoi(ArrayMap *arrSB)
             {
                 isValid = true;
             }
+            else if(isSalahNyerah == true)
+            {
+                printf("Input salah! Jika Anda ingin menyerah pastikan input tiang tujuan dan asal = 'G'\n");
+                isSalahNyerah = false;
+            }
             else
             {
                 printf("Tidak boleh memindahkan piringan yang lebih besar ke tower dengan piringan lebih kecil!\n");
             }
         }
         // Jika legalmove, maka akan melanjutkan permainan
-        move(asal, tujuan, &S1, &S2, &S3);
-        countTurn++;
+        if(!isNyerah)
+        {
+            move(asal, tujuan, &S1, &S2, &S3);
+            countTurn++;
+        }
 
         // Untuk mengvalidasi input pengguna di putaran selanjutnya
         isValid = false;
@@ -587,6 +626,11 @@ void towerofhanoi(ArrayMap *arrSB)
     {
         printf("Kamu Berhasil! Dengan turn sebanyak : %d\n", countTurn);
         score = 10 - 1 - (countTurn - minTurn) / 5;
+    }
+    else
+    {
+        printf("Kamu Berhasil Gagal! Dengan turn sebanyak : %d\n", countTurn);
+        score = 0;
     }
     InsertSB(&arrSB->TIMap[3], score);
     printf("=====================================\n");
