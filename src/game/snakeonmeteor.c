@@ -3,6 +3,7 @@
 boolean snakeGameOver = false;
 boolean isBodyOnMeteor = false;
 boolean addTailCommand = false;
+int countSnake = 1;
 
 boolean isHeadOnMeteor(Matrix2D M, ListDP L)
 {
@@ -19,6 +20,21 @@ boolean isHeadOnMeteor(Matrix2D M, ListDP L)
     return false;
 }
 
+boolean isHeadOnObstacle(Matrix2D M, ListDP L)
+{
+    addressLDP P = First(L);
+    int i, j;
+    for (i = 0; i < M.capacity; i++)
+    {
+        for (j = 0; j < M.capacity; j++)
+        {
+            if (M.MI[i][j] == '#' && X(P) == i && Y(P) == j)
+                return true;
+        }
+    }
+    return false;
+}
+
 boolean isHeadCanMove(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
@@ -26,14 +42,27 @@ boolean isHeadCanMove(Matrix2D M, ListDP L)
         A = M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)],
         S = M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
         D = M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1];
-    return ((W == 0 || W == 'o') || (A == 0 || A == 'o') || (S == 0 || S == 'o') || (D == 0 || D == 'o'));
+    return ((W == 0 || W == 'o' || W == '#') || (A == 0 || A == 'o' || A == '#') || (S == 0 || S == 'o' || S == '#') || (D == 0 || D == 'o' || D == '#'));
 }
 
 void checkSnake(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
     int i = X(P), j = Y(P);
-    snakeGameOver = IsFullMxI(M) || isHeadOnMeteor(M, L) || !isHeadCanMove(M, L);
+    snakeGameOver = IsFullMxI(M) || isHeadOnMeteor(M, L) || !isHeadCanMove(M, L) || snakeGameOver;
+}
+
+void clearFood(Matrix2D *M)
+{
+    int i, j;
+    for (i = 0; i < M->capacity; i++)
+    {
+        for (j = 0; j < M->capacity; j++)
+        {
+            if (M->MI[i][j] == 'o')
+                M->MI[i][j] = 0;
+        }
+    }
 }
 
 void clearMeteor(Matrix2D *M)
@@ -45,19 +74,6 @@ void clearMeteor(Matrix2D *M)
         for (j = 0; j < M->capacity; j++)
         {
             if (M->MI[i][j] == 'M')
-                M->MI[i][j] = 0;
-        }
-    }
-}
-
-void clearFood(Matrix2D *M)
-{
-    int i, j;
-    for (i = 0; i < M->capacity; i++)
-    {
-        for (j = 0; j < M->capacity; j++)
-        {
-            if (M->MI[i][j] == 'o')
                 M->MI[i][j] = 0;
         }
     }
@@ -100,13 +116,46 @@ void moveSnake(Matrix2D *M, ListDP *L)
         A = M->MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
         S = M->MI[X(P) + 1 < 0 ? 4 : X(P) + 1][Y(P)],
         D = M->MI[X(P)][Y(P) + 1 < 0 ? 4 : Y(P) + 1];
-    boolean isEatFood;
+    boolean isEatFood = false;
+    printf("TURN %d:\n", countSnake);
     printf("Silakan masukkan command Anda: ");
     STARTWORD("", "");
     printf("\n");
-    while (!IsEqual(currentWord, "W") && !IsEqual(currentWord, "A") && !IsEqual(currentWord, "S") && !IsEqual(currentWord, "D") && !IsEqual(currentWord, "ADDTAIL"))
+    while ((!IsEqual(currentWord, "W") &&
+            !IsEqual(currentWord, "A") &&
+            !IsEqual(currentWord, "S") &&
+            !IsEqual(currentWord, "D") &&
+            !IsEqual(currentWord, "ADDTAIL")) ||
+           ((IsEqual(currentWord, "W") && (PW != NilLDP || W == 'M')) ||
+            (IsEqual(currentWord, "A") && (PA != NilLDP || A == 'M')) ||
+            (IsEqual(currentWord, "S") && (PS != NilLDP || S == 'M')) ||
+            (IsEqual(currentWord, "D") && (PD != NilLDP || D == 'M'))))
     {
-        printf("Command tidak valid! Silakan input command menggunakan huruf w/a/s/d\n");
+        // Cek menabrak body, input tidak valid
+        if ((PW != NilLDP && IsEqual(currentWord, "W")) ||
+            (PA != NilLDP && IsEqual(currentWord, "A")) ||
+            (PS != NilLDP && IsEqual(currentWord, "S")) ||
+            (PD != NilLDP && IsEqual(currentWord, "D")))
+        {
+            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
+            printf("Silakan masukkan command lainnya");
+            ClearCurrentWord();
+        }
+        // Cek menabrak meteor, input tidak valid
+        else if ((W == 'M' && IsEqual(currentWord, "W")) ||
+                 (A == 'M' && IsEqual(currentWord, "A")) ||
+                 (S == 'M' && IsEqual(currentWord, "S")) ||
+                 (D == 'M' && IsEqual(currentWord, "D")))
+        {
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut\n");
+            printf("Silakan masukkan command lainnya");
+            ClearCurrentWord();
+        }
+        else
+            printf("Command tidak valid! Silakan input command menggunakan huruf W/A/S/D");
+        printf("\n\n");
+        printf("TURN %d:\n", countSnake);
+        printf("Silakan masukkan command Anda: ");
         STARTWORD("", "");
         printf("\n");
     }
@@ -118,46 +167,13 @@ void moveSnake(Matrix2D *M, ListDP *L)
     else
     {
         addTailCommand = false;
-        // Cek menabrak
-        if ((PW != NilLDP && IsEqual(currentWord, "W")) ||
-            (PA != NilLDP && IsEqual(currentWord, "A")) ||
-            (PS != NilLDP && IsEqual(currentWord, "S")) ||
-            (PD != NilLDP && IsEqual(currentWord, "D")))
-        {
-            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
-            printf("Silakan masukkan command lainnya\n\n");
-            while ((PW != NilLDP && IsEqual(currentWord, "W")) ||
-                   (PA != NilLDP && IsEqual(currentWord, "A")) ||
-                   (PS != NilLDP && IsEqual(currentWord, "S")) ||
-                   (PD != NilLDP && IsEqual(currentWord, "D")))
-            {
-                printf("Silakan masukkan command Anda: ");
-                STARTWORD("", "");
-                printf("\n");
-            }
-        }
-        if ((W == 'M' && IsEqual(currentWord, "W")) ||
-            (A == 'M' && IsEqual(currentWord, "A")) ||
-            (S == 'M' && IsEqual(currentWord, "S")) ||
-            (D == 'M' && IsEqual(currentWord, "D")))
-        {
-            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut\n");
-            printf("Silakan masukkan command lainnya\n\n");
-            while ((W == 'M' && IsEqual(currentWord, "W")) ||
-                   (A == 'M' && IsEqual(currentWord, "A")) ||
-                   (S == 'M' && IsEqual(currentWord, "S")) ||
-                   (D == 'M' && IsEqual(currentWord, "D")))
-            {
-                printf("Silakan masukkan command Anda: ");
-                STARTWORD("", "");
-                printf("\n");
-            }
-        }
+        // Cek apakah memakan food
         isEatFood = ((W == 'o' && IsEqual(currentWord, "W")) ||
                      (A == 'o' && IsEqual(currentWord, "A")) ||
                      (S == 'o' && IsEqual(currentWord, "S")) ||
                      (D == 'o' && IsEqual(currentWord, "D")));
         printf("Berhasil bergerak!\n\n");
+        countSnake++;
         P = Last(*L);
         M->MI[X(P)][Y(P)] = 0;
         while (P != First(*L))
@@ -167,31 +183,16 @@ void moveSnake(Matrix2D *M, ListDP *L)
             M->MI[X(Prev(P))][Y(Prev(P))] = Info(P);
             P = Prev(P);
         }
-        if (IsEqual(currentWord, "W"))
-        {
-            X(P) -= 1;
-            if (X(P) < 0)
-                X(P) = 4;
-        }
-        else if (IsEqual(currentWord, "A"))
-        {
-            Y(P) -= 1;
-            if (Y(P) < 0)
-                Y(P) = 4;
-        }
-        else if (IsEqual(currentWord, "S"))
-        {
-            X(P) += 1;
-            if (X(P) > 4)
-                X(P) = 0;
-        }
-        else if (IsEqual(currentWord, "D"))
-        {
-            Y(P) += 1;
-            if (Y(P) > 4)
-                Y(P) = 0;
-        }
-        M->MI[X(P)][Y(P)] = 'H';
+        X(P) = X(P) + IsEqual(currentWord, "S") - IsEqual(currentWord, "W");
+        Y(P) = Y(P) + IsEqual(currentWord, "D") - IsEqual(currentWord, "A");
+        X(P) = X(P) < 0 ? 4 : X(P) > 4 ? 0
+                                       : X(P);
+        Y(P) = Y(P) < 0 ? 4 : Y(P) > 4 ? 0
+                                       : Y(P);
+        if (isHeadOnObstacle(*M, *L))
+            snakeGameOver = true;
+        else
+            M->MI[X(P)][Y(P)] = 'H';
     }
     if (isEatFood)
     {
@@ -200,6 +201,24 @@ void moveSnake(Matrix2D *M, ListDP *L)
         summonFood(M);
     }
     ClearCurrentWord();
+}
+
+void summonObstacle(Matrix2D *M)
+{
+    int x = rand() % 4, y = rand() % 4;
+    // Open addressing
+    while (M->MI[x][y] != 0)
+    {
+        x++;
+        if (x > 4)
+        {
+            x = 0;
+            y++;
+        }
+        if (y > 4)
+            y = 0;
+    }
+    M->MI[x][y] = '#';
 }
 
 void summonFood(Matrix2D *M)
@@ -296,7 +315,7 @@ void snakeOnMeteor(ArrayMap *arrSB)
     ListDP L;
     int i;
     CreateMxI(&M, 5), CreateLDP(&L);
-    summonSnake(&M, &L), summonFood(&M);
+    summonSnake(&M, &L), summonObstacle(&M), summonFood(&M);
     PrintMxI(M, 0, '.', true);
     while (!snakeGameOver)
     {
@@ -306,6 +325,8 @@ void snakeOnMeteor(ArrayMap *arrSB)
         PrintMxI(M, 0, '.', true);
         if (isHeadOnMeteor(M, L))
             printf("Kepala snake terkena meteor!\n");
+        else if (isHeadOnObstacle(M, L))
+            printf("Kepala snake terkena obstacle!\n");
         else
         {
             if (isBodyOnMeteor)
@@ -315,8 +336,8 @@ void snakeOnMeteor(ArrayMap *arrSB)
         }
         checkSnake(M, L);
     }
-    int score = (LengthLDP(L) - isHeadOnMeteor(M, L)) * 2;
-    printf("Game berakhir. Skor: %d\n", score);
+    int score = (LengthLDP(L) - isHeadOnMeteor(M, L) - isHeadOnObstacle(M, L)) * 2;
+    printf("\nGame berakhir. Skor: %d\n", score);
     InsertSB(&arrSB->TIMap[4], score);
     ClearCurrentWord();
 }
