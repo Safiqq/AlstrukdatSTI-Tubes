@@ -3,7 +3,7 @@
 boolean snakeGameOver = false;
 boolean isBodyOnMeteor = false;
 boolean addTailCommand = false;
-int countSnake = 1;
+int snakeTurn = 1;
 
 boolean isHeadOnMeteor(Matrix2D M, ListDP L)
 {
@@ -39,8 +39,8 @@ boolean isHeadCanMove(Matrix2D M, ListDP L)
 {
     addressLDP P = First(L);
     int W = M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)],
-        A = M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)],
-        S = M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
+        A = M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
+        S = M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)],
         D = M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1];
     return ((W == 0 || W == 'o' || W == '#') || (A == 0 || A == 'o' || A == '#') || (S == 0 || S == 'o' || S == '#') || (D == 0 || D == 'o' || D == '#'));
 }
@@ -83,13 +83,13 @@ void addSnakeTail(Matrix2D M, ListDP *L)
 {
     addressLDP P = Last(*L);
     if (M.MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1] == 0) // Cek kiri
-        InsVLastLDP(L, Info(P) + 1, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1);
+        InsVLastLDP(L, Info(P) == 'H' ? 1 : Info(P) + 1, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1);
     else if (M.MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)] == 0) // Cek atas
-        InsVLastLDP(L, Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
+        InsVLastLDP(L, Info(P) == 'H' ? 1 : Info(P) + 1, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P));
     else if (M.MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)] == 0) // Cek bawah
-        InsVLastLDP(L, Info(P) + 1, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P));
+        InsVLastLDP(L, Info(P) == 'H' ? 1 : Info(P) + 1, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P));
     else if (M.MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1] == 0) // Cek kanan
-        InsVLastLDP(L, Info(P) + 1, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
+        InsVLastLDP(L, Info(P) == 'H' ? 1 : Info(P) + 1, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
     else
         snakeGameOver = true;
 }
@@ -109,15 +109,15 @@ void moveSnake(Matrix2D *M, ListDP *L)
     addressLDP P = First(*L),
                PW = SearchLDP(*L, X(P) - 1 < 0 ? 4 : X(P) - 1, Y(P)),
                PA = SearchLDP(*L, X(P), Y(P) - 1 < 0 ? 4 : Y(P) - 1),
-               PS = SearchLDP(*L, X(P) + 1 < 0 ? 4 : X(P) + 1, Y(P)),
-               PD = SearchLDP(*L, X(P), Y(P) + 1 < 0 ? 4 : Y(P) + 1);
+               PS = SearchLDP(*L, X(P) + 1 > 4 ? 0 : X(P) + 1, Y(P)),
+               PD = SearchLDP(*L, X(P), Y(P) + 1 > 4 ? 0 : Y(P) + 1);
     char inp;
     int W = M->MI[X(P) - 1 < 0 ? 4 : X(P) - 1][Y(P)],
         A = M->MI[X(P)][Y(P) - 1 < 0 ? 4 : Y(P) - 1],
-        S = M->MI[X(P) + 1 < 0 ? 4 : X(P) + 1][Y(P)],
-        D = M->MI[X(P)][Y(P) + 1 < 0 ? 4 : Y(P) + 1];
-    boolean isEatFood = false;
-    printf("TURN %d:\n", countSnake);
+        S = M->MI[X(P) + 1 > 4 ? 0 : X(P) + 1][Y(P)],
+        D = M->MI[X(P)][Y(P) + 1 > 4 ? 0 : Y(P) + 1];
+    boolean isEatFood;
+    printf("TURN %d:\n", snakeTurn);
     printf("Silakan masukkan command Anda: ");
     STARTWORD("", "");
     printf("\n");
@@ -154,7 +154,7 @@ void moveSnake(Matrix2D *M, ListDP *L)
         else
             printf("Command tidak valid! Silakan input command menggunakan huruf W/A/S/D");
         printf("\n\n");
-        printf("TURN %d:\n", countSnake);
+        printf("TURN %d:\n", snakeTurn);
         printf("Silakan masukkan command Anda: ");
         STARTWORD("", "");
         printf("\n");
@@ -173,7 +173,7 @@ void moveSnake(Matrix2D *M, ListDP *L)
                      (S == 'o' && IsEqual(currentWord, "S")) ||
                      (D == 'o' && IsEqual(currentWord, "D")));
         printf("Berhasil bergerak!\n\n");
-        countSnake++;
+        snakeTurn++;
         P = Last(*L);
         M->MI[X(P)][Y(P)] = 0;
         while (P != First(*L))
@@ -245,7 +245,7 @@ void summonMeteor(Matrix2D *M, ListDP *L)
     int x = rand() % 4, y = rand() % 4;
     clearMeteor(M);
     addressLDP P = SearchLDP(*L, x, y), temp;
-    if (M->MI[x][y] == 'o') // Meteor can't replace food
+    if (M->MI[x][y] == 'o' && M->MI[x][y] == '#') // Meteor can't replace food and obstacle
     {
         y++;
         if (y > 4)
@@ -275,7 +275,7 @@ void summonSnake(Matrix2D *M, ListDP *L)
     int x = rand() % 4, y = rand() % 4;
     InsVLastLDP(L, 'H', x, y);
     addressLDP P = First(*L);
-    if (y - 1 >= 0) // 1 DI KIRI
+    if (y - 1 >= 0) // 1 di kiri
     {
         InsVLastLDP(L, 1, x, y - 1);
         if (y - 2 >= 0)
@@ -285,7 +285,7 @@ void summonSnake(Matrix2D *M, ListDP *L)
         else
             InsVLastLDP(L, 2, x + 1, y - 1);
     }
-    else if (x - 1 >= 0) // 1 DI ATAS
+    else if (x - 1 >= 0) // 1 di atas
     {
         InsVLastLDP(L, 1, x - 1, y);
         if (x - 2 >= 0)
@@ -293,7 +293,7 @@ void summonSnake(Matrix2D *M, ListDP *L)
         else
             InsVLastLDP(L, 2, x + 3, y);
     }
-    else // 1 DI BAWAH
+    else // 1 di bawah
     {
         InsVLastLDP(L, 1, x + 1, y);
         if (x + 2 >= 0)
@@ -306,6 +306,7 @@ void summonSnake(Matrix2D *M, ListDP *L)
 
 void snakeOnMeteor(ArrayMap *arrSB)
 {
+    snakeTurn = 1;
     printf("Selamat datang di Snake on Meteor!\n");
     printf("Meng-generate peta, snake, dan makanan...\n");
     printf("Berhasil di-generate!\n\n");

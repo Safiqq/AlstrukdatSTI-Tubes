@@ -13,7 +13,7 @@
 boolean snakeGameOver;
 boolean isBodyOnMeteor;
 boolean addTailCommand;
-int countSnake;
+int snakeTurn;
 
 boolean isHeadOnMeteor(Matrix2D M, ListDP L);
 boolean isHeadOnObstacle(Matrix2D M, ListDP L);
