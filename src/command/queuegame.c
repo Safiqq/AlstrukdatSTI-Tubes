@@ -18,7 +18,7 @@ void queueGame(ArrayStr *games, Queue *antriangames)
     printf("\nNomor Game yang mau ditambahkan ke antrian: ");
     STARTWORD("", "");
     n = atoi(currentWord.TabWord);
-    if (!(n > games->Neff || n <= 0))
+    if (!(n > games->Neff || n <= 0) && currentWord.Length == 1)
     {
         EnqueueI(antriangames, n - 1);
         printf("\nGame berhasil ditambahkan kedalam daftar antrian.\n");
