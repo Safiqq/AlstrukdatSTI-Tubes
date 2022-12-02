@@ -28,11 +28,9 @@ addressLDP AlokasiLDP(int info, int x, int y)
     ElmtLDP *P = (ElmtLDP *)malloc(sizeof(ElmtLDP));
     if (P != NilLDP)
     {
-        // printf("1 %d %d %c\n", X(P), Y(P), Info(P));
         Info(P) = info;
         X(P) = x;
         Y(P) = y;
-        // printf("2 %d %d %c\n", X(P), Y(P), Info(P));
         Prev(P) = NilLDP;
         Next(P) = NilLDP;
     }
@@ -212,41 +210,3 @@ void DelBeforeLDP(ListDP *L, addressLDP *Pdel, addressLDP Succ)
         Next(Prev(*Pdel)) = Succ;
     }
 }
-
-void PrintForwardLDP(ListDP L)
-{
-    addressLDP P = First(L);
-    if (IsEmptyLDP(L))
-        printf("[]");
-    else
-    {
-        printf("[");
-        while (P != NilLDP)
-        {
-            printf("%c", Info(P));
-            if (P != Last(L))
-                printf(",");
-            P = Next(P);
-        }
-        printf("]");
-    }
-}
-
-// void PrintBackwardLDP(ListDPL)
-// {
-//     addressLDP P = Last(L);
-//     if (IsEmptyLDP(L))
-//         printf("[]");
-//     else
-//     {
-//         printf("[");
-//         while (P != NilLDP)
-//         {
-//             printf("%d", Info(P));
-//             if (P != First(L))
-//                 printf(",");
-//             P = Prev(P);
-//         }
-//         printf("]");
-//     }
-// }
