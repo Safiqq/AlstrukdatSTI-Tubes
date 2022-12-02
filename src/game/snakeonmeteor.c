@@ -185,10 +185,8 @@ void moveSnake(Matrix2D *M, ListDP *L)
         }
         X(P) = X(P) + IsEqual(currentWord, "S") - IsEqual(currentWord, "W");
         Y(P) = Y(P) + IsEqual(currentWord, "D") - IsEqual(currentWord, "A");
-        X(P) = X(P) < 0 ? 4 : X(P) > 4 ? 0
-                                       : X(P);
-        Y(P) = Y(P) < 0 ? 4 : Y(P) > 4 ? 0
-                                       : Y(P);
+        X(P) = X(P) < 0 ? 4 : X(P) > 4 ? 0 : X(P);
+        Y(P) = Y(P) < 0 ? 4 : Y(P) > 4 ? 0 : Y(P);
         if (isHeadOnObstacle(*M, *L))
             snakeGameOver = true;
         else
@@ -245,9 +243,14 @@ void summonMeteor(Matrix2D *M, ListDP *L)
     int x = rand() % 4, y = rand() % 4;
     clearMeteor(M);
     addressLDP P = SearchLDP(*L, x, y), temp;
-    if (M->MI[x][y] == 'o' && M->MI[x][y] == '#') // Meteor can't replace food and obstacle
+    while (M->MI[x][y] == 'o' && M->MI[x][y] == '#') // Meteor can't replace food and obstacle
     {
-        y++;
+        x++;
+        if (x > 4)
+        {
+            x = 0;
+            y++;
+        }
         if (y > 4)
             y = 0;
     }
