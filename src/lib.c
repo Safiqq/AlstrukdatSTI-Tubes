@@ -20,3 +20,22 @@ boolean isEqualStr(char *str1, char *str2)
     }
     return checker;
 }
+
+boolean isStrAllDigit(char *str1)
+{
+    boolean flag = true;
+    int j = 0;
+    while(j < stringLength(str1) && flag)
+    {
+        if(str1[j] - '0' >= 0 &&  str1[j] - '0' <= 9)
+        {
+            flag = true;
+        }
+        else
+        {
+            flag = false;
+        }
+        j++;
+    }
+    return flag;
+}

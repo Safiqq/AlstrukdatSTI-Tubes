@@ -18,21 +18,7 @@ void queueGame(ArrayStr *games, Queue *antriangames)
     printf("\nNomor Game yang mau ditambahkan ke antrian: ");
     STARTWORD("", "");
     n = atoi(currentWord.TabWord);
-    boolean isDigit = true;
-    int j = 0;
-    while(j < currentWord.Length && isDigit)
-    {
-        if(currentWord.TabWord[j] - '0' >= 0 &&  currentWord.TabWord[j] - '0' <= 9)
-        {
-            isDigit = true;
-        }
-        else
-        {
-            isDigit = false;
-        }
-        j++;
-    }
-    if (!(n > games->Neff || n <= 0) && isDigit)
+    if (!(n > games->Neff || n <= 0) && isStrAllDigit(currentWord.TabWord))
     {
         EnqueueI(antriangames, n - 1);
         printf("\nGame berhasil ditambahkan kedalam daftar antrian.\n");
