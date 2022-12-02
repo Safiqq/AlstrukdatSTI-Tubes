@@ -50,12 +50,13 @@ void load(char *namafile, ArrayStr *games, StackStr *history, ArrayMap *arrSB)
             PushSS(history, hist);
         }
         ReverseSS(history);
-        // Membaca SCOREBOARD
+        //Membaca SCOREBOARD
+        CreateAM(arrSB);
         ADVLINE();
         idxarr = 0;
-        if (lengame > 7)
+        if (lengame > 8)
         {
-            for (i = 7; i < lengame; i++)
+            for (i = 8; i < lengame; i++)
             {
                 InsertLastAM(arrSB);
             }
