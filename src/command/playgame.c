@@ -12,7 +12,7 @@ void playGame(ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMap 
     if (!IsEmptyQI(*antriangames))
     {
         DequeueI(antriangames, &play);
-        printf("Loading %s\n", games->TI[play]);
+        printf("Loading %s\n\n", games->TI[play]);
         if (play == 0)
         {
             rng(arraySB);
@@ -41,7 +41,11 @@ void playGame(ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMap 
         {
             sudoku(arraySB);
         }
-        else if (play >= 7 && play <= (*games).Neff)
+        else if (play == 7)
+        {
+            findTheNumber(arraySB);
+        }
+        else if (play >= 8 && play <= (*games).Neff)
         {
             gameTambahan(arraySB, play);
         }

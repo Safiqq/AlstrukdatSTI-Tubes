@@ -7,7 +7,8 @@ ADTMatrix := matrixInt
 ADTMesin := mesinkarakter mesinkata
 ADTQueue := queueDS queueInt
 ADTStack := stackInt stackStr
-ADT := $(ADTArray) $(ADTList) $(ADTMap) $(ADTMatrix) $(ADTMesin) $(ADTQueue) $(ADTStack)
+ADTTree := binaryTree
+ADT := $(ADTArray) $(ADTList) $(ADTMap) $(ADTMatrix) $(ADTMesin) $(ADTQueue) $(ADTStack) $(ADTTree)
 
 ADT := ${foreach var,${ADT},../src/ADT/$(var)/$(var).c}
 
