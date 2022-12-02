@@ -5,5 +5,6 @@
 
 #include "../ADT/mesinkata/mesinkata.h"
 #include "../ADT/stackStr/stackStr.h"
+#include "../lib.h"
 
 #endif

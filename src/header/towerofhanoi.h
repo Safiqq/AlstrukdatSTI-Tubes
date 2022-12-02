@@ -8,5 +8,6 @@
 #include "../ADT/arrayMap/arrayMap.h"
 #include "../ADT/mapStr/mapStr.h"
 #include "../ADT/stackInt/stackInt.h"
+#include "../lib.h"
 
 #endif

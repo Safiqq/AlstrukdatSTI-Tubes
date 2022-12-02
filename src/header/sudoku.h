@@ -5,5 +5,6 @@
 #include "../ADT/mapStr/mapStr.h"
 #include "../ADT/matrixInt/matrixInt.h"
 #include "../ADT/mesinkata/mesinkata.h"
+#include "../lib.h"
 
 #endif

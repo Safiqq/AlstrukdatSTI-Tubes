@@ -4,7 +4,7 @@ void history(StackStr *history)
 {
     ADVWORD();
     int i, num = atoi(currentWord.TabWord);
-    if (num > 0)
+    if ((num > 0) && isStrAllDigit(currentWord.TabWord))
     {
         if (!IsEmptySS(*history))
         {

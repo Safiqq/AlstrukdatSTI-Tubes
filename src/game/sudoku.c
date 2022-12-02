@@ -127,28 +127,28 @@ void sudoku(ArrayMap *arrSB)
         }
         else
         {
-            while (y < 1 || y > 9)
+            while (y < 1 || y > 9 || !isStrAllDigit(currentWord.TabWord))
             {
                 printf("Masukkan koordinat X [1..9]: ");
                 STARTWORD("", "");
                 y = atoi(currentWord.TabWord);
-                if ((y < 1 || y > 9) && y != 99)
+                if (((y < 1 || y > 9) && y != 99) || !isStrAllDigit(currentWord.TabWord))
                     printf("Input salah\n");
             }
-            while (x < 1 || x > 9)
+            while (x < 1 || x > 9 || !isStrAllDigit(currentWord.TabWord))
             {
                 printf("Masukkan koordinat Y [1..9]: ");
                 STARTWORD("", "");
                 x = atoi(currentWord.TabWord);
-                if (x < 1 || x > 9)
+                if ((x < 1 || x > 9) || !isStrAllDigit(currentWord.TabWord))
                     printf("Input salah\n");
             }
-            while (num < 1 || num > 9)
+            while (num < 1 || num > 9 || !isStrAllDigit(currentWord.TabWord))
             {
                 printf("Masukkan angka [1..9]: ");
                 STARTWORD("", "");
                 num = atoi(currentWord.TabWord);
-                if (num < 1 || num > 9)
+                if ((num < 1 || num > 9) || !isStrAllDigit(currentWord.TabWord))
                     printf("Input salah\n");
             }
             if (cekAngka(M, x - 1, y - 1, num))

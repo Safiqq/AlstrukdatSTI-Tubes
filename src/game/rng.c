@@ -25,12 +25,12 @@ void rng(ArrayMap *arrSB)
     printf("X merupakan angka random dengan range [1.100]\n");
     while (i < 10 && !isTrue)
     {
-        while (inpNum < 1 || inpNum > 100)
+        while ((inpNum < 1 || inpNum > 100) || !isStrAllDigit(currentWord.TabWord))
         {
             printf("Tebakan [1.100]: ");
             STARTWORD("", "");
             inpNum = atoi(currentWord.TabWord);
-            if (inpNum < 1 || inpNum > 100)
+            if (inpNum < 1 || inpNum > 100 || !isStrAllDigit(currentWord.TabWord))
                 printf("Input salah\n");
         }
         if (inpNum > answer)

@@ -427,7 +427,7 @@ void towerofhanoi(ArrayMap *arrSB)
         printf("Silahkan masukkan banyaknya piringan : ");
         STARTWORD("","");
         max = atoi(currentWord.TabWord);
-        if (max >= 1 && max <= 9)
+        if (max >= 1 && max <= 9 && isStrAllDigit(currentWord.TabWord))
         {
             isValidMax = true;
         }

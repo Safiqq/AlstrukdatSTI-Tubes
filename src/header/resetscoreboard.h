@@ -7,5 +7,6 @@
 #include "../ADT/arrayStr/arrayStr.h"
 #include "../ADT/mapStr/mapStr.h"
 #include "../ADT/mesinkata/mesinkata.h"
+#include "../lib.h"
 
 #endif

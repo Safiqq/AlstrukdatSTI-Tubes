@@ -10,5 +10,6 @@
 #include "../ADT/mesinkata/mesinkata.h"
 #include "../ADT/queueInt/queueInt.h"
 #include "../ADT/stackStr/stackStr.h"
+#include "../lib.h"
 
 #endif

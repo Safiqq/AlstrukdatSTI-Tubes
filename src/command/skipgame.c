@@ -4,7 +4,7 @@ void skipGame(Word skip, ArrayStr *games, Queue *antriangames, StackStr *history
 {
     ADVWORD();
     int i, num = atoi(currentWord.TabWord);
-    if (num >= 0)
+    if ((num >= 0) && isStrAllDigit(currentWord.TabWord))
     {
         printf("Berikut adalah daftar game di antrian milikmu: \n");
         for (i = 1; i <= LengthQI(*antriangames); i++)

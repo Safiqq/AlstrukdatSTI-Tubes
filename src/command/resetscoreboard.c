@@ -13,7 +13,7 @@ void resetScoreboard(ArrayMap *arrSB, ArrayStr games)
   printf("SCOREBOARD YANG INGIN DIHAPUS: ");
   STARTWORD("", "");
   int n = atoi(currentWord.TabWord);
-  while ((n<0) || (n>games.Neff)){
+  while (((n<0) || (n>games.Neff)) || !isStrAllDigit(currentWord.TabWord)){
     printf("Nomor tidak valid, silakan masukan nomor yang benar: ");
     STARTWORD("", "");
     n = atoi(currentWord.TabWord);
