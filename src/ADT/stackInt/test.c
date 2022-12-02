@@ -2,7 +2,8 @@
 
 int main()
 {
-    StackInt S; infotypeSI x;
+    StackInt S;
+    infotypeSI x;
     // Membuat Stack
     CreateSI(&S);
     // Check apakah berhasil membuat stack
@@ -14,5 +15,5 @@ int main()
     printf("Panjang Stack : %d, CAPACITYnya : 10, Apakah full ? (Full : 1 | Tidak : 0) = %d\n", LengthSI(S), IsFullSI(S));
     // Mengurangi elemen
     PopSI(&S, &x);
-    printf("Mengurangi satu elemen.\nApakah Stack kosong (Ya : 1 | No : 0) = %d\n", IsEmptySI(S));   
+    printf("Mengurangi satu elemen.\nApakah Stack kosong (Ya : 1 | No : 0) = %d\n", IsEmptySI(S));
 }

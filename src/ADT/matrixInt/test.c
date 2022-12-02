@@ -3,8 +3,8 @@
 int main()
 {
     Matrix2D M;
-    CreateMC(&M);
-    PrintMC(M);
-    printf("%d\n", IsFullMC(M));
+    CreateMxI(&M, 3);
+    PrintMxI(M, 0, '.', false);
+    printf("%d\n", IsFullMxI(M));
     return 0;
 }

@@ -10,7 +10,7 @@ int main()
     DeleteMS(&M, "BNMO");
     printf("%d\n", IsMemberMS(M, "BNMO"));
     printf("%d\n", IsMemberMS(M, "JAKE"));
-    printf("%d",ValueMS(M, "JAKE"));
+    printf("%d", ValueMS(M, "JAKE"));
     printf("%d\n", IsFullMS(M));
     printf("%d\n", IsEmptyMS(M));
     return 0;
