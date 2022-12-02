@@ -13,7 +13,7 @@ void deleteGame(ArrayStr *games, Queue *antriangames, StackStr *history, ArrayMa
     STARTWORD("", "");
     hapus = atoi(currentWord.TabWord);
 
-    if (hapus <= 7 || hapus > games->Neff)
+    if (hapus <= 8 || hapus > games->Neff)
         printf("Game gagal dihapus.\n");
     else
     {
