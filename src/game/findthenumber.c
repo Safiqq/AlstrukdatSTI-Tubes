@@ -35,6 +35,6 @@ void findTheNumber(ArrayMap *arrSB)
     else
         printf("Noob! Kamu gagal!\n");
     int score = ROOT(T) == x ? 100 : 0;
-    printf("Skor: %d\n", score);
-    // InsertSB(&arrSB->TIMap[], score);
+    // printf("Skor: %d\n", score);
+    InsertSB(&arrSB->TIMap[7], score);
 }

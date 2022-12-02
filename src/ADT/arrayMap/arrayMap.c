@@ -17,7 +17,8 @@ void CreateAM(ArrayMap *T)
     InsertLastAM(T);
     InsertLastAM(T);
     InsertLastAM(T);
-    (*T).NeffArrMap = 7;
+    InsertLastAM(T);
+    (*T).NeffArrMap = 8;
 }
 /* I.S. sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxAM-IdxMinAM+1 */
