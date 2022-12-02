@@ -5,5 +5,6 @@
 
 int stringLength(char *str);
 boolean isEqualStr(char *str1, char *str2);
+boolean isStrAllDigit(char *str1);
 
 #endif
