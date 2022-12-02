@@ -20,11 +20,7 @@ void CreateAM(ArrayMap *T)
     InsertLastAM(T);
     (*T).NeffArrMap = 8;
 }
-/* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxAM-IdxMinAM+1 */
 
-/* ********** SELEKTOR ********** */
-/* *** Banyaknya elemen *** */
 int NbElmtAM(ArrayMap T)
 {
     return (T.NeffArrMap);
@@ -39,5 +35,4 @@ void DeleteAtAM(ArrayMap *T, IdxTypeAM i)
     }
     (*T).NeffArrMap--;
 }
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
-/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
+

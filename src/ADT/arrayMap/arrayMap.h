@@ -41,7 +41,7 @@ typedef struct
 /* Konstruktor : create tabel kosong */
 void CreateAM(ArrayMap *T);
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk tabel T kosong dengan 8 nilai efektif*/
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
