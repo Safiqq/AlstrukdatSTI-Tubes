@@ -243,7 +243,7 @@ void summonMeteor(Matrix2D *M, ListDP *L)
     int x = rand() % 4, y = rand() % 4;
     clearMeteor(M);
     addressLDP P = SearchLDP(*L, x, y), temp;
-    while (M->MI[x][y] == 'o' && M->MI[x][y] == '#') // Meteor can't replace food and obstacle
+    while (M->MI[x][y] == 'o' || M->MI[x][y] == '#') // Meteor can't replace food and obstacle
     {
         x++;
         if (x > 4)
