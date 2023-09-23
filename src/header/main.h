@@ -9,7 +9,7 @@
 #include "../ADT/arrayStr/arrayStr.h"
 #include "../ADT/arrayChar/arrayChar.h"
 #include "../ADT/arrayMap/arrayMap.h"
-#include "../ADT/listdp/listdp.h"
+#include "../ADT/listDP/listDP.h"
 #include "../ADT/mapInt/mapInt.h"
 #include "../ADT/mapStr/mapStr.h"
 #include "../ADT/matrixInt/matrixInt.h"

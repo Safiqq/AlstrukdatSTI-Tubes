@@ -1,4 +1,4 @@
-/* File: listdp.h */
+/* File: listDP.h */
 /* ADT List dengan Double Pointer */
 /* Representasi berkait dengan address adalah pointer */
 /* ElTypeLDP adalah ADT yg menyimpan koordinat x dan y, serta info pada koordinat tsb. */

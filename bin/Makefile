@@ -21,4 +21,4 @@ BNMO := ../src/lib.c $(ADT) $(GAME) $(COMMAND)
 all: bnmo
 
 bnmo:
-	gcc -std=$(STD_VER) -o bnmo $(BNMO) -I.
+	gcc -std=$(STD_VER) -o bnmo $(BNMO) -I. -lm
